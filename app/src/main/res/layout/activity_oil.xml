@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.betterda.xsnano.view.NormalTopBar
+        android:id="@+id/topbar_oil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.betterda.xsnano.view.NormalTopBar>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linear_oil"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.betterda.xsnano.tianjiaji.view.TwoToolBarView
+                android:id="@+id/twotool_oil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></com.betterda.xsnano.tianjiaji.view.TwoToolBarView>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_oil"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+        <com.betterda.xsnano.view.LoadingPager
+            android:id="@+id/loadpager_oil"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.betterda.xsnano.view.LoadingPager>
+
+    </FrameLayout>
+
+</LinearLayout>

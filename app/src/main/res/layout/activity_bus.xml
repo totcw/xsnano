@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.betterda.xsnano.view.NormalTopBar
+        android:id="@+id/topbar_bus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></com.betterda.xsnano.view.NormalTopBar>
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:visibility="invisible"
+        android:id="@+id/relative_bus"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_gray"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/linear_bus"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lv_divider"></View>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="#ffffff">
+
+                <RelativeLayout
+                    android:id="@+id/relative_bus_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true">
+
+                    <ImageView
+                        android:id="@+id/iv_bus_all"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_centerInParent="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="9dp"
+                        android:background="@drawable/buycheck_selector" />
+                </RelativeLayout>
+
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/relative_bus_check"
+                    android:text="全选"
+                    android:textColor="@color/shouye_renmen_tv"
+                    android:textSize="@dimen/textsize_small" />
+
+                <FrameLayout
+                    android:id="@+id/frame_jiesuan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true">
+
+                    <ImageView
+
+                        android:id="@+id/iv_bus_jiesuan"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/buyjiesuan_selector" />
+
+                    <ImageView
+                        android:id="@+id/iv_bus_delete"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/buydelete_selector"
+                        android:visibility="invisible" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tv_bus_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:layout_toLeftOf="@id/frame_jiesuan"
+                    android:text="￥ 0"
+                    android:textColor="@color/shouye_fenlei_red"
+                    android:textSize="@dimen/textsize_small" />
+
+
+                <TextView
+                    android:id="@+id/tv_bus_heji"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/tv_bus_money"
+                    android:text="合计: "
+                    android:textColor="@color/shouye_renmen_tv"
+                    android:textSize="@dimen/textsize_small" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:overScrollMode="never"
+            android:id="@+id/rv_bus"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/linear_bus"></android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>
+
+    <com.betterda.xsnano.view.LoadingPager
+        android:id="@+id/loadpager_bus"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></com.betterda.xsnano.view.LoadingPager>
+</FrameLayout>
+</LinearLayout>

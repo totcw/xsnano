@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?><!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:scrollbars="none">-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0fffffff"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/sort2_layout"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:background="@color/bg_gray"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/sort2_img"
+            android:layout_width="4dp"
+            android:layout_height="38dp"
+            android:background="@mipmap/category" />
+
+        <TextView
+            android:id="@+id/sort2_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="12dp"
+            android:text="门店类型"
+            android:textColor="@color/shouye_fenlei_red"
+            android:textSize="@dimen/textsize_small" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ffebebeb"></View>
+
+    <LinearLayout
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center_vertical">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_fenlei_kuaixiudian"
+                android:layout_width="98dp"
+                android:layout_height="32dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/yjjx_selector"
+                android:gravity="center"
+                android:text="快修店"
+                android:textColor="@color/shouye_lv_tv"
+                android:textSize="@dimen/textsize_little" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_fenlei_weixiuc"
+                android:layout_width="98dp"
+                android:layout_height="32dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/yjjx_selector"
+                android:gravity="center"
+                android:text="美容店"
+                android:textColor="@color/shouye_lv_tv"
+                android:textSize="@dimen/textsize_little" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relative_pp_main_fenlai"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_fenlei_ssd"
+                android:layout_width="98dp"
+                android:layout_height="32dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/yjjx_selector"
+                android:gravity="center"
+                android:text="4S店"
+                android:textColor="@color/shouye_lv_tv"
+                android:textSize="@dimen/textsize_little" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <RelativeLayout
+            android:id="@+id/relative_fenlei_reset"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#f78554">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="重置"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/textsize_large" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relative_fenlei_comfirm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#f75756">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="确定"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/textsize_large" />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+
+</LinearLayout><!--
+</ScrollView>-->

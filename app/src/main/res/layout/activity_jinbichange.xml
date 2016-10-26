@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.betterda.xsnano.view.NormalTopBar
+            android:id="@+id/topbar_jinbichang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></com.betterda.xsnano.view.NormalTopBar>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/tv_jinbichange_tishi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="可兑换银币"
+                android:textColor="@color/shouye_lv_tv"
+                android:textSize="@dimen/textsize_small" />
+
+            <TextView
+                android:id="@+id/tv_jinbichange_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/tv_jinbichange_tishi"
+                android:text="1000枚"
+                android:textColor="@color/shouye_fenlei_red"
+                android:textSize="@dimen/textsize_small" />
+
+            <RelativeLayout
+                android:id="@+id/relative_tixian_tiqu"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true">
+
+                <TextView
+                    android:id="@+id/tv_jinbichange_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="全部兑换"
+                    android:textColor="@color/bg"
+                    android:textSize="@dimen/textsize_little" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+
+            android:background="@color/lv_divider"></View>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/lv_divider"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="金币"
+                android:textColor="@color/shouye_lv_tv"
+                android:textSize="@dimen/textsize_small" />
+
+            <EditText
+                android:layout_weight="1"
+                android:inputType="number"
+                android:id="@+id/et_jinbichange_money"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@null"
+                android:hint="2枚银币兑换1枚金币"
+                android:textColor="@color/shouye_lv_tv"
+                android:textSize="@dimen/textsize_small" />
+
+            <ImageView
+                android:id="@+id/iv_chongzhi_delete"
+                android:background="@mipmap/delete"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+
+            android:background="@color/lv_divider"></View>
+
+
+
+        <Button
+            android:id="@+id/btn_myjinbichange_change"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/btn_login_selector"
+            android:layout_width="match_parent"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            android:text="确认兑换"
+            android:layout_height="48dp" />
+
+    </LinearLayout>
+</ScrollView>

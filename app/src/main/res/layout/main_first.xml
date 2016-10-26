@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.betterda.xsnano.view.RatioLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:ratio="2">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.betterda.xsnano.view.HorizontalScrollViewPager
+            android:id="@+id/vpager_lunbotu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_points"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/vpager_lunbotu"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+        <ImageView
+
+            android:scaleType="fitXY"
+            android:id="@+id/iv_main_first"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/viewpager_zwt"
+
+            />
+
+
+    </FrameLayout>
+</com.betterda.xsnano.view.RatioLayout>

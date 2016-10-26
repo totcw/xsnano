@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_title"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:background="@color/title_red2" >
+
+        <LinearLayout
+            android:id="@+id/ll_title_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp" >
+
+            <ImageView
+                android:id="@+id/iv_search_back"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/ic_back" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_title_search"
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@id/ll_title_back"
+            android:background="@drawable/bg_title_edite"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:hint="请输入商品名,店铺名等"
+            android:paddingLeft="10dp"
+            android:singleLine="true"
+            android:textSize="@dimen/textsize_little"
+           />
+
+        <LinearLayout
+            android:id="@+id/ll_title_search"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp" >
+
+            <ImageView
+                android:id="@+id/iv_search"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/nb_title_search" />
+        </LinearLayout>
+        <View 
+            android:layout_width="1dp"
+            android:layout_height="20dp"
+            android:background="@color/gray_line"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/ll_title_search"
+            android:id="@+id/v_title_line"
+            />
+        <LinearLayout
+            android:id="@+id/ll_title_delete"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/v_title_line"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp" >
+
+            <ImageView
+                android:id="@+id/iv_search_delete"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/delete" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:overScrollMode="never"
+        android:id="@+id/rv_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    </android.support.v7.widget.RecyclerView>
+
+        <com.betterda.xsnano.view.LoadingPager
+            android:id="@+id/loadpager_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.betterda.xsnano.view.LoadingPager>
+
+    </FrameLayout>
+</LinearLayout>

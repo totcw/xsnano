@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#ffffff"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:overScrollMode="never"
+            android:id="@+id/rv_fragment_all"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+        </android.support.v7.widget.RecyclerView>
+
+        <com.betterda.xsnano.view.LoadingPager
+            android:id="@+id/loadpager_fragment_all"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.betterda.xsnano.view.LoadingPager>
+
+    </FrameLayout>
+
+
+
+</LinearLayout>

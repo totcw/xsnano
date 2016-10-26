@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_gray"
+        android:orientation="vertical"
+        android:paddingBottom="4dp">
+
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <RelativeLayout
+                android:layout_marginRight="1dp"
+                android:id="@+id/relative_three_xiche"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                >
+
+                <LinearLayout
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="19dp"
+                        android:layout_height="20dp"
+                        android:background="@mipmap/xiche_shouye" />
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#908368"
+                        android:text="洗车" />
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp"
+                android:id="@+id/relative_three_meirong"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#ffffff"
+               >
+
+                <LinearLayout
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+                <ImageView
+
+                    android:layout_width="19dp"
+                    android:layout_height="20dp"
+                    android:background="@mipmap/meirong_shouye" />
+
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#908368"
+                    android:text="美容" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp"
+                android:id="@+id/relative_three_yanghu"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                >
+                <LinearLayout
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                <ImageView
+
+                    android:layout_width="19dp"
+                    android:layout_height="20dp"
+                    android:background="@mipmap/yanghu_shouye" />
+
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#908368"
+                    android:text="养护" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_marginLeft="1dp"
+                android:id="@+id/relative_three_luntai"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#ffffff"
+               >
+                <LinearLayout
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                <ImageView
+
+                    android:layout_width="19dp"
+                    android:layout_height="20dp"
+                    android:background="@mipmap/luntai_shouye" />
+
+                <TextView
+                    android:textSize="14sp"
+                    android:textColor="#908368"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="轮胎" />
+                </LinearLayout>
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="172dp"
+            android:layout_marginTop="5dp"
+            android:background="#ffffff">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="157dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="14dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/iv_jbdb"
+                    android:layout_width="136dp"
+                    android:layout_height="157dp"
+                    android:layout_centerInParent="true"
+                    android:background="@mipmap/jbdb"
+                    android:scaleType="fitXY" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@color/lv_divider"></View>
+
+            <LinearLayout
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+
+                    android:layout_weight="1">
+
+                    <ImageView
+
+                        android:id="@+id/iv_ykggl"
+                        android:layout_width="148dp"
+                        android:layout_height="53dp"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="20dp"
+                        android:background="@mipmap/ykggl"
+                        android:scaleType="fitXY" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/lv_divider"></View>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/iv_gcwy"
+                        android:layout_width="153dp"
+                        android:layout_height="40dp"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="20dp"
+                        android:background="@mipmap/gcwy"
+                        android:scaleType="fitXY" />
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/iv_mrtm"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:background="@mipmap/mrtm"
+            android:scaleType="fitXY" />
+
+    </LinearLayout>
+</FrameLayout>

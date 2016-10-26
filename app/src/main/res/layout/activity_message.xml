@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#f75756" >
+
+        <ImageView
+            android:id="@+id/iv_message_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:scaleType="center"
+            android:clickable="true"
+            android:src="@mipmap/common_back"
+            android:background="@drawable/imagebtn_selector" />
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="48dp"
+            android:layout_marginRight="48dp"
+            android:gravity="center"
+            android:text="消息"
+            android:textColor="#FFFFFFFF"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+
+        <ImageView
+            android:layout_marginRight="5dp"
+            android:layout_alignParentRight="true"
+            android:id="@+id/iv_message_more"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:scaleType="center"
+            android:clickable="true"
+            android:src="@mipmap/more"
+            android:background="@drawable/imagebtn_selector" />
+
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:visibility="invisible"
+            android:id="@+id/rv_message"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            >
+
+        </android.support.v7.widget.RecyclerView>
+
+        <com.betterda.xsnano.view.LoadingPager
+            android:id="@+id/loadpager_message"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            ></com.betterda.xsnano.view.LoadingPager>
+
+    </FrameLayout>
+
+
+
+</LinearLayout>

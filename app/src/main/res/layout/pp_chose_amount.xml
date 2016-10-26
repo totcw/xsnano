@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+
+            android:id="@+id/iv_ppchose"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:background="@mipmap/ttycimage" />
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/iv_ppchose"
+                android:id="@+id/tv_ppchose_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/shouye_fenlei_red"
+                android:textSize="@dimen/textsize_xxlarge"
+                android:text="￥ 0"
+                />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/shouye_renmen_tv"
+            android:textSize="@dimen/textsize_normal"
+            android:id="@+id/tv_chose_amount_pp"
+            android:layout_below="@id/tv_ppchose_money"
+            android:layout_toRightOf="@id/iv_ppchose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已选1件"
+            />
+        <ImageView
+            android:id="@+id/iv_pp_chose_delete"
+            android:layout_marginRight="10dp"
+            android:background="@mipmap/delete"
+            android:layout_alignParentRight="true"
+            android:layout_width="17dp"
+            android:layout_height="17dp" />
+
+    </RelativeLayout>
+
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+
+        android:background="@color/lv_divider"></View>
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <TextView
+            android:textColor="@color/shouye_renmen_tv"
+            android:textSize="@dimen/textsize_normal"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="数量"
+            android:layout_centerVertical="true"
+            />
+
+
+
+        <LinearLayout
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+           <ImageView
+               android:id="@+id/iv_chose_delete"
+               android:layout_width="40dp"
+               android:layout_height="40dp"
+               android:background="@mipmap/sub"
+               />
+            <TextView
+                android:gravity="center"
+                android:background="@mipmap/textbackgrod"
+                android:id="@+id/tv_chose_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:textColor="@color/shouye_renmen_tv"
+                android:textSize="@dimen/textsize_normal"
+                android:text="1"
+                />
+            <ImageView
+                android:id="@+id/iv_chose_add"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@mipmap/add"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <RelativeLayout
+            android:id="@+id/relative_chose_bus"
+            android:background="#f7b354"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="加入购物车"
+                android:layout_centerInParent="true"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/textsize_large"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relative_chose_buy"
+            android:background="#f75756"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="立即购买"
+                android:layout_centerInParent="true"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/textsize_large"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

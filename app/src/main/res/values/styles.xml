@@ -1,0 +1,93 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+       
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="SplashTheme" parent="AppTheme" >
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
+
+
+    <style name="ProgressBarBig">
+        <item name="android:indeterminateDrawable">@drawable/progress_big</item>
+        <item name="android:minWidth">48dip</item>
+        <item name="android:maxWidth">48dip</item>
+        <item name="android:minHeight">48dip</item>
+        <item name="android:maxHeight">48dip</item>
+        <item name="android:indeterminateOnly">true</item>
+        <item name="android:indeterminateBehavior">repeat</item>
+        <item name="android:indeterminateDuration">3500</item>
+    </style>
+
+    <!--//自定义进度对话框的样式-->
+    <style name="loading_dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@mipmap/dialog_bg</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="popwin_anim_style">
+        <item name="android:windowEnterAnimation">@anim/popupwindow_show</item>
+        <item name="android:windowExitAnimation">@anim/popupwindow_hide</item>
+    </style>
+
+
+    <!--防饿了么加载动画的style-->
+    <style name="custom_dialog" parent="@android:style/Theme.Holo.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!-- Dialog的windowFrame框为无 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否漂现在activity上 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 是否半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 去除黑色边框的关键设置项 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 屏幕背景是否变暗 -->
+        <item name="android:backgroundDimAmount">0</item>
+    </style>
+
+    <!--购物车删除的style-->
+    <style name="custom_dialog2" parent="@android:style/Theme.Holo.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!-- Dialog的windowFrame框为无 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否漂现在activity上 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 是否半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 去除黑色边框的关键设置项 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 屏幕背景是否变暗 -->
+        <item name="android:backgroundDimAmount">0.3</item>
+    </style>
+    <!--五角星评价的样式-->
+    <style name="myRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/myratingbar</item>
+        <item name="android:minHeight">16dp</item>
+        <item name="android:maxHeight">16dp</item>
+    </style>
+    <!--五角星大的-->
+    <style name="myRatingBar2" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/myratingbar2</item>
+        <item name="android:minHeight">37dp</item>
+        <item name="android:maxHeight">37dp</item>
+    </style>
+
+    <!--popupwindow动画-->
+    <style name="popupwindow_anim">
+        <item name="android:windowEnterAnimation">@anim/popupwindow_in</item>
+        <item name="android:windowExitAnimation">@anim/popupwindow_out</item>
+    </style>
+</resources>

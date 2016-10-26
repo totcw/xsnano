@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/frame_load"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <include layout="@layout/loading_page_empty"></include>
+    <include layout="@layout/loading_page_error"></include>
+
+    <com.betterda.xsnano.view.LoadingView
+        android:visibility="invisible"
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/loadview_pager"
+        app:loadingText="加载中..."
+        >
+
+    </com.betterda.xsnano.view.LoadingView>
+
+</FrameLayout>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linear_sale"
+    android:layout_width="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.betterda.xsnano.view.RatioLayout
+
+            android:id="@+id/ratio_sale"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:ratio="2">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/sv_sale"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                fresco:actualImageScaleType="fitXY"
+                fresco:placeholderImage="@mipmap/viewpager_zwt"
+                fresco:placeholderImageScaleType="fitXY"
+
+                />
+        </com.betterda.xsnano.view.RatioLayout>
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_below="@id/ratio_sale"
+            android:background="#ffffff">
+
+            <TextView
+                android:layout_marginLeft="16dp"
+                android:id="@+id/tv_sale_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0元起"
+                android:textColor="@color/shouye_fenlei_red"
+                android:textSize="@dimen/textsize_small" />
+
+            <TextView
+                android:id="@+id/tv_sale_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/tv_sale_price"
+                android:layout_weight="20"
+                android:text="名字"
+                android:textColor="@color/shouye_renmen_tv"
+                android:textSize="@dimen/textsize_small" />
+
+
+            <LinearLayout
+                android:layout_marginRight="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_alignParentRight="true">
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@mipmap/clock"
+                    android:layout_marginRight="5dp"
+                    />
+                <TextView
+                    android:id="@+id/tv_sale_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="00天"
+                    android:textColor="@color/shouye_lv_tv"
+                    android:textSize="@dimen/textsize_small" />
+<!--
+                <TextView
+                    android:id="@+id/tv_sale_hour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="00时"
+                    android:textColor="@color/shouye_lv_tv"
+                    android:textSize="@dimen/textsize_small" />
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_sale_minute"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="00分"
+                    android:textColor="@color/shouye_lv_tv"
+                    android:textSize="@dimen/textsize_small" />
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_sale_second"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="00秒"
+                    android:textColor="@color/shouye_lv_tv"
+                    android:textSize="@dimen/textsize_small" />-->
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/bg_gray"
+        ></View>
+
+</LinearLayout>

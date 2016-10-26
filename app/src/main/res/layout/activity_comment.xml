@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.betterda.xsnano.view.NormalTopBar
+        android:id="@+id/topbar_comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></com.betterda.xsnano.view.NormalTopBar>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linear_comment"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:background="#ffffff">
+
+                <TextView
+                    android:id="@+id/tv_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="用户评价" />
+
+                <RatingBar
+                    android:id="@+id/rb_comment"
+                    style="@style/myRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/tv_comment"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:rating="5" />
+
+                <TextView
+                    android:id="@+id/tv_comment2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/rb_comment"
+                    android:text="5.0" />
+
+                <ImageView
+                    android:id="@+id/iv_comment"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true" />
+
+                <TextView
+                    android:id="@+id/tv_comment3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_comment"
+                    android:text="0人评价" />
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:overScrollMode="never"
+                android:id="@+id/rv_comment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+
+
+        <com.betterda.xsnano.view.LoadingPager
+            android:id="@+id/loadpager_comment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.betterda.xsnano.view.LoadingPager>
+
+    </FrameLayout>
+
+
+</LinearLayout>

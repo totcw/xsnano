@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/bg_gray"
+    android:layout_height="match_parent">
+<com.betterda.xsnano.view.NormalTopBar
+    android:id="@+id/topbar_youhui"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"></com.betterda.xsnano.view.NormalTopBar>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+       <LinearLayout
+           android:orientation="vertical"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+           <com.betterda.xsnano.view.ViewPagerIndicator
+               android:id="@+id/youhui_indicator"
+               android:layout_width="match_parent"
+               android:layout_height="45dp"
+               android:background="#ffffff"
+               android:orientation="horizontal"
+               app:item_count="2">
+
+               <TextView
+                   android:layout_width="0dp"
+                   android:layout_height="fill_parent"
+                   android:layout_weight="1"
+                   android:gravity="center"
+                   android:text="卡券"
+                   android:textColor="#CCFFFFFF"
+                   android:textSize="16sp" />
+
+               <TextView
+                   android:layout_width="0dp"
+                   android:layout_height="fill_parent"
+                   android:layout_weight="1"
+                   android:gravity="center"
+                   android:text="自提码"
+                   android:textColor="#CCFFFFFF"
+                   android:textSize="16sp" />
+
+
+
+           </com.betterda.xsnano.view.ViewPagerIndicator>
+
+           <View
+               android:layout_width="match_parent"
+               android:layout_height="0.5dp"
+
+               android:background="@color/lv_divider"></View>
+           <android.support.v4.view.ViewPager
+               android:id="@+id/vp_youhui"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+
+               >
+
+           </android.support.v4.view.ViewPager>
+
+       </LinearLayout>
+
+        <com.betterda.xsnano.view.LoadingPager
+            android:id="@+id/loadpager_youhui"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            ></com.betterda.xsnano.view.LoadingPager>
+
+    </FrameLayout>
+
+</LinearLayout>

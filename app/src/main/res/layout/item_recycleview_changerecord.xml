@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/linear_changrecord"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sv_item_changrecord"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/relative_item_bus"
+            fresco:actualImageScaleType="focusCrop"
+            fresco:placeholderImage="@mipmap/viewpager_zwt"
+            fresco:placeholderImageScaleType="focusCrop"
+            fresco:roundedCornerRadius="3dp"
+            fresco:roundTopLeft="true"
+            fresco:roundTopRight="true"
+            fresco:roundBottomLeft="true"
+            fresco:roundBottomRight="true"
+            />
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="10"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/sv_item_changrecord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_item_changrecord_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="商品名"
+                android:textColor="@color/shouye_renmen_tv"
+                android:textSize="@dimen/textsize_small" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/tv_item_changrecord_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:textColor="@color/shouye_renmen_tv"
+                android:textSize="@dimen/textsize_small" />
+        </LinearLayout>
+
+
+
+
+        <RelativeLayout
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+
+                android:id="@+id/tv_item_changrecord_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥ 0"
+                android:textColor="@color/shouye_fenlei_red"
+                android:textSize="@dimen/textsize_small" />
+
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/lv_divider"></View>
+</LinearLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <solid android:color="#ffdededf" />
+            <corners android:topLeftRadius="7.0dip" android:topRightRadius="7.0dip" android:bottomLeftRadius="0.100000024dip" android:bottomRightRadius="0.100000024dip" />
+            <stroke android:width="1.0dip" android:color="#ffd0d0d0" />
+        </shape>
+    </item>
+    <!-- 如果只用上面的一个图形 上下左右都有边框,2个这个背景的控件放一起就不好看,边框距离变厚了 -->
+    <!-- 用个白色边框的图形覆盖上面的图形,设置 top,left,right 打到去掉底部边框的作用 -->
+    <item  android:top="2.0dip" android:left="2.0dip" android:right="2.0dip">
+        <shape>
+            <solid android:color="#ffdededf" />
+            <corners android:topLeftRadius="7.0dip" android:topRightRadius="7.0dip" android:bottomLeftRadius="0.100000024dip" android:bottomRightRadius="0.100000024dip" />
+            <stroke android:width="1.0dip" android:color="#ffdededf" />
+        </shape>
+    </item>
+</layer-list>

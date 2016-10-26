@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linear_business"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sv_item_business"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerVertical="true"
+            fresco:roundedCornerRadius="3dp"
+            fresco:roundTopLeft="true"
+            fresco:roundTopRight="true"
+            fresco:roundBottomLeft="true"
+            fresco:roundBottomRight="true"
+            fresco:placeholderImage="@mipmap/ttycimage"
+            fresco:placeholderImageScaleType="focusCrop"
+            fresco:actualImageScaleType="focusCrop" />
+
+
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_weight="10"
+            android:orientation="vertical"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:singleLine="true"
+                android:id="@+id/tv_business_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="业务名"
+                android:textColor="@color/shouye_renmen_tv"
+                android:textSize="@dimen/textsize_small"
+                />
+            <TextView
+                android:visibility="gone"
+                android:maxLines="2"
+                android:layout_marginTop="4dp"
+                android:id="@+id/tv_business_jianjie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="简介"
+                android:textColor="@color/shouye_lv_tv"
+                android:textSize="@dimen/textsize_smallest"
+                />
+
+            <LinearLayout
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_height="wrap_content">
+             <!--   <RatingBar
+                    android:id="@+id/rb_business_comment"
+                    style="@style/myRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:rating="1.5" />
+
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/shouye_lv_tv"
+                    android:textSize="@dimen/textsize_normal"
+                    android:id="@+id/tv_business_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0条评价"
+                    android:layout_gravity="right"
+
+                    />-->
+                <TextView
+                    android:textColor="@color/shouye_lv_tv"
+                    android:textSize="@dimen/textsize_smallest"
+                    android:id="@+id/tv_business_amout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="月销0单"
+                    android:layout_gravity="right"
+
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/shouye_fenlei_red"
+                    android:textSize="@dimen/textsize_small"
+                    android:id="@+id/tv_business_newprice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20"
+                    android:layout_gravity="right"
+
+                    />
+
+                <RelativeLayout
+                    android:id="@+id/relative_busineww"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_centerInParent="true"
+                        android:singleLine="true"
+                        android:textColor="@color/shouye_lv_tv"
+                        android:textSize="@dimen/textsize_smallest"
+                        android:id="@+id/tv_business_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="￥40"
+
+
+                        />
+                    <View
+                        android:layout_centerInParent="true"
+                        android:layout_width="30dp"
+                        android:layout_height="1dip"
+                        android:background="#FF909090" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_business_buy"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="买单"
+            android:textColor="#ffffff"
+            android:background="@drawable/shape_corner_red"
+            />
+
+    </LinearLayout>
+
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/lv_divider"></View>
+</LinearLayout>

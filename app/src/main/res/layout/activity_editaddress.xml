@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical">
+
+    <com.betterda.xsnano.view.NormalTopBar
+        android:id="@+id/topbar_editaddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.betterda.xsnano.view.NormalTopBar>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+
+        android:background="@color/lv_divider"></View>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:background="#ffffff"
+        android:paddingLeft="16dp">
+
+        <EditText
+            android:id="@+id/et_editadress_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:hint="收货人姓名"
+            android:singleLine="true"
+            android:textColor="@color/shouye_renmen_tv"
+            android:textSize="@dimen/textsize_small" />
+
+    </RelativeLayout>
+
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+
+        android:background="@color/lv_divider"></View>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:background="#ffffff"
+        android:paddingLeft="16dp">
+
+        <EditText
+            android:id="@+id/et_editadress_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:hint="手机号码"
+            android:singleLine="true"
+            android:textColor="@color/shouye_renmen_tv"
+            android:textSize="@dimen/textsize_small" />
+
+    </RelativeLayout>
+
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+
+        android:background="@color/lv_divider"></View>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:background="#ffffff"
+        android:paddingLeft="16dp">
+
+        <EditText
+            android:id="@+id/et_editadress_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:hint="省丶市丶区"
+            android:singleLine="true"
+            android:textColor="@color/shouye_renmen_tv"
+            android:textSize="@dimen/textsize_small" />
+
+    </RelativeLayout>
+
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+
+        android:background="@color/lv_divider"></View>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:background="#ffffff"
+        android:paddingLeft="16dp">
+
+        <EditText
+            android:id="@+id/et_editadress_address2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:hint="详细地址"
+            android:singleLine="true"
+            android:textColor="@color/shouye_renmen_tv"
+            android:textSize="@dimen/textsize_small" />
+
+    </RelativeLayout>
+
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+
+        android:background="@color/lv_divider"></View>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+
+        android:background="@color/lv_divider"></View>
+
+    <RelativeLayout
+        android:id="@+id/relative_edit_delete"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:background="#ffffff"
+        android:paddingLeft="16dp">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:singleLine="true"
+            android:text="删除该地址"
+            android:textColor="#f78554"
+            android:textSize="@dimen/textsize_small" />
+
+    </RelativeLayout>
+
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+
+        android:background="@color/lv_divider"></View>
+
+
+    <Button
+        android:id="@+id/btn_editaddress_moren"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/shape_corner_red"
+        android:text="设为默认地址"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp" />
+
+
+</LinearLayout>

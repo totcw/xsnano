@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.betterda.xsnano.view.NormalTopBar
+        android:id="@+id/topbar_pay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.betterda.xsnano.view.NormalTopBar>
+
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_gray"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:background="@color/bg_gray"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:id="@+id/relative_pay_name"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:background="#ffffff"
+                android:paddingLeft="16dp"
+                android:paddingRight="10dp">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:singleLine="true"
+                    android:text="商品名称:"
+                    android:textColor="@color/shouye_renmen_tv"
+                    android:textSize="@dimen/textsize_small" />
+
+                <TextView
+                    android:id="@+id/tv_pay_money2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:singleLine="true"
+                    android:text="0"
+                    android:textColor="@color/shouye_renmen_tv"
+                    android:textSize="@dimen/textsize_small" />
+
+            </RelativeLayout>
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+
+                android:background="@color/lv_divider"></View>
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:background="#ffffff"
+                android:paddingLeft="16dp"
+                android:paddingRight="10dp">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:singleLine="true"
+                    android:text="商品金额"
+                    android:textColor="@color/shouye_renmen_tv"
+                    android:textSize="@dimen/textsize_small" />
+
+                <TextView
+                    android:id="@+id/tv_pay_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:singleLine="true"
+                    android:text="0"
+                    android:textColor="@color/shouye_renmen_tv"
+                    android:textSize="@dimen/textsize_small" />
+
+            </RelativeLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+
+                android:background="@color/lv_divider"></View>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:background="#ffffff"
+                android:paddingLeft="16dp"
+                android:paddingRight="10dp">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:singleLine="true"
+                    android:text="运费"
+                    android:textColor="@color/shouye_renmen_tv"
+                    android:textSize="@dimen/textsize_small" />
+
+                <TextView
+                    android:id="@+id/tv_pay_money3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:singleLine="true"
+                    android:text="0"
+                    android:textColor="@color/shouye_renmen_tv"
+                    android:textSize="@dimen/textsize_small" />
+
+            </RelativeLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+
+                android:background="@color/lv_divider"></View>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:background="#ffffff"
+                android:paddingLeft="16dp"
+                android:paddingRight="10dp">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:singleLine="true"
+                    android:text="实付"
+                    android:textColor="@color/shouye_renmen_tv"
+                    android:textSize="@dimen/textsize_small" />
+
+                <TextView
+                    android:id="@+id/tv_pay_money4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:singleLine="true"
+                    android:text="0"
+                    android:textColor="@color/shouye_fenlei_red"
+                    android:textSize="@dimen/textsize_small" />
+
+            </RelativeLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+
+                android:background="@color/lv_divider"></View>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+
+                android:background="@color/lv_divider"></View>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:background="#ffffff"
+                android:paddingLeft="16dp"
+                android:paddingRight="10dp">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:singleLine="true"
+                    android:text="请选择支付方式"
+                    android:textColor="@color/shouye_renmen_tv"
+                    android:textSize="@dimen/textsize_small" />
+
+
+            </RelativeLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+
+                android:background="@color/lv_divider"></View>
+
+            <RelativeLayout
+
+                android:visibility="gone"
+                android:id="@+id/relative_pay_wxpay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:paddingBottom="10dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp">
+
+
+                <ImageView
+                    android:id="@+id/iv_pay_wxpay"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:background="@mipmap/wxpay" />
+
+
+                <TextView
+                    android:id="@+id/tv_pay_wxpay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="9dp"
+                    android:layout_toRightOf="@id/iv_pay_wxpay"
+                    android:singleLine="true"
+                    android:text="微信支付"
+                    android:textColor="@color/shouye_renmen_tv"
+                    android:textSize="@dimen/textsize_normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_pay_wxpay"
+                    android:layout_marginLeft="9dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_toRightOf="@id/iv_pay_wxpay"
+                    android:singleLine="true"
+                    android:text="推荐已安装微信客户端的用户使用"
+                    android:textColor="@color/shouye_lv_tv"
+                    android:textSize="@dimen/textsize_small" />
+
+
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/pay_selector" />
+
+            </RelativeLayout>
+
+            <View
+
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+
+                android:background="@color/lv_divider"></View>
+
+            <RelativeLayout
+                android:visibility="gone"
+                android:id="@+id/relative_pay_zfbpay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:paddingBottom="10dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp">
+
+
+                <ImageView
+                    android:id="@+id/iv_pay_zfbpay"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:background="@mipmap/zfbpay" />
+
+
+                <TextView
+                    android:id="@+id/tv_pay_zfbpay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="9dp"
+                    android:layout_toRightOf="@id/iv_pay_zfbpay"
+                    android:singleLine="true"
+                    android:text="支付宝支付"
+                    android:textColor="@color/shouye_renmen_tv"
+                    android:textSize="@dimen/textsize_normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_pay_zfbpay"
+                    android:layout_marginLeft="9dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_toRightOf="@id/iv_pay_zfbpay"
+                    android:singleLine="true"
+                    android:text="推荐已安装支付宝客户端的用户使用"
+                    android:textColor="@color/shouye_lv_tv"
+                    android:textSize="@dimen/textsize_small" />
+
+
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/pay_selector" />
+
+            </RelativeLayout>
+
+            <View
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+
+                android:background="@color/lv_divider"></View>
+
+            <RelativeLayout
+                android:id="@+id/relative_pay_wypay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:paddingBottom="10dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp">
+
+
+                <ImageView
+                    android:id="@+id/iv_pay_wypay"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:background="@mipmap/ylpay" />
+
+
+                <TextView
+                    android:id="@+id/tv_pay_wypay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="9dp"
+                    android:layout_toRightOf="@id/iv_pay_wypay"
+                    android:singleLine="true"
+                    android:text="网银支付"
+                    android:textColor="@color/shouye_renmen_tv"
+                    android:textSize="@dimen/textsize_normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_pay_wypay"
+                    android:layout_marginLeft="9dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_toRightOf="@id/iv_pay_wypay"
+                    android:singleLine="true"
+                    android:text="推荐已开通网银的用户使用"
+                    android:textColor="@color/shouye_lv_tv"
+                    android:textSize="@dimen/textsize_small" />
+
+
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/pay_selector" />
+
+            </RelativeLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+
+                android:background="@color/lv_divider"></View>
+
+
+            <Button
+                android:id="@+id/btn_pay_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
+                android:text="确认支付"
+                android:textSize="14sp"
+                android:textColor="#ffffff"
+                android:background="@drawable/shape_corner_blue" />
+        </LinearLayout>
+
+
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/iv_item_tianjiaji"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:background="@mipmap/ttycimage" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="20dp"
+            android:layout_toRightOf="@id/iv_item_tianjiaji">
+
+            <TextView
+                android:id="@+id/tv_tianjiaji_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="商品名"
+                android:textColor="@color/shouye_renmen_tv"
+                android:textSize="@dimen/textsize_little" />
+
+            <TextView
+                android:id="@+id/tv_tianjiaji_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_tianjiaji_name"
+                android:layout_marginTop="5dp"
+                android:singleLine="true"
+                android:text="￥ 0"
+                android:textColor="@color/shouye_fenlei_red"
+                android:textSize="@dimen/textsize_little"
+
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_tianjiaji_money"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:id="@+id/tv_tianjiaji_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="已销售54672件"
+                    android:textColor="@color/shouye_lv_tv"
+                    android:textSize="@dimen/textsize_small" />
+
+
+                <TextView
+                    android:id="@+id/tv_tianjiaji_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="0条评论"
+                    android:textColor="@color/shouye_lv_tv"
+                    android:textSize="@dimen/textsize_small" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:background="@color/lv_divider"></View>
+</LinearLayout>

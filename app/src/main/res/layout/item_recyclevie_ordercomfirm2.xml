@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="15dp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:background="#ffffff"
+        android:paddingLeft="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="42dp">
+
+        <TextView
+            android:textColor="@color/shouye_renmen_tv"
+            android:textSize="@dimen/textsize_small"
+            android:singleLine="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="商品列表" />
+
+    </RelativeLayout>
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+
+        android:background="@color/lv_divider"></View>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <RelativeLayout
+
+        android:background="#ffffff"
+        android:paddingLeft="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="42dp">
+
+        <TextView
+            android:textColor="@color/shouye_renmen_tv"
+            android:textSize="@dimen/textsize_small"
+            android:singleLine="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="运费" />
+
+        <TextView
+            android:layout_alignParentRight="true"
+            android:textColor="@color/shouye_renmen_tv"
+            android:textSize="@dimen/textsize_small"
+            android:singleLine="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="免费" />
+
+    </RelativeLayout>
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+
+        android:background="@color/lv_divider"></View>
+
+    <RelativeLayout
+
+        android:background="#ffffff"
+        android:paddingLeft="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="42dp">
+
+        <TextView
+
+            android:layout_alignParentRight="true"
+            android:id="@+id/tv_order_heji_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="￥ 0"
+            android:textColor="@color/shouye_fenlei_red"
+            android:textSize="@dimen/textsize_small" />
+
+
+        <TextView
+            android:id="@+id/tv_order_heji2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/tv_order_heji_money"
+            android:text="合计: "
+            android:textColor="@color/shouye_renmen_tv"
+            android:textSize="@dimen/textsize_small" />
+
+        <TextView
+            android:id="@+id/tv_order_amnout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="12dp"
+            android:layout_toLeftOf="@id/tv_order_heji2"
+            android:text="共计1件商品"
+            android:textColor="@color/shouye_renmen_tv"
+            android:textSize="@dimen/textsize_small" />
+
+    </RelativeLayout>
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+
+        android:background="@color/lv_divider"></View>
+
+
+
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/relative_order_fapiao"
+        android:background="#ffffff"
+        android:paddingLeft="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="42dp">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+
+            android:text="是否需要发票"
+            android:textColor="@color/shouye_renmen_tv"
+            android:textSize="@dimen/textsize_small" />
+
+
+        <ImageView
+            android:id="@+id/iv_order_jiantou2"
+            android:layout_width="8dp"
+            android:layout_height="15dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:background="@mipmap/jiantou" />
+        <TextView
+            android:id="@+id/tv_order_fapiao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/iv_order_jiantou2"
+            android:text="否"
+            android:textColor="@color/shouye_renmen_tv"
+            android:textSize="@dimen/textsize_small" />
+
+    </RelativeLayout>
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+
+        android:background="@color/lv_divider"></View>
+
+    <RelativeLayout
+        android:id="@+id/relative_order_youhuiquan"
+        android:background="#ffffff"
+        android:paddingLeft="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="42dp">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+
+            android:text="配送方式"
+            android:textColor="@color/shouye_renmen_tv"
+            android:textSize="@dimen/textsize_small" />
+
+
+        <ImageView
+            android:id="@+id/iv_order_jiantou3"
+            android:layout_width="8dp"
+            android:layout_height="15dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:background="@mipmap/jiantou" />
+        <TextView
+            android:id="@+id/tv_order_peisong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/iv_order_jiantou3"
+            android:text="自提"
+            android:textColor="@color/shouye_renmen_tv"
+            android:textSize="@dimen/textsize_small" />
+
+    </RelativeLayout>
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+
+        android:background="@color/lv_divider"></View>
+
+    <LinearLayout
+
+        android:background="#ffffff"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_confirmorder_goldcount"
+            android:textColor="@color/shouye_renmen_tv"
+            android:textSize="@dimen/textsize_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="可抵消金币个数:5个"
+            />
+
+    </LinearLayout>
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+
+        android:background="@color/lv_divider"></View>
+
+    <LinearLayout
+        android:background="#ffffff"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:inputType="number"
+            android:id="@+id/et_confirmorder_goldcount"
+            android:textColor="@color/shouye_renmen_tv"
+            android:textSize="@dimen/textsize_small"
+            android:background="@null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="请输入抵消的金币个数"
+            />
+
+    </LinearLayout>
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+
+        android:background="@color/lv_divider"></View>
+
+</LinearLayout>

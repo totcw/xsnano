@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linear_fragment_comment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_gray"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textSize="@dimen/textsize_xxlarge"
+                        android:id="@+id/tv_fragment_comment_sum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="4.5"
+                        android:textColor="@color/shouye_fenlei_red" />
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:textSize="@dimen/textsize_little"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_fragment_comment_sum"
+                        android:text="综合评分"
+                        android:textColor="@color/shouye_lv_tv" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <View
+
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@color/lv_divider"></View>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text="服务评分"
+                        android:textColor="@color/shouye_lv_tv"
+                        android:textSize="@dimen/textsize_normal"
+
+                        />
+
+                    <RatingBar
+                        android:id="@+id/rb_fragment_comment_service"
+                        style="@style/myRatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:isIndicator="true"
+                        android:numStars="5"
+                        android:rating="1.5" />
+
+                    <TextView
+                        android:id="@+id/tv_fragment_comment_amout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text="4.5"
+                        android:textColor="@color/shouye_fenlei_red"
+
+                        android:textSize="@dimen/textsize_normal"
+
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text="商品评分"
+                        android:textColor="@color/shouye_lv_tv"
+                        android:textSize="@dimen/textsize_normal"
+
+                        />
+
+                    <RatingBar
+                        android:id="@+id/rb_fragment_comment_shangpin"
+                        style="@style/myRatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:isIndicator="true"
+                        android:numStars="5"
+                        android:rating="1.5" />
+
+                    <TextView
+                        android:id="@+id/tv_fragment_comment_shangpin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text="4.5"
+                        android:textColor="@color/shouye_fenlei_red"
+                        android:textSize="@dimen/textsize_normal"
+
+                        />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/lv_divider"></View>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/lv_divider"></View>
+
+        <com.betterda.xsnano.view.StoreRecycleView
+            android:overScrollMode="never"
+            android:id="@+id/rv_fragment_comment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.betterda.xsnano.view.StoreRecycleView>
+
+    </LinearLayout>
+
+    <com.betterda.xsnano.view.LoadingPager
+        android:id="@+id/loadpager_fragment_comment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></com.betterda.xsnano.view.LoadingPager>
+</FrameLayout>

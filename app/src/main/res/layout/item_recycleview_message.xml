@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_weight="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:padding="10dp">
+
+
+        <ImageView
+            android:id="@+id/iv_message_img"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:background="@mipmap/message" />
+
+        <TextView
+            android:id="@+id/tv_message_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/iv_message_img"
+            android:text="[消息名]"
+            android:textColor="@color/shouye_lv_tv"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_message_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tv_message_name"
+            android:layout_below="@id/tv_message_name"
+            android:layout_marginTop="8dp"
+            android:text="消息内容"
+            android:textColor="@color/shouye_lv_tv"
+            android:textSize="12sp" />
+
+
+
+
+    </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relative_message_delete"
+            android:visibility="gone"
+            android:background="@drawable/shape_corner_red"
+            android:layout_width="100dp"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="dfd"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+
+        android:background="@color/lv_divider"></View>
+</LinearLayout>

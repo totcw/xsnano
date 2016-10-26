@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.betterda.xsnano.view.RatioLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    app:ratio="1"
+    android:layout_height="match_parent">
+
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/sv_goodsdetail2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        fresco:placeholderImage="@mipmap/viewpager_zwt"
+        fresco:placeholderImageScaleType="fitXY"
+        fresco:actualImageScaleType="fitXY"
+
+        />
+
+
+</com.betterda.xsnano.view.RatioLayout>

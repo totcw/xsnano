@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.betterda.xsnano.view.NormalTopBar
+        android:id="@+id/topbar_addcomment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></com.betterda.xsnano.view.NormalTopBar>
+
+
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/lv_item_white_bg"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="商品评分"
+                android:textColor="#4c4c4c"
+                android:textSize="14sp" />
+
+            <RatingBar
+                android:id="@+id/rb_addcomment_comment"
+                style="@style/myRatingBar2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:isIndicator="false"
+                android:numStars="5"
+                android:rating="1.5" />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="服务态度"
+                android:textColor="#4c4c4c"
+                android:textSize="14sp" />
+
+            <RatingBar
+                android:id="@+id/rb_addcomment_comment3"
+                style="@style/myRatingBar2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:isIndicator="false"
+                android:numStars="5"
+                android:rating="1.5" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_addcomment_comment"
+            android:layout_weight="10"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/shape_corner_white_red"
+            android:layout_width="match_parent"
+            android:minHeight="200dp"
+            android:layout_height="wrap_content" />
+
+
+        <Button
+            android:id="@+id/btn_addcomment_commit"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="10dp"
+            android:textColor="#ffffff"
+            android:text="提交评价"
+            android:textSize="16sp"
+            android:background="@drawable/shape_corner_red"
+            />
+
+    </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

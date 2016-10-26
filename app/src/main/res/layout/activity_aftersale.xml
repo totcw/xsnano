@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+
+    android:orientation="vertical">
+
+
+    <com.betterda.xsnano.view.NormalTopBar
+        android:id="@+id/topbar_aftersale"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></com.betterda.xsnano.view.NormalTopBar>
+
+    <FrameLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:overScrollMode="never"
+            android:id="@+id/rv_aftersale"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <com.betterda.xsnano.view.LoadingPager
+
+            android:id="@+id/loadpager_aftersale"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.betterda.xsnano.view.LoadingPager>
+
+    </FrameLayout>
+
+</LinearLayout>

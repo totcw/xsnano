@@ -1,0 +1,68 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+
+    >
+
+    <!-- 底部布局 -->
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:id="@+id/linear_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <View
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/lv_divider"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:orientation="horizontal">
+
+            <com.betterda.xsnano.view.IndicatorView
+                android:id="@+id/idv_shouye"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></com.betterda.xsnano.view.IndicatorView>
+
+            <com.betterda.xsnano.view.IndicatorView
+
+                android:id="@+id/idv_shangcheng"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></com.betterda.xsnano.view.IndicatorView>
+
+            <com.betterda.xsnano.view.IndicatorView
+                android:id="@+id/idv_my"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></com.betterda.xsnano.view.IndicatorView>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+
+        android:id="@+id/frame"
+        android:layout_above="@id/linear_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+    <android.support.v4.view.ViewPager
+        android:visibility="gone"
+        android:id="@+id/vpager_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/linear_main"></android.support.v4.view.ViewPager>
+
+
+</RelativeLayout>
