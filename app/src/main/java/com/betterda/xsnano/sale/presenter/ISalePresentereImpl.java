@@ -117,13 +117,15 @@ public class ISalePresentereImpl implements ISalePresenter, View.OnClickListener
         GetNetUtil.getData(GetNetUtil.POST, params, new GetNetUtil.GetDataCallBack() {
             @Override
             public void onSuccess(String s) {
-                System.out.println(s);
+
                 List<SaleDay> listSaleDay = GsonParse.getListSaleDay(UtilMethod.getString(s));
                 for (SaleDay saleDay : listSaleDay) {
                     if (saleDay != null) {
                         Sale sale = new Sale();
-                        long time = saleDay.getEnd_date_sec() * 1000;
+                        long time = saleDay.getEnd_date_sec()*1000 ;
+
                         sale.setTimemillons(TimeTool.getTime(time));
+
                         sale.setName(saleDay.getName());
                         try {
                             sale.setPrice(Float.parseFloat(saleDay.getPrice())+"");
