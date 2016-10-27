@@ -20,6 +20,7 @@ public class MainFourView extends RelativeLayout {
     private MainFourItemView mfiv_fist, mfiv_second, mfiv_three;
     private int downX;
     private int downY;
+    private boolean isTop;//Scrollview是否置顶
 
     public MainFourView(Context context) {
         this(context, null);
@@ -111,45 +112,19 @@ public class MainFourView extends RelativeLayout {
         return mfiv_three.isSelected();
     }
 
-/*    @Override
+    @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-*//*
-            //不让父控件拦截事件
-        getParent().requestDisallowInterceptTouchEvent(true);
 
-        return super.dispatchTouchEvent(ev);*//*
-        switch (ev.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                getParent().requestDisallowInterceptTouchEvent(true);
-                downX = (int) ev.getX();
-                downY = (int) ev.getY();
-                break;
-            case MotionEvent.ACTION_MOVE:
-                int moveX = (int) ev.getX();
-                int moveY = (int) ev.getY();
-
-                int diffX = downX - moveX;
-                int diffY = downY - moveY;
-
-                if (Math.abs(diffY) > Math.abs(diffX)) {
-                    //上下滑动 可以拦截
-                    getParent().requestDisallowInterceptTouchEvent(false);
-
-                } else {
-                    getParent().requestDisallowInterceptTouchEvent(true);
-                }
-                break;
-            case MotionEvent.ACTION_UP:
-                getParent().requestDisallowInterceptTouchEvent(true);
-
-                break;
-
-
-            default:
-                break;
+        if (isTop) {//scrollview置顶的时候,不让拦截,也就不可以滑动
+            getParent().requestDisallowInterceptTouchEvent(true);
+        } else {
+            getParent().requestDisallowInterceptTouchEvent(false);
         }
+
         return super.dispatchTouchEvent(ev);
-    }*/
+    }
 
-
+    public void setTop(boolean top) {
+        isTop = top;
+    }
 }

@@ -15,6 +15,7 @@ import com.betterda.xsnano.util.Constants;
 import com.betterda.xsnano.util.UtilMethod;
 
 import java.io.File;
+import java.lang.reflect.Field;
 
 /**
  * 首页和scrollview嵌套使用的recycleview
@@ -99,6 +100,8 @@ public class MyRecycleView extends RecyclerView {
                         scrollYScrollView.setTop(false);
                     }
                 }
+
+
                 int diffy = (int) (ev.getY() - downY);
                 if (diffy > 0) {//下拉
                     if (firstCompletelyVisibleItemPosition == 0) {//当recycleview滑倒顶部时就不拦截,让scrollview滑动

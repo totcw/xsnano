@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Scroller;
 
+import java.lang.reflect.Field;
 import java.util.TreeMap;
 
 /**
@@ -27,7 +28,7 @@ public class ScrollYScrollView extends com.betterda.xsnano.view.NestedScrollView
     private OnScrollListener onScrollListener;
     private int measuredHeight; //scrollview隐藏的高度
     private int downY; //记录滑动事件的y坐标
-    private boolean  isTop;//recycleview是否置顶
+    private boolean isTop;//recycleview是否置顶
 
     public ScrollYScrollView(Context context) {
         this(context, null);
@@ -64,8 +65,6 @@ public class ScrollYScrollView extends com.betterda.xsnano.view.NestedScrollView
     }
 
 
-
-
     /**
      * 滚动的回调接口
      *
@@ -98,7 +97,6 @@ public class ScrollYScrollView extends com.betterda.xsnano.view.NestedScrollView
     }
 
 
-
     public void setTop(boolean top) {
         isTop = top;
     }
@@ -114,7 +112,8 @@ public class ScrollYScrollView extends com.betterda.xsnano.view.NestedScrollView
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-       boolean isup  = false;
+        boolean isup = false;
+
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 downY = (int) ev.getY();
@@ -125,28 +124,39 @@ public class ScrollYScrollView extends com.betterda.xsnano.view.NestedScrollView
                 if (downY == 0) {
                     downY = (int) ev.getY();
                 }
+
                 //获取偏移量
                 int diffy = (int) (ev.getY() - downY);
                 if (diffy < 0) {//上拉
                     if (getScrollY() >= measuredHeight) {
-                       //修改父类的上一次事件的位置,防止跳动
-                       mLastMotionY = (int) ev.getY();
+                        //修改父类的上一次事件的位置,防止跳动
+                        mLastMotionY = (int) ev.getY();
                         //置顶了实际上是要让recycleview滑动了
-                        isup = recyclerView.dispatchTouchEvent(ev);
+                        if (recyclerView != null) {
+
+                            isup = recyclerView.dispatchTouchEvent(ev);
+                        }
                     } else {
+                        //滑动scrollview的时候也修改recycleview的y,防止跳动
+                        editY((int) ev.getY());
                         //scrollview滑动
                         isup = super.onTouchEvent(ev);
 
                     }
                 } else if (diffy > 0) { //下拉
+
                     //如果recycleview没置顶就应该先让recycleview滑动
                     if (!isTop) {
                         //修改父类的上一次事件的位置
                         mLastMotionY = (int) ev.getY();
                         //recycleview滑动
-                        isup = recyclerView.dispatchTouchEvent(ev);
+                        if (recyclerView != null) {
+
+                            isup = recyclerView.dispatchTouchEvent(ev);
+                        }
 
                     } else {
+
                         //scrollview滑动
                         isup = super.onTouchEvent(ev);
                     }
@@ -157,7 +167,7 @@ public class ScrollYScrollView extends com.betterda.xsnano.view.NestedScrollView
                 break;
             case MotionEvent.ACTION_UP:
                 downY = 0;
-               isup = super.onTouchEvent(ev);
+                isup = super.onTouchEvent(ev);
                 break;
 
         }
@@ -165,5 +175,42 @@ public class ScrollYScrollView extends com.betterda.xsnano.view.NestedScrollView
         return isup;
     }
 
+    /**
+     * 判断是不是在这个view的上
+     *
+     * @param view
+     * @param ev
+     * @return
+     */
+    private boolean inRangeOfView(View view, MotionEvent ev) {
+        int[] location = new int[2];
+        view.getLocationOnScreen(location);
+        int x = location[0];
+        int y = location[1];
+        if (ev.getX() < x || ev.getX() > (x + view.getWidth()) || ev.getY() < y || ev.getY() > (y + view.getHeight())) {
+            return false;
+        }
+        return true;
+    }
 
+    /**
+     * 利用反射修改RecyclerView的mLastTouchY值
+     *
+     * @param y
+     */
+    private void editY(int y) {
+        Class<? extends RecyclerView> aClass = RecyclerView.class;
+        Field touchY = null;
+        try {
+            touchY = aClass.getDeclaredField("mLastTouchY");
+            touchY.setAccessible(true);
+            touchY.setInt(recyclerView, y);
+
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

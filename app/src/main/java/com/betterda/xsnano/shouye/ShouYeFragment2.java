@@ -518,9 +518,9 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
         //判断Scroll是否置顶
         if (scrollY >= myscrollview.getMHeight()) {
             shouyeThreePresenter.setTop(true);
-
+            mfv_shouye.setTop(true);
         } else {
-
+            mfv_shouye.setTop(false);
             shouyeThreePresenter.setTop(false);
 
         }
