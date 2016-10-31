@@ -24,7 +24,7 @@
                 android:id="@+id/sv_sale"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                fresco:actualImageScaleType="fitXY"
+                fresco:actualImageScaleType="centerCrop"
                 fresco:placeholderImage="@mipmap/viewpager_zwt"
                 fresco:placeholderImageScaleType="fitXY"
 

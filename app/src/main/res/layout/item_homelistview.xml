@@ -86,7 +86,7 @@
                 android:id="@+id/iv_item_homelistview"
                 android:layout_width="@dimen/iv_item_shouyelistview"
                 android:layout_height="@dimen/iv_item_shouyelistview"
-                android:background="@mipmap/dianpu"
+                android:background="@mipmap/ttycimage"
                 android:scaleType="fitXY" />
 
             <ImageView
