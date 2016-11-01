@@ -130,6 +130,7 @@ public class ILoginPresenterImpl implements ILoginPresenter {
             }
             if (!iLoginView.getmActivity().isFinishing()) {
                 dialog.show();
+
             }
 
             RequestParams params = new RequestParams(Constants.URL_LOGIN);

@@ -8,15 +8,14 @@
     <include layout="@layout/loading_page_empty"></include>
     <include layout="@layout/loading_page_error"></include>
 
-    <com.betterda.xsnano.view.LoadingView
+    <com.betterda.xsnano.view.LoadingView2
         android:visibility="invisible"
         android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/loadview_pager"
-        app:loadingText="加载中..."
         >
 
-    </com.betterda.xsnano.view.LoadingView>
+    </com.betterda.xsnano.view.LoadingView2>
 
 </FrameLayout>

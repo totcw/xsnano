@@ -202,7 +202,7 @@ public class DuiHuanfragment extends BaseFragment implements View.OnClickListene
                             goldChange.setName(goldChangeBean.getProductName());
                             goldChange.setProductid(goldChangeBean.getProductId());
                             goldChange.setNeedGold(goldChangeBean.getSaleGold());
-                            goldChange.setUrl(goldChangeBean.getBigPicture());
+                            goldChange.setUrl(goldChangeBean.getSamallPicture());
                             if (list != null) {
                                 list.add(goldChange);
                             }

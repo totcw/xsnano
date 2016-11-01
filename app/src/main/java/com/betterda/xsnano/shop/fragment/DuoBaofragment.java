@@ -247,7 +247,7 @@ public class DuoBaofragment extends BaseFragment implements View.OnClickListener
                     for (GoldGet goldGet : listGoldGet) {
                         if (goldGet != null) {
                             GoldDuoBao goldDuoBao = new GoldDuoBao();
-                            goldDuoBao.setUrl(UtilMethod.url(goldGet.getBigPicture()));
+                            goldDuoBao.setUrl(UtilMethod.url(goldGet.getSmallPicture()));
                             goldDuoBao.setName(goldGet.getProductName());
                             goldDuoBao.setProductid(goldGet.getProductId());
                             goldDuoBao.setAlreadGold(goldGet.getAlreadyGold());

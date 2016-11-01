@@ -138,7 +138,7 @@ public class ScrollYScrollView extends com.betterda.xsnano.view.NestedScrollView
                         }
                     } else {
                         //滑动scrollview的时候也修改recycleview的y,防止跳动
-                        editY((int) ev.getY());
+                       // editY((int) ev.getY());
                         //scrollview滑动
                         isup = super.onTouchEvent(ev);
 
@@ -194,7 +194,7 @@ public class ScrollYScrollView extends com.betterda.xsnano.view.NestedScrollView
     }
 
     /**
-     * 利用反射修改RecyclerView的mLastTouchY值
+     * 利用反射修改RecyclerView的mLastTouchY值,会影响滑动效果,最好不使用.
      *
      * @param y
      */

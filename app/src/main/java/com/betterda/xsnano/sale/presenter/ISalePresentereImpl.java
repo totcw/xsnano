@@ -168,7 +168,7 @@ public class ISalePresentereImpl implements ISalePresenter, View.OnClickListener
 
             @Override
             public void onError(Throwable throwable, boolean b) {
-                System.out.println(throwable);
+                
                 if (iSaleView.getLoadPager() != null) {
                     iSaleView.getLoadPager().setErrorVisable();
                 }

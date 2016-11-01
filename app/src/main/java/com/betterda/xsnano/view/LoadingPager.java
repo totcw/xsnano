@@ -8,14 +8,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.betterda.xsnano.R;
-import com.betterda.xsnano.util.Constants;
 
 /**
  * 加载的页面
  * Created by Administrator on 2016/5/11.
  */
 public class LoadingPager extends FrameLayout {
-    private LoadingView loadview_pager;//加载页面
+    private LoadingView2 loadview_pager;//加载页面
     private FrameLayout frame_error, frame_empty;//加载错误,加载为空页面
     private TextView tv_empty;//数据为空的文字
     private ImageView iv_empty;//数据为空的图片
@@ -27,7 +26,7 @@ public class LoadingPager extends FrameLayout {
     public LoadingPager(Context context, AttributeSet attrs) {
         super(context, attrs);
         View.inflate(context, R.layout.loading_pager, this);
-        loadview_pager = (LoadingView) findViewById(R.id.loadview_pager);
+        loadview_pager = (LoadingView2) findViewById(R.id.loadview_pager);
         frame_empty = (FrameLayout) findViewById(R.id.frame_empty);
         frame_error = (FrameLayout) findViewById(R.id.frame_error);
         tv_empty = (TextView) findViewById(R.id.tv_empty);
@@ -66,6 +65,7 @@ public class LoadingPager extends FrameLayout {
             frame_empty.setVisibility(View.INVISIBLE);
             frame_error.setVisibility(View.INVISIBLE);
             loadview_pager.setVisibility(View.INVISIBLE);
+            loadview_pager.stopAnim();
         }
     }
 
@@ -88,6 +88,7 @@ public class LoadingPager extends FrameLayout {
         if (null != loadview_pager) {
 
             loadview_pager.setVisibility(View.VISIBLE);
+            loadview_pager.startAnim();
         }
     }
 
