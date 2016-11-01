@@ -543,4 +543,6 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
         }
         return false;
     }
+
+
 }

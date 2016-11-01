@@ -110,7 +110,7 @@ public class StoreActivity extends BaseActivity implements IStoreView, View.OnCl
         setRecycleviewHeight();
 
         //通过工厂获取实例
-        api = WXAPIFactory.createWXAPI(getmActivity(), Constants.WeiXin.APP_ID, true);
+        api = WXAPIFactory.createWXAPI(getApplicationContext(), Constants.WeiXin.APP_ID, true);
         //将应用的appid注册到微信
         api.registerApp(Constants.WeiXin.APP_ID);
 
@@ -343,6 +343,11 @@ public class StoreActivity extends BaseActivity implements IStoreView, View.OnCl
     protected void onDestroy() {
         super.onDestroy();
         iStorePresenter.ondestroy();
+        if (api != null) {
+            api.unregisterApp();
+            api = null;
+        }
+
         closePopupWindow();
     }
 
@@ -448,6 +453,7 @@ public class StoreActivity extends BaseActivity implements IStoreView, View.OnCl
                 mBuyLayout2ParentTop + indicator.getHeight());
 
     }
+
 
 
 }

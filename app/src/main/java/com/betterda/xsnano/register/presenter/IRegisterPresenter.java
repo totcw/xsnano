@@ -19,4 +19,6 @@ public interface IRegisterPresenter extends IPresenter {
     void countDown();
 
     void setSelect(CountDown countDown);
+
+    void ondestroy();
 }

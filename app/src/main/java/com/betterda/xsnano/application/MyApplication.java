@@ -45,7 +45,7 @@ public class MyApplication extends Application {
         }
         //内存泄漏检测
 
-      //  LeakCanary.install(this);
+        LeakCanary.install(this);
 
         //Fresco初始化
         Fresco.initialize(getApplicationContext());

@@ -41,11 +41,12 @@ public class IFindPwdPrensenterImpl implements IFindPwdPresenter {
                     commit();
                     break;
                 case 1:
-                    UtilMethod.Toast(iFindPwdView.getmActivity(),"验证码错误");
+                    UtilMethod.Toast(iFindPwdView.getmActivity(), "验证码错误");
                     break;
             }
         }
     };
+
     public IFindPwdPrensenterImpl(IFindPwdView iFindPwdView) {
         this.iFindPwdView = iFindPwdView;
     }
@@ -102,7 +103,10 @@ public class IFindPwdPrensenterImpl implements IFindPwdPresenter {
 
                 dialog = UtilMethod.createDialog(iFindPwdView.getContext(), "正在修改...");
             }
-            dialog.show();
+            if (!iFindPwdView.getmActivity().isFinishing()) {
+                dialog.show();
+            }
+
 
             RequestParams params = new RequestParams(Constants.URL_INFORMATION_UPDATE);
             params.addBodyParameter("account", number);
@@ -119,25 +123,30 @@ public class IFindPwdPrensenterImpl implements IFindPwdPresenter {
                             if ("true".equals(result)) {
 
                                 //修改密码就将登录状态设置为false并且跳动登录界面
-                                CacheUtils.putString(iFindPwdView.getmActivity(),"number","");
-                                CacheUtils.putBoolean(iFindPwdView.getContext(), "islogin", false);
-                                UtilMethod.startIntent(iFindPwdView.getContext(), LoginActivity.class);
+                                //  CacheUtils.putString(iFindPwdView.getmActivity(),"number","");
+                                //  CacheUtils.putBoolean(iFindPwdView.getContext(), "islogin", false);
+                                //UtilMethod.startIntent(iFindPwdView.getContext(), LoginActivity.class);
                                 iFindPwdView.getmActivity().finish();
                             }
-                            UtilMethod.Toast(iFindPwdView.getmActivity(),resultMsg);
+                            UtilMethod.Toast(iFindPwdView.getmActivity(), resultMsg);
 
                         }
                     });
-                    if (dialog != null) {
-                        dialog.dismiss();
+                    if (!iFindPwdView.getmActivity().isFinishing()) {
+                        if (dialog != null) {
+                            dialog.dismiss();
+                        }
                     }
+
 
                 }
 
                 @Override
                 public void onError(Throwable throwable, boolean b) {
-                    if (dialog != null) {
-                        dialog.dismiss();
+                    if (!iFindPwdView.getmActivity().isFinishing()) {
+                        if (dialog != null) {
+                            dialog.dismiss();
+                        }
                     }
                     UtilMethod.Toast(iFindPwdView.getmActivity(), "修改失败");
                 }
@@ -204,6 +213,18 @@ public class IFindPwdPrensenterImpl implements IFindPwdPresenter {
         } else {
             countDown.setSelected(true);
         }
+    }
+
+    @Override
+    public void ondestroy() {
+        if (eh != null) {
+            SMSSDK.unregisterEventHandler(eh);
+            eh = null;
+        }
+        if (handler != null) {
+            handler.removeCallbacksAndMessages(null);
+        }
+
     }
 
     private void isRigister() {

@@ -11,4 +11,6 @@ public interface IEditAddressPresenter extends IPresenter{
     void delete();
 
     void saveMore();
+
+    void showProvince();
 }

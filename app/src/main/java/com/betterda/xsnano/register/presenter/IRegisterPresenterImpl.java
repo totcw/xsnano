@@ -107,15 +107,18 @@ public class IRegisterPresenterImpl implements IRegisterPresenter {
 
                 dialog = UtilMethod.createDialog(iRegisterView.getContext(), "正在注册...");
             }
-            dialog.show();
+            if (!iRegisterView.getmActivity().isFinishing()) {
+                if (dialog != null) {
+                    dialog.show();
+                }
+            }
+
             RequestParams params = new RequestParams(Constants.URL_REGISTER);
             params.addBodyParameter("account",number);
             params.addBodyParameter("password",pwd);
             GetNetUtil.getData(GetNetUtil.POST, params, new GetNetUtil.GetDataCallBack() {
                 @Override
                 public void onSuccess(String s) {
-
-
 
                     GsonParse.parser(UtilMethod.getString(s), new ParserGsonInterface() {
                         @Override
@@ -134,17 +137,21 @@ public class IRegisterPresenterImpl implements IRegisterPresenter {
                             }
                         }
                     });
-
-                    if (dialog != null) {
-                        dialog.dismiss();
+                    if (!iRegisterView.getmActivity().isFinishing()) {
+                        if (dialog != null) {
+                            dialog.dismiss();
+                        }
                     }
+
 
                 }
 
                 @Override
                 public void onError(Throwable throwable, boolean b) {
-                    if (dialog != null) {
-                        dialog.dismiss();
+                    if (!iRegisterView.getmActivity().isFinishing()) {
+                        if (dialog != null) {
+                            dialog.dismiss();
+                        }
                     }
                     UtilMethod.Toast(iRegisterView.getmActivity(),"注册失败");
                 }
@@ -218,6 +225,18 @@ public class IRegisterPresenterImpl implements IRegisterPresenter {
         } else {
             countDown.setSelected(true);
         }
+    }
+
+    @Override
+    public void ondestroy() {
+        if (eh != null) {
+            SMSSDK.unregisterEventHandler(eh);
+            eh = null;
+        }
+        if (handler != null) {
+            handler.removeCallbacksAndMessages(null);
+        }
+
     }
 
     private void isRigister() {

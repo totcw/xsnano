@@ -169,5 +169,9 @@ public class RegisterActivity extends BaseActivity implements IRegisterView, Vie
             countDown.ondestroy();
             countDown = null;
         }
+        if (iRegisterPresenter != null) {
+            iRegisterPresenter.ondestroy();
+        }
+
     }
 }

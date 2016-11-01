@@ -15,4 +15,9 @@ public interface IAddAddPresenter extends IPresenter {
      * 设置为默认地址
      */
     void saveMoren();
+
+    /**
+     * 显示省市区
+     */
+    void showProvince();
 }

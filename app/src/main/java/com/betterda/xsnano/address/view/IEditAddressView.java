@@ -10,6 +10,8 @@ import com.betterda.xsnano.BaseView;
 public interface IEditAddressView extends BaseView {
     EditText getEditViewName();
     EditText getEditViewNumber();
-    EditText getEditViewAdress();
+
     EditText getEditViewAdress2();
+
+    void setText(String address);
 }

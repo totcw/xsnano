@@ -155,5 +155,9 @@ public class FindPwdActivity extends BaseActivity implements IFindPwdView, View.
             countDown.ondestroy();
             countDown = null;
         }
+        if (iFindPwdPresenter != null) {
+            iFindPwdPresenter.ondestroy();
+        }
+
     }
 }

@@ -102,7 +102,7 @@ public class ILoginPresenterImpl implements ILoginPresenter {
     @Override
     public void wxLogin() {
         //通过工厂获取实例
-        api = WXAPIFactory.createWXAPI(iLoginView.getContext(), Constants.WeiXin.APP_ID, true);
+        api = WXAPIFactory.createWXAPI(iLoginView.getmActivity().getApplicationContext(), Constants.WeiXin.APP_ID, true);
         //将应用的appid注册到微信
         api.registerApp(Constants.WeiXin.APP_ID);
         if (api.isWXAppInstalled()) {
@@ -221,6 +221,10 @@ public class ILoginPresenterImpl implements ILoginPresenter {
     public void onDestroy() {
         if (null != dialog) {
             dialog = null;
+        }
+        if (api != null) {
+            api.unregisterApp();
+            api = null;
         }
     }
 

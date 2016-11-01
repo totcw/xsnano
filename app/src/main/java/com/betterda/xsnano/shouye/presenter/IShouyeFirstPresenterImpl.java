@@ -39,7 +39,7 @@ public class IShouyeFirstPresenterImpl implements IShouyeFirstPresenter, ViewPag
     private List<LunBoTu> stringList; //轮播图图片的容器
     private int currentIndex;
     private InternalHandler mHandler;
-
+   // private AutoSwitchPagerRunnable autoSwitchPagerRunnable;
 
     public IShouyeFirstPresenterImpl(IShouyeView iShouyeView, Fragment fragment) {
         this.iShouyeView = iShouyeView;
@@ -76,7 +76,7 @@ public class IShouyeFirstPresenterImpl implements IShouyeFirstPresenter, ViewPag
 
                 if (iShouyeView != null) {
                     iShouyeView.setLunBoAdapter();
-                  //  iShouyeView.getViewPager().setPageTransformer(true,new CubeTransformer());
+                    //  iShouyeView.getViewPager().setPageTransformer(true,new CubeTransformer());
 
                 }
                 if (iShouyeView != null) {
@@ -102,7 +102,6 @@ public class IShouyeFirstPresenterImpl implements IShouyeFirstPresenter, ViewPag
 
 
     }
-
 
 
     public List<LunBoTu> getStringList() {
@@ -137,12 +136,20 @@ public class IShouyeFirstPresenterImpl implements IShouyeFirstPresenter, ViewPag
         iShouyeView.getViewPager().setOnPageChangeListener(this);
 
         if (mHandler == null) {
+            System.out.println("null");
             if (iShouyeView != null && iShouyeView.getmActivity() != null)
                 mHandler = new InternalHandler(fragment, iShouyeView.getmActivity());
         }
 
         mHandler.removeCallbacksAndMessages(null); // 把所有的消息和任务清空
-        mHandler.postDelayed(new AutoSwitchPagerRunnable(iShouyeView.getmActivity()), 2000);
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (mHandler != null) {
+                    mHandler.sendEmptyMessage(0);
+                }
+            }
+        }, 2000);
     }
 
 
@@ -188,6 +195,7 @@ public class IShouyeFirstPresenterImpl implements IShouyeFirstPresenter, ViewPag
         private WeakReference<Activity> mContextWeakReference;
         private WeakReference<Fragment> mfragment; //使用肉引用来保存这个对象
 
+
         public InternalHandler(Fragment fragment, Activity mContext) {
             mfragment = new WeakReference<Fragment>(fragment);
             mContextWeakReference = new WeakReference<Activity>(mContext);
@@ -198,14 +206,21 @@ public class IShouyeFirstPresenterImpl implements IShouyeFirstPresenter, ViewPag
             if (null != iShouyeView && null != mfragment && null != iShouyeView.getViewPager() && null != mfragment.get()) { //当fragment存在时
                 int currentItem = iShouyeView.getViewPager().getCurrentItem() + 1;
                 if (null != stringList) {
-                    if (stringList.size() != 0) {
+                    if (stringList.size() != 0 && iShouyeView.getViewPager().getAdapter() != null) {
                         //这里取余是为了当数据超过适配器的长度,时候回到第一页,避免异常. 其实也是会突然跳到第一页,只是不一般达不到这个值
-                        iShouyeView.getViewPager().setCurrentItem(currentItem % iShouyeView.getViewPager().getAdapter().getCount(),true);
+                        iShouyeView.getViewPager().setCurrentItem(currentItem % iShouyeView.getViewPager().getAdapter().getCount(), true);
                     }
                 }
                 if (null != mHandler) {
 
-                    mHandler.postDelayed(new AutoSwitchPagerRunnable(iShouyeView.getmActivity()), 2000);
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (mHandler != null) {
+                                mHandler.sendEmptyMessage(0);
+                            }
+                        }
+                    }, 2000);
                 }
             }
 
@@ -213,21 +228,6 @@ public class IShouyeFirstPresenterImpl implements IShouyeFirstPresenter, ViewPag
 
     }
 
-    /**
-     * @author andong 自动切换页面任务类
-     */
-    class AutoSwitchPagerRunnable implements Runnable {
-        private WeakReference<Activity> mContextWeakReference;
-
-        public AutoSwitchPagerRunnable(Activity activity) {
-            this.mContextWeakReference = new WeakReference<Activity>(activity);
-        }
-
-        @Override
-        public void run() {
-            mHandler.obtainMessage().sendToTarget();
-        }
-    }
 
 
     @Override
@@ -239,7 +239,7 @@ public class IShouyeFirstPresenterImpl implements IShouyeFirstPresenter, ViewPag
                 @Override
                 public void onClick(View v) {
 
-                   // UtilMethod.Toast(iShouyeView.getmActivity(), "" + position);
+                    // UtilMethod.Toast(iShouyeView.getmActivity(), "" + position);
                 }
             });
             // 从服务器获取图片
@@ -259,12 +259,17 @@ public class IShouyeFirstPresenterImpl implements IShouyeFirstPresenter, ViewPag
 
     @Override
     public void onDestroy() {
+        System.out.println("stop");
+
+
         //将handler关闭防止 内存泄漏
         if (mHandler != null) {
             mHandler.removeCallbacksAndMessages(null); // 把所有的消息和任务清空
             mHandler = null;
         }
     }
+
+
 
     /**
      * 触摸控制viewpager的切换
@@ -285,13 +290,27 @@ public class IShouyeFirstPresenterImpl implements IShouyeFirstPresenter, ViewPag
                 case MotionEvent.ACTION_UP:
                     if (null != mHandler) {
 
-                        mHandler.postDelayed(new AutoSwitchPagerRunnable(iShouyeView.getmActivity()), 2000);
+                        mHandler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (mHandler != null) {
+                                    mHandler.sendEmptyMessage(0);
+                                }
+                            }
+                        }, 2000);
                     }
                     break;
                 case MotionEvent.ACTION_CANCEL:// 加这个 防止 和下拉刷新冲突
                     if (null != mHandler) {
 
-                        mHandler.postDelayed(new AutoSwitchPagerRunnable(iShouyeView.getmActivity()), 2000);
+                        mHandler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (mHandler != null) {
+                                    mHandler.sendEmptyMessage(0);
+                                }
+                            }
+                        }, 2000);
                     }
                     break;
             }

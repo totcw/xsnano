@@ -36,13 +36,14 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
 
     private String code;
     private ShapeLoadingDialog dialog;
+    private IWXAPI api;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wxentry);
-        IWXAPI api = WXAPIFactory.createWXAPI(this, Constants.WeiXin.APP_ID, true);
+        api = WXAPIFactory.createWXAPI(getApplicationContext(), Constants.WeiXin.APP_ID, true);
         api.handleIntent(getIntent(), this);//调用这行代码,授权完后才来这个页面
     }
 
@@ -199,5 +200,12 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
         }
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (api != null) {
+            api.unregisterApp();
+            api = null;
+        }
+    }
 }

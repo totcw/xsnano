@@ -5,6 +5,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.betterda.xsnano.R;
 import com.betterda.xsnano.acitivity.BaseActivity;
@@ -12,6 +13,7 @@ import com.betterda.xsnano.address.presenter.IEditAddressPresenter;
 import com.betterda.xsnano.address.presenter.IEditAddressPresenterImpl;
 import com.betterda.xsnano.address.view.IEditAddressView;
 import com.betterda.xsnano.bus.model.Bus;
+import com.betterda.xsnano.util.UtilMethod;
 import com.betterda.xsnano.view.LoadingPager;
 import com.betterda.xsnano.view.NormalTopBar;
 
@@ -22,19 +24,22 @@ import com.betterda.xsnano.view.NormalTopBar;
 public class EditAddressActivity extends BaseActivity implements IEditAddressView, View.OnClickListener {
     private NormalTopBar topBar;
     private IEditAddressPresenter iEditAddressPresenter;
-    private EditText et_name, et_number, et_address, et_address2;
+    private EditText et_name, et_number,  et_address2;
     private Button btn_editaddress_moren;
-    private RelativeLayout relative_edit_delete;
+    private RelativeLayout relative_edit_delete,relative_editaddress_province;
+    private TextView tv_address;
 
     @Override
     public void initView() {
         setContentView(R.layout.activity_editaddress);
-        et_address = (EditText) findViewById(R.id.et_editadress_address);
+
         et_address2 = (EditText) findViewById(R.id.et_editadress_address2);
         et_name = (EditText) findViewById(R.id.et_editadress_name);
         et_number = (EditText) findViewById(R.id.et_editadress_number);
         btn_editaddress_moren = (Button) findViewById(R.id.btn_editaddress_moren);
+        tv_address = (TextView) findViewById(R.id.tv_editadress_address);
         relative_edit_delete = (RelativeLayout) findViewById(R.id.relative_edit_delete);
+        relative_editaddress_province = (RelativeLayout) findViewById(R.id.relative_editaddress_province);
         topBar = (NormalTopBar) findViewById(R.id.topbar_editaddress);
 
     }
@@ -45,6 +50,7 @@ public class EditAddressActivity extends BaseActivity implements IEditAddressVie
         btn_editaddress_moren.setOnClickListener(this);
         topBar.setOnBackListener(this);
         topBar.setOnActionListener(this);
+        relative_editaddress_province.setOnClickListener(this);
     }
 
     @Override
@@ -71,6 +77,10 @@ public class EditAddressActivity extends BaseActivity implements IEditAddressVie
             case R.id.btn_editaddress_moren://设为默认地址
                 iEditAddressPresenter.saveMore();
                 break;
+            case R.id.relative_editaddress_province:
+
+                iEditAddressPresenter.showProvince();
+                break;
 
         }
     }
@@ -90,13 +100,17 @@ public class EditAddressActivity extends BaseActivity implements IEditAddressVie
         return et_number;
     }
 
-    @Override
-    public EditText getEditViewAdress() {
-        return et_address;
-    }
+
 
     @Override
     public EditText getEditViewAdress2() {
         return et_address2;
+    }
+
+    @Override
+    public void setText(String address) {
+        if (tv_address != null) {
+            tv_address.setText(address);
+        }
     }
 }

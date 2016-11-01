@@ -4,6 +4,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.betterda.xsnano.R;
 import com.betterda.xsnano.acitivity.BaseActivity;
@@ -20,8 +22,10 @@ import com.betterda.xsnano.view.NormalTopBar;
 public class AddAddressAcitivy extends BaseActivity implements IAddAddView, View.OnClickListener {
     private NormalTopBar topBar;
     private IAddAddPresenter addAddPresenter;
-    private EditText et_name,et_number,et_address,et_address2;
+    private EditText et_name,et_number,et_address2;
     private Button btn_setting;
+    private RelativeLayout relative_province;
+    private TextView tv_address;
     @Override
     public void initView() {
         setContentView(R.layout.activity_addaddress);
@@ -29,7 +33,8 @@ public class AddAddressAcitivy extends BaseActivity implements IAddAddView, View
         btn_setting = (Button) findViewById(R.id.btn_address_moren);
         et_name = (EditText) findViewById(R.id.et_name);
         et_number = (EditText) findViewById(R.id.et_number);
-        et_address = (EditText) findViewById(R.id.et_address);
+        relative_province = (RelativeLayout) findViewById(R.id.relative_addaddress_province);
+        tv_address = (TextView) findViewById(R.id.tv_address);
         et_address2 = (EditText) findViewById(R.id.et_address2);
     }
 
@@ -38,6 +43,7 @@ public class AddAddressAcitivy extends BaseActivity implements IAddAddView, View
         topBar.setOnActionListener(this);
         topBar.setOnBackListener(this);
         btn_setting.setOnClickListener(this);
+        relative_province.setOnClickListener(this);
     }
 
     @Override
@@ -65,6 +71,9 @@ public class AddAddressAcitivy extends BaseActivity implements IAddAddView, View
             case R.id.btn_address_moren:
                addAddPresenter.saveMoren();
                 break;
+            case R.id.relative_addaddress_province:
+                addAddPresenter.showProvince();
+                break;
         }
     }
 
@@ -78,13 +87,18 @@ public class AddAddressAcitivy extends BaseActivity implements IAddAddView, View
         return et_number;
     }
 
-    @Override
-    public EditText getEditViewAdress() {
-        return et_address;
-    }
+
+
 
     @Override
     public EditText getEditViewAdress2() {
         return  et_address2;
+    }
+
+    @Override
+    public void setText(String address) {
+        if (tv_address != null) {
+            tv_address.setText(address);
+        }
     }
 }

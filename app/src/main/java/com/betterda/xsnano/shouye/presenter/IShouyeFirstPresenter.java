@@ -36,4 +36,6 @@ public interface IShouyeFirstPresenter extends IPresenter{
      * fragment销毁执行的方法
      */
     public void onDestroy();
+
+
 }

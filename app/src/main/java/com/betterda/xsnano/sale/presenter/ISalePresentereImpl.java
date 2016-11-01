@@ -48,7 +48,7 @@ public class ISalePresentereImpl implements ISalePresenter, View.OnClickListener
     private CommonAdapter adapter;
     private Thread thread;
     private boolean isEnd; //控制计时线程的结束
-   // SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd天HH时mm分ss秒");
+    // SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd天HH时mm分ss秒");
     Handler handler = new Handler() {
 
         @Override
@@ -79,7 +79,7 @@ public class ISalePresentereImpl implements ISalePresenter, View.OnClickListener
             @Override
             public void convert(ViewHolder viewHolder, final Sale sale) {
                 if (sale != null) {
-                    viewHolder.setText(R.id.tv_sale_price, sale.getPrice()+"元");
+                    viewHolder.setText(R.id.tv_sale_price, sale.getPrice() + "元");
                     viewHolder.setText(R.id.tv_sale_name, sale.getName());
                     viewHolder.setText(R.id.tv_sale_day, sale.getTime());
 
@@ -122,13 +122,13 @@ public class ISalePresentereImpl implements ISalePresenter, View.OnClickListener
                 for (SaleDay saleDay : listSaleDay) {
                     if (saleDay != null) {
                         Sale sale = new Sale();
-                        long time = saleDay.getEnd_date_sec()*1000 ;
+                        long time = saleDay.getEnd_date_sec() * 1000;
 
                         sale.setTimemillons(TimeTool.getTime(time));
 
                         sale.setName(saleDay.getName());
                         try {
-                            sale.setPrice(Float.parseFloat(saleDay.getPrice())+"");
+                            sale.setPrice(Float.parseFloat(saleDay.getPrice()) + "");
                         } catch (Exception e) {
 
                         }
@@ -168,7 +168,7 @@ public class ISalePresentereImpl implements ISalePresenter, View.OnClickListener
 
             @Override
             public void onError(Throwable throwable, boolean b) {
-                
+
                 if (iSaleView.getLoadPager() != null) {
                     iSaleView.getLoadPager().setErrorVisable();
                 }
@@ -208,13 +208,14 @@ public class ISalePresentereImpl implements ISalePresenter, View.OnClickListener
                                         person.setTime(TimeTool.getDifference(person.getTimemillons()));
 
 
-
                                     }
                                 }
                             }
                         }
                         //每隔1毫秒更新一次界面，如果只需要精确到秒的倒计时此处改成1000即可
-                        handler.sendEmptyMessageDelayed(1, 1000);
+                        if (handler != null) {
+                            handler.sendEmptyMessageDelayed(1, 1000);
+                        }
                         sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -228,7 +229,12 @@ public class ISalePresentereImpl implements ISalePresenter, View.OnClickListener
 
     @Override
     public void onDestroy() {
-        isEnd = false;
+        isEnd = true;
+        if (handler != null) {
+            handler.removeCallbacksAndMessages(null);
+            handler = null;
+        }
+
     }
 
     @Override
@@ -240,7 +246,7 @@ public class ISalePresentereImpl implements ISalePresenter, View.OnClickListener
 
                 break;
             case R.id.frame_empty://数据为空的点击事件
-                 getData();
+                getData();
                 break;
         }
     }

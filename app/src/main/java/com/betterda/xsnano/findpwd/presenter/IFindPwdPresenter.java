@@ -18,4 +18,6 @@ public interface IFindPwdPresenter extends IPresenter {
     void countDown();
 
     void setSelect(CountDown countDown);
+
+    void ondestroy();
 }
