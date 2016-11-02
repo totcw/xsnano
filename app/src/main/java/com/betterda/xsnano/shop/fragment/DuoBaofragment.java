@@ -147,10 +147,21 @@ public class DuoBaofragment extends BaseFragment implements View.OnClickListener
         }
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {//可见
+            getData();
+        }
+    }
+
+
+
+    public void getDataAndPage() {
+        if (loadpager_all != null) {
+            loadpager_all.setLoadVisable();
+        }
         getData();
     }
 
@@ -231,9 +242,7 @@ public class DuoBaofragment extends BaseFragment implements View.OnClickListener
 
     private void getData() {
 
-        if (loadpager_all != null) {
-            loadpager_all.setLoadVisable();
-        }
+
         RequestParams params = new RequestParams(Constants.URL_JINBI_DUOBAO);
         params.addBodyParameter("regionId", Constants.regiondId);
         GetNetUtil.getData(GetNetUtil.POST, params, new GetNetUtil.GetDataCallBack() {

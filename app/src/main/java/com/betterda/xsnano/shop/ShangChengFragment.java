@@ -34,9 +34,10 @@ public class ShangChengFragment extends BaseFragment implements View.OnClickList
     public ViewPager vp_shop;
     private LoadingPager loadpager_shop;
     private List<String> mDatas; //viewpager指示器的数据
-    private Fragment duobaofragment, duihuanfragment;
+    private DuoBaofragment duobaofragment;
+    private DuiHuanfragment duihuanfragment;
     private List<Fragment> fragmentList;
-    private int item;
+    public int item;
 
     @Override
     public View initView(LayoutInflater inflater) {
@@ -60,10 +61,6 @@ public class ShangChengFragment extends BaseFragment implements View.OnClickList
         mDatas.add("金币夺宝");
         mDatas.add("金币兑换");
 
-        Bundle arguments = getArguments();
-        if (arguments != null) {
-            item = arguments.getInt("item");
-        }
 
         fragmentList = new ArrayList<>();
         duobaofragment = new DuoBaofragment();
@@ -78,21 +75,68 @@ public class ShangChengFragment extends BaseFragment implements View.OnClickList
         //在fragment里面嵌套viewpager使用fragment需要传递getChildFragmentManager(),否则第二次加载会出现空白
         vp_shop.setAdapter(new MyAdapter(getChildFragmentManager(), fragmentList));
         //设置关联的ViewPager
-        if (item == 1) {
-            shop_indicator.setViewPager(vp_shop, 1);
-        } else {
-            shop_indicator.setViewPager(vp_shop, 0);
-        }
+
+        shop_indicator.setViewPager(vp_shop, 0);
+        shop_indicator.setOnPageChangeListener(new ViewPagerIndicator.PageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                item = position;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
     }
 
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {//隐藏
+
+        } else {
+            if (vp_shop != null) {
+                if (item == 0) {
+                    vp_shop.setCurrentItem(0);
+                } else {
+                    vp_shop.setCurrentItem(1);
+                }
+                //更新数据
+                update();
+
+            }
+        }
+    }
+
+    private void update() {
+        if (duobaofragment != null) {
+            duobaofragment.getDataAndPage();
+        }
+        if (duihuanfragment != null) {
+            duihuanfragment.getDataAndPage();
+        }
     }
 
     @Override
     public void onClick(View v) {
-        UtilMethod.startIntent(getmActivity(), ZhongJRecordActivity.class);
+        Intent intent = new Intent(getmActivity(), ZhongJRecordActivity.class);
+        startActivityForResult(intent,1);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            //更新数据
+            update();
+        }
     }
 }

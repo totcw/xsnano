@@ -136,8 +136,18 @@ public class DuiHuanfragment extends BaseFragment implements View.OnClickListene
 
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) { //可见
+            getData();
+        }
+    }
+
+
+    public void getDataAndPage() {
+        if (loadpager_all != null) {
+            loadpager_all.setLoadVisable();
+        }
         getData();
     }
 
@@ -185,7 +195,7 @@ public class DuiHuanfragment extends BaseFragment implements View.OnClickListene
 
     private void getData() {
 
-        loadpager_all.setLoadVisable();
+
         RequestParams params = new RequestParams(Constants.URL_JINBI_CHANGE);
         params.addBodyParameter("regionId", Constants.regiondId);
         GetNetUtil.getData(GetNetUtil.POST, params, new GetNetUtil.GetDataCallBack() {

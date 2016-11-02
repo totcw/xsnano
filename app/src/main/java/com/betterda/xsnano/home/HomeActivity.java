@@ -6,22 +6,18 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.PopupWindow;
 
 import com.betterda.xsnano.R;
 import com.betterda.xsnano.acitivity.BaseActivity;
 import com.betterda.xsnano.home.adapter.MyAdapter;
 import com.betterda.xsnano.home.presenter.IHomePresenter;
-import com.betterda.xsnano.home.presenter.IHomePresenterImpl;
 import com.betterda.xsnano.home.view.IHomeView;
 import com.betterda.xsnano.shop.ShangChengFragment;
 import com.betterda.xsnano.shouye.ShouYeFragment2;
-import com.betterda.xsnano.util.Constants;
 import com.betterda.xsnano.view.IndicatorView;
 import com.betterda.xsnano.wode.MyFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -76,104 +72,50 @@ public class HomeActivity extends BaseActivity implements IHomeView, View.OnClic
 
 
         shouye.setTabSelected(true);
-        //将底部布局添加到容器中
-       /* if (null == indicatorViewList) {
-            indicatorViewList = new ArrayList<>();
-        }
-        indicatorViewList.add(shouye);
-        indicatorViewList.add(shangcheng);
-        indicatorViewList.add(my);*/
 
         //创建fm管理者
         fm = getSupportFragmentManager();
 
-        //创建IhomePresenter的实现类
-    /*    iHomePresenter = new IHomePresenterImpl();
-
-        if (null == adapter) {
-            adapter = new MyAdapter(fm, iHomePresenter);
-        }*/
-
-
-        //设置viewpager的适配器
-        //   vpager_main.setAdapter(adapter);
-        //   vpager_main.setOnPageChangeListener(this);
-        //设置预加载个数 最少一个 也是就本页在加一页总共2页
-        //   vpager_main.setOffscreenPageLimit(1);
-
-      /*  ViewTreeObserver vto = shouye.getViewTreeObserver();
-        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-
-
-            @Override
-            public void onGlobalLayout() {
-                //移除上一次监听，避免重复监听
-                shouye.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                //在这里调用getHeight（）获得控件的高度
-                int Height = shouye.getHeight();
-
-                Constants.IDV_HEIGHT = Height;
-
-            }
-        });*/
         shouyeFragment = new ShouYeFragment2();
+        shangchengFragment = new ShangChengFragment();
+        myFragment = new MyFragment();
 
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         if (!HomeActivity.this.isFinishing()) {
-            fragmentTransaction.replace(R.id.frame, shouyeFragment);
+            fragmentTransaction.add(R.id.frame, shouyeFragment).add(R.id.frame, shangchengFragment)
+                    .add(R.id.frame, myFragment);
             fragmentTransaction.commitAllowingStateLoss();
         }
-
+        show(shouyeFragment);
         shouye.setSelected(true);
 
     }
-
-
-   /* @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-        if (null != indicatorViewList) {
-
-            change(indicatorViewList.get(position));
-        }
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int state) {
-
-    }*/
 
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.idv_shouye:
-                // hide(shouyeFragment);
                 if (null == shouyeFragment) {
                     shouyeFragment = new ShouYeFragment2();
                 }
-                replace(shouyeFragment);
+                show(shouyeFragment);
                 change(shouye);
                 break;
             case R.id.idv_shangcheng:
-                //  hide(shangchengFragment);
                 if (null == shangchengFragment) {
                     shangchengFragment = new ShangChengFragment();
 
                 }
-                replace(shangchengFragment);
+                show(shangchengFragment);
                 change(shangcheng);
                 break;
             case R.id.idv_my:
-                //  hide(myFragment);
                 if (myFragment == null) {
                     myFragment = new MyFragment();
                 }
-                replace(myFragment);
+
+                show(myFragment);
                 change(my);
                 break;
         }
@@ -188,7 +130,7 @@ public class HomeActivity extends BaseActivity implements IHomeView, View.OnClic
         }
     }
 
-    private void hide(Fragment fragment) {
+    private void show(Fragment fragment) {
         if (null != fm) {
             FragmentTransaction fragmentTransaction2 = fm.beginTransaction();
             if (null != fragmentTransaction2 && HomeActivity.this != null) {
@@ -236,13 +178,11 @@ public class HomeActivity extends BaseActivity implements IHomeView, View.OnClic
         if (shangcheng != null) {
             change(shangcheng);
         }
-
-        shangchengFragment = new ShangChengFragment();
-        Bundle bundle = new Bundle();
-        bundle.putInt("item", 0);
-        shangchengFragment.setArguments(bundle);
-
-        replace(shangchengFragment);
+        if (shangchengFragment == null) {
+            shangchengFragment = new ShangChengFragment();
+        }
+        shangchengFragment.item = 0;
+        show(shangchengFragment);
 
     }
 
@@ -254,12 +194,12 @@ public class HomeActivity extends BaseActivity implements IHomeView, View.OnClic
             change(shangcheng);
         }
 
-        shangchengFragment = new ShangChengFragment();
-        Bundle bundle = new Bundle();
-        bundle.putInt("item", 1);
-        shangchengFragment.setArguments(bundle);
+        if (shangchengFragment == null) {
+            shangchengFragment = new ShangChengFragment();
+        }
+        shangchengFragment.item = 1;
 
-        replace(shangchengFragment);
+        show(shangchengFragment);
 
     }
 

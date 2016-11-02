@@ -77,6 +77,7 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
     private IShouyeFourPresenter iShouyeFourPresenter;
     private LunBoTuAdapter lunBoTuAdapter; //轮播图适配器
     private int pressNum =-1;//用来区分 按下的是分类还是筛选
+    private int scrollY; //scrollview滑动的距离
 
     @Override
     public View initView(LayoutInflater inflater) {
@@ -118,7 +119,11 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
         tv_shouye_city = (TextView) view.findViewById(R.id.tv_shouye_city);
         loadingPager = (LoadingPager) view.findViewById(R.id.loadpager_shouye);
         frame_shouye = (FrameLayout) view.findViewById(R.id.frame_shouye);
-
+        //将view添加到listview的头中
+        linear_hide_shouye.addView(view_lunbotu);
+        linear_hide_shouye.addView(view_second);
+        linear_hide_shouye.addView(view_four);
+        frame_shouye2_three.addView(view_three);
         return view;
     }
 
@@ -162,6 +167,7 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
 
         //重新设置loadingpager的高度
         setRecycleviewHeight();
+
         loadingPager.setLoadVisable();
 
         iShouyePresenter = new IShouyePresenterImpl(this);
@@ -173,18 +179,48 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
         //开始加载数据
         iShouyeFirstPresenter.start();
         shouyeThreePresenter.start();
-
         //设置分类的标题
         shouyeThreePresenter.setTile();
 
-        //将view添加到listview的头中
-        linear_hide_shouye.addView(view_lunbotu);
-        linear_hide_shouye.addView(view_second);
-        linear_hide_shouye.addView(view_four);
-        frame_shouye2_three.addView(view_three);
-
         //将2个分类 重叠
         //当布局的状态或者控件的可见性发生改变回调的接口
+        setVisable();
+
+
+        //互相关联
+        myscrollview.setRecyclerView(rv_shouye);
+        rv_shouye.setScrollYScrollView(myscrollview);
+
+    }
+
+    /**
+     * fragment隐藏或者显示回调的方法
+     * @param hidden
+     */
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {//隐藏
+            if (myscrollview != null) {
+                //记录滑动的位置
+                scrollY = myscrollview.getScrollY();
+            }
+        } else {
+            if (myscrollview != null) {
+                myscrollview.post(new Runnable() {
+                    //让scrollview跳转到指定位置，必须放在runnable()方法中
+                    @Override
+                    public void run() {
+                        myscrollview.scrollTo(0, scrollY);
+                    }
+                });
+            }
+        }
+    }
+
+
+
+    private void setVisable() {
         linear_shouye.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
 
             @Override
@@ -198,18 +234,6 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
 
             }
         });
-
-        myscrollview.post(new Runnable() {
-            //让scrollview跳转到顶部，必须放在runnable()方法中
-            @Override
-            public void run() {
-                myscrollview.scrollTo(0, 0);
-            }
-        });
-        //互相关联
-        myscrollview.setRecyclerView(rv_shouye);
-        rv_shouye.setScrollYScrollView(myscrollview);
-
     }
 
     /**
@@ -254,7 +278,11 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
                 closePopupWindow();
                 break;
             case R.id.linear_location://地图
-                // UtilMethod.startIntent(getmActivity(), MyMapActivity.class);
+                if (close()) {
+
+                } else {
+
+                }
                 break;
             case R.id.iv_shouye_search://搜索
                 if (close()) {
@@ -416,6 +444,7 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
     }
 
 
+
     @Override
     public void dismiss() {
         super.dismiss();
@@ -513,7 +542,6 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
 
     @Override
     public void onScroll(int scrollY) {
-
         int mBuyLayout2ParentTop = Math.max(scrollY, myscrollview.getMHeight());
         //判断Scroll是否置顶
         if (scrollY >= myscrollview.getMHeight()) {
@@ -531,6 +559,8 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
 
 
     }
+
+
 
     /**
      * 用来判断popupwindow是否关闭
