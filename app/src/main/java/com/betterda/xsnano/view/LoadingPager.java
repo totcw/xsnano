@@ -18,7 +18,7 @@ public class LoadingPager extends FrameLayout {
     private FrameLayout frame_error, frame_empty;//加载错误,加载为空页面
     private TextView tv_empty;//数据为空的文字
     private ImageView iv_empty;//数据为空的图片
-
+    private boolean isShow;//是否显示
     public LoadingPager(Context context) {
         this(context, null);
     }
@@ -66,6 +66,7 @@ public class LoadingPager extends FrameLayout {
             frame_error.setVisibility(View.INVISIBLE);
             loadview_pager.setVisibility(View.INVISIBLE);
             loadview_pager.stopAnim();
+            isShow = false;
         }
     }
 
@@ -74,6 +75,7 @@ public class LoadingPager extends FrameLayout {
         if (null != frame_empty) {
 
             frame_empty.setVisibility(View.VISIBLE);
+            isShow = true;
         }
     }
     public void setErrorVisable() {
@@ -81,6 +83,7 @@ public class LoadingPager extends FrameLayout {
         if (null != frame_error) {
 
             frame_error.setVisibility(View.VISIBLE);
+            isShow = true;
         }
     }
     public void setLoadVisable() {
@@ -89,6 +92,7 @@ public class LoadingPager extends FrameLayout {
 
             loadview_pager.setVisibility(View.VISIBLE);
             loadview_pager.startAnim();
+            isShow = true;
         }
     }
 
@@ -112,6 +116,7 @@ public class LoadingPager extends FrameLayout {
         }
     }
 
-
-
+    public boolean isShow() {
+        return isShow;
+    }
 }

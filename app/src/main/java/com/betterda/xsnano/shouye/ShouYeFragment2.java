@@ -189,6 +189,7 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
 
         //互相关联
         myscrollview.setRecyclerView(rv_shouye);
+        myscrollview.setLoadingPager(loadingPager);
         rv_shouye.setScrollYScrollView(myscrollview);
 
     }

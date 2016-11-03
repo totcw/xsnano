@@ -29,6 +29,7 @@ public class ScrollYScrollView extends com.betterda.xsnano.view.NestedScrollView
     private int measuredHeight; //scrollview隐藏的高度
     private int downY; //记录滑动事件的y坐标
     private boolean isTop;//recycleview是否置顶
+    private LoadingPager loadingPager;
 
     public ScrollYScrollView(Context context) {
         this(context, null);
@@ -109,6 +110,9 @@ public class ScrollYScrollView extends com.betterda.xsnano.view.NestedScrollView
         this.recyclerView = recyclerView;
     }
 
+    public void setLoadingPager(LoadingPager loadingPager) {
+        this.loadingPager = loadingPager;
+    }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
@@ -120,6 +124,14 @@ public class ScrollYScrollView extends com.betterda.xsnano.view.NestedScrollView
                 isup = super.onTouchEvent(ev);
                 break;
             case MotionEvent.ACTION_MOVE:
+
+                if (loadingPager != null) {
+                    //如果是加载错,数据为空就直接让scrollview滑动
+                    if (loadingPager.isShow()) {
+                        return super.onTouchEvent(ev);
+                    }
+                }
+
                 //防止从intercept直接跳过来
                 if (downY == 0) {
                     downY = (int) ev.getY();

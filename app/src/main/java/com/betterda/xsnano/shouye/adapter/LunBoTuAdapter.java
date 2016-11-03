@@ -49,7 +49,7 @@ public class LunBoTuAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        if (list.size() == 0) {
+        if (list==null||list.size() == 0) {
             return null;
         }
         position %= list.size();
