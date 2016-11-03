@@ -78,6 +78,7 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
     private LunBoTuAdapter lunBoTuAdapter; //轮播图适配器
     private int pressNum =-1;//用来区分 按下的是分类还是筛选
     private int scrollY; //scrollview滑动的距离
+    private boolean isFirstShow;//是否是首次显示
 
     @Override
     public View initView(LayoutInflater inflater) {
@@ -177,7 +178,7 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
         iShouyeFourPresenter = new IShouyeFourPresenterImpl(this);
 
         //开始加载数据
-        iShouyeFirstPresenter.start();
+
         shouyeThreePresenter.start();
         //设置分类的标题
         shouyeThreePresenter.setTile();
@@ -192,6 +193,19 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
         myscrollview.setLoadingPager(loadingPager);
         rv_shouye.setScrollYScrollView(myscrollview);
 
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (isFirstShow) { //控制onstrt和onHiddenChanged在一次加载不重复调用start方法.
+            if (iShouyeFirstPresenter != null) {
+                iShouyeFirstPresenter.start();
+            }
+
+        }
+        isFirstShow = true;
     }
 
     /**
@@ -215,6 +229,10 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
                         myscrollview.scrollTo(0, scrollY);
                     }
                 });
+            }
+
+            if (iShouyeFirstPresenter != null) {
+                iShouyeFirstPresenter.start();
             }
         }
     }

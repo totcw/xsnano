@@ -37,5 +37,5 @@ public interface IShouyeFirstPresenter extends IPresenter{
      */
     public void onDestroy();
 
-
+    void getLunBoTuData();
 }

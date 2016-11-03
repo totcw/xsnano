@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
@@ -39,7 +40,8 @@ public class IShouyeFirstPresenterImpl implements IShouyeFirstPresenter, ViewPag
     private List<LunBoTu> stringList; //轮播图图片的容器
     private int currentIndex;
     private InternalHandler mHandler;
-   // private AutoSwitchPagerRunnable autoSwitchPagerRunnable;
+    private boolean isShow;//是否设置轮播图成功了
+
 
     public IShouyeFirstPresenterImpl(IShouyeView iShouyeView, Fragment fragment) {
         this.iShouyeView = iShouyeView;
@@ -50,34 +52,43 @@ public class IShouyeFirstPresenterImpl implements IShouyeFirstPresenter, ViewPag
     /**
      * 获取轮播图的数据
      */
-    public void getLunBoTuData() {
-        stringList = new ArrayList<>();
+    public   void getLunBoTuData() {
 
+        if (isShow) {
+            //如果已经加载过了就不重复加载了
+            return;
+        }
+        stringList = new ArrayList<>();
         RequestParams params = new RequestParams(Constants.URL_LUNBO);
         params.addBodyParameter("regionId", Constants.regiondId);
         GetNetUtil.getData(GetNetUtil.POST, params, new GetNetUtil.GetDataCallBack() {
             @Override
             public void onSuccess(String s) {
-
-                UtilMethod.parSerJson(s, new ParserJsonInterface() {
-                    @Override
-                    public void parser(Map<String, Object> map) {
-                        if (map != null) {
-                            LunBoTu lunBoTu = new LunBoTu();
-                            lunBoTu.setUrl(UtilMethod.url(map.get("picture").toString()));
-                            lunBoTu.setId(map.get("id").toString());
-                            if (stringList != null) {
-                                stringList.add(lunBoTu);
-                            }
-                        }
-
+                    if (stringList != null) {
+                        stringList.clear();
                     }
-                });
+                    UtilMethod.parSerJson(s, new ParserJsonInterface() {
+                        @Override
+                        public void parser(Map<String, Object> map) {
+                            if (map != null) {
+                                LunBoTu lunBoTu = new LunBoTu();
+                                lunBoTu.setUrl(UtilMethod.url(map.get("picture").toString()));
+                                lunBoTu.setId(map.get("id").toString());
+                                if (stringList != null) {
+                                    stringList.add(lunBoTu);
+                                }
+                            }
+
+                        }
+                    });
+
+
 
                 if (iShouyeView != null) {
                     iShouyeView.setLunBoAdapter();
                     //  iShouyeView.getViewPager().setPageTransformer(true,new CubeTransformer());
-
+                    //设置为true,表示轮播加载成功
+                    isShow = true;
                 }
                 if (iShouyeView != null) {
                     if (iShouyeView.getImageviewMianFirst() != null) {
@@ -111,6 +122,7 @@ public class IShouyeFirstPresenterImpl implements IShouyeFirstPresenter, ViewPag
     public void cratePoint() {
         if (null != stringList && stringList.size() > 0) {
             int size = stringList.size();
+            iShouyeView.getLpoint().removeAllViews();
             // 添加图片
             for (int i = 0; i < size; i++) {
                 // 设置圆点
@@ -136,7 +148,7 @@ public class IShouyeFirstPresenterImpl implements IShouyeFirstPresenter, ViewPag
         iShouyeView.getViewPager().setOnPageChangeListener(this);
 
         if (mHandler == null) {
-            System.out.println("null");
+
             if (iShouyeView != null && iShouyeView.getmActivity() != null)
                 mHandler = new InternalHandler(fragment, iShouyeView.getmActivity());
         }
@@ -186,7 +198,9 @@ public class IShouyeFirstPresenterImpl implements IShouyeFirstPresenter, ViewPag
 
     @Override
     public void start() {
+
         getLunBoTuData();
+
     }
 
 
@@ -229,7 +243,6 @@ public class IShouyeFirstPresenterImpl implements IShouyeFirstPresenter, ViewPag
     }
 
 
-
     @Override
     public View ctreaImageView(final int position) {
         if (null != iShouyeView && iShouyeView.getmActivity() != null) {
@@ -268,7 +281,6 @@ public class IShouyeFirstPresenterImpl implements IShouyeFirstPresenter, ViewPag
             mHandler = null;
         }
     }
-
 
 
     /**
