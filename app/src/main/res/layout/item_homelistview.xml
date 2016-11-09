@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto">
 <LinearLayout
     android:layout_width="match_parent"
     android:orientation="vertical"
@@ -86,6 +87,11 @@
                 android:id="@+id/iv_item_homelistview"
                 android:layout_width="@dimen/iv_item_shouyelistview"
                 android:layout_height="@dimen/iv_item_shouyelistview"
+                fresco:roundedCornerRadius="3dp"
+                fresco:roundTopLeft="true"
+                fresco:roundTopRight="true"
+                fresco:roundBottomLeft="true"
+                fresco:roundBottomRight="true"
                 android:background="@mipmap/ttycimage"
                 android:scaleType="fitXY" />
 
@@ -191,52 +197,7 @@
         android:layout_height="0.5dp"
         android:background="@color/lv_divider"
         ></View>
-    <!--    <RelativeLayout
-            android:background="#ffffff"
-            android:layout_width="match_parent"
-            android:layout_height="40dp">
-            <TextView
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="爱车打蜡"
-                />
 
-
-
-            <TextView
-                android:layout_centerVertical="true"
-                android:id="@+id/tv_item_homelistview_buy"
-                android:layout_marginRight="10dp"
-                android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="买单"
-                android:gravity="center"
-                android:textColor="#ffffff"
-                android:background="@mipmap/yjjx_press"
-                />
-
-            <TextView
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:layout_toLeftOf="@id/tv_item_homelistview_buy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="￥ 0"
-                android:textColor="@color/shouye_fenlei_red"
-
-                />
-
-        </RelativeLayout>
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/lv_divider"
-        ></View>-->
 
 </LinearLayout>
     </FrameLayout>

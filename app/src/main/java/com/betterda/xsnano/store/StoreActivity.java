@@ -305,7 +305,7 @@ public class StoreActivity extends BaseActivity implements IStoreView, View.OnCl
         if (api.isWXAppInstalled()) { //判断是否安装了微信
             //开启微信分享
             WXWebpageObject wxWebpageObject = new WXWebpageObject();
-            wxWebpageObject.webpageUrl = "http://www.meichebang.com.cn/xsnano_web/app/download.do?resource/get";//填写网页url
+            wxWebpageObject.webpageUrl = "http://www.meichebang.com.cn/xsnano_web/download.html";//填写网页url
             WXMediaMessage wxMediaMessage = new WXMediaMessage(wxWebpageObject);
             wxMediaMessage.title = "美车帮";
             wxMediaMessage.description = "美车帮";
@@ -427,7 +427,7 @@ public class StoreActivity extends BaseActivity implements IStoreView, View.OnCl
                 }
             }
 
-            System.out.println("置顶了");
+
         } else {
             if (shangpinFragment != null && commentFragment != null) {
                 if (shangpinFragment.rv_shangpin1 != null) {

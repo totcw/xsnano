@@ -220,9 +220,7 @@ public class IWashPresenterImpl implements IWashPresenter, View.OnClickListener 
     private void getData() {
 
         catalogId = null;
-        System.out.println("serviceId:"+serviceId+" sortFiled:"+sortFiled
-        +" catalogId:"+catalogId+" cooperationProject:"+cooperation+" regionid:"+Constants.regiondId
-        );
+
         //获取店铺列表
         RequestParams params = new RequestParams(Constants.URL_STORE_LIST);
         params.addBodyParameter("serviceId", serviceId);

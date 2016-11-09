@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:background="@color/bg_gray"
     android:orientation="vertical"
     android:id="@+id/linear_item_xiche"
@@ -81,7 +82,12 @@
                     android:id="@+id/sv_item_xiche"
                     android:layout_width="@dimen/iv_item_shouyelistview"
                     android:layout_height="@dimen/iv_item_shouyelistview"
-                    android:background="@mipmap/dianpu"
+                    android:background="@mipmap/ttycimage"
+                    fresco:roundedCornerRadius="3dp"
+                    fresco:roundTopLeft="true"
+                    fresco:roundTopRight="true"
+                    fresco:roundBottomLeft="true"
+                    fresco:roundBottomRight="true"
                     android:scaleType="fitXY" />
 
                 <ImageView

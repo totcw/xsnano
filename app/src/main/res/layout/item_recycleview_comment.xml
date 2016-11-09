@@ -20,6 +20,11 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             fresco:placeholderImage="@mipmap/ttycimage"
+            fresco:roundedCornerRadius="3dp"
+            fresco:roundTopLeft="true"
+            fresco:roundTopRight="true"
+            fresco:roundBottomLeft="true"
+            fresco:roundBottomRight="true"
             />
 
         <LinearLayout
