@@ -17,6 +17,7 @@ import com.betterda.xsnano.animation.CubeTransformer;
 import com.betterda.xsnano.interfac.ParserJsonInterface;
 import com.betterda.xsnano.shouye.model.LunBoTu;
 import com.betterda.xsnano.shouye.view.IShouyeView;
+import com.betterda.xsnano.store.model.Service;
 import com.betterda.xsnano.util.Constants;
 import com.betterda.xsnano.util.GetNetUtil;
 import com.betterda.xsnano.util.UtilMethod;

@@ -1,5 +1,6 @@
 package com.betterda.xsnano.sale;
 
+import android.app.Service;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -21,6 +22,7 @@ public class SaleActivity extends BaseActivity implements ISaleView, View.OnClic
     private LoadingPager loadpager_sale;
     private NormalTopBar topBar;
     private RecyclerView rv_sale;
+
     private ISalePresenter iSalePresenter;
     @Override
     public void initView() {

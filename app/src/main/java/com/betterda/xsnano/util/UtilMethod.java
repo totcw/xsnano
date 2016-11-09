@@ -749,7 +749,7 @@ public class UtilMethod {
         if ("0".equals(money1)||"".equals(money1)) {
             //如果整数部分为0,就判断小数部分是不是0开头
             if (!TextUtils.isEmpty(money2)) {
-                System.out.println("money2:"+money2);
+
 
                 if (money2.startsWith("0")){
                     //如果是以0开头就取后一位数
