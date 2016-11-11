@@ -37,6 +37,7 @@
     </style>
 
 
+
     <!--加载动画的style-->
     <style name="custom_dialog" parent="@android:style/Theme.Holo.Dialog">
         <item name="android:windowFrame">@null</item>

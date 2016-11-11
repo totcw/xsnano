@@ -32,10 +32,15 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.CAMERAE" />
-
     <uses-permission android:name="android.permission.change_network_state" />
-
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+
 
 
     <application
@@ -48,7 +53,7 @@
         <!--百度地图-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="kSbHlUEgBxGbrwppNpx3dnEUlE6a6bA8" />
+            android:value="9YL1ZGtlKGiimw4PgPpkcA1bpNmbLr2H" />
 
         <activity
             android:name=".acitivity.WelcomeActivity"
@@ -198,6 +203,9 @@
         <activity
             android:name=".livingpay.LivingPayActivity"
             android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".location.LocationActivity"
+            android:screenOrientation="portrait"></activity>
 
 
         <!--微信回调的acitivity-->
@@ -216,11 +224,11 @@
 
         <!--微博授权页面-->
         <!-- 必须注册在微博授权，分享微博时候用到 -->
-        <activity android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
+        <activity
+            android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
             android:configChanges="keyboardHidden|orientation"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="false" >
-        </activity>
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"></activity>
 
         <!--qq登录-->
         <activity

@@ -68,15 +68,14 @@ public class MyMapActivity extends BaseActivity implements BaiduMap.OnMyLocation
         mBaiduMap = mMapView.getMap();
         //将地图添加到布局中
         frameLayout.addView(mMapView);
-
-        //设置泡泡
+  /*      //设置泡泡
         pop = View.inflate(this, R.layout.activity_baidu_pop, null);
         MapViewLayoutParams layoutParams = new MapViewLayoutParams.Builder()
                 .layoutMode(MapViewLayoutParams.ELayoutMode.mapMode)
                 .position(new LatLng(0, 0))
                 .build();
         mMapView.addView(pop,layoutParams);
-        pop.setVisibility(View.INVISIBLE);
+        pop.setVisibility(View.INVISIBLE);*/
 
         //设置缩放级别
         mBaiduMap.setMapStatus(MapStatusUpdateFactory.
@@ -103,7 +102,7 @@ public class MyMapActivity extends BaseActivity implements BaiduMap.OnMyLocation
         //开启定位图层
         mBaiduMap.setMyLocationEnabled(true);
         // 设置定位图层的配置（定位模式，是否允许方向信息，用户自定义定位图标）
-       /* BitmapDescriptor mCurrentMarker = BitmapDescriptorFactory
+     /*   BitmapDescriptor mCurrentMarker = BitmapDescriptorFactory
                 .fromResource(R.mipmap.ic_store_mark_default);
 
         MyLocationConfiguration config = new MyLocationConfiguration(MyLocationConfiguration.

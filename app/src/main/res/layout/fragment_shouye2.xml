@@ -13,13 +13,21 @@
         android:background="@color/title_red2"
 
         >
+        <ImageView
+            android:id="@+id/iv_shouye2_title"
+            android:layout_width="82dp"
+            android:layout_height="21dp"
+            android:layout_centerInParent="true"
+            android:background="@mipmap/shouye_title" />
+
 
         <LinearLayout
+            android:layout_toLeftOf="@id/iv_shouye2_title"
             android:id="@+id/linear_location"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="16dp"
-            android:gravity="center">
+            android:gravity="center_vertical">
 
             <ImageView
 
@@ -31,8 +39,9 @@
                 android:id="@+id/tv_shouye_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 android:layout_marginLeft="6dp"
-                android:text="厦门市"
+                android:text="定位失败"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/textsize_xlarge" />
 
@@ -40,21 +49,7 @@
         </LinearLayout>
 
 
-        <ImageView
-            android:layout_width="82dp"
-            android:layout_height="21dp"
-            android:layout_centerInParent="true"
-            android:background="@mipmap/shouye_title" />
 
-        <ImageView
-            android:visibility="gone"
-            android:id="@+id/iv_shouye_more"
-            android:layout_width="20dp"
-            android:layout_height="19dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="16dp"
-            android:background="@mipmap/shouye_more" />
 
         <ImageView
             android:layout_alignParentRight="true"

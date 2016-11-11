@@ -98,7 +98,9 @@ public abstract class BaseFragment extends Fragment {
         } else {
             popupWindow = new PopupWindow(view, -1, -1);
         }
-
+        if (null == showView) {
+            popupWindow.setOutsideTouchable(true);
+        }
         // 设置点到外面可以取消,下面这2句要一起
        // popupWindow.setOutsideTouchable(true);
         popupWindow.setBackgroundDrawable(new BitmapDrawable());

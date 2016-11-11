@@ -52,7 +52,7 @@ public class MyApplication extends Application {
         //百度地图
         SDKInitializer.initialize(getApplicationContext());
         //捕获异常
-       CrashHandler.getInstance().init(getApplicationContext());
+      // CrashHandler.getInstance().init(getApplicationContext());
     }
 
     /**

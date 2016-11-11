@@ -1,5 +1,9 @@
 package com.betterda.xsnano.shouye;
 
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.support.v7.widget.RecyclerView;
@@ -15,8 +19,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.betterda.xsnano.R;
+import com.betterda.xsnano.baidu.MyMapActivity;
 import com.betterda.xsnano.fragment.BaseFragment;
 import com.betterda.xsnano.home.HomeActivity;
+import com.betterda.xsnano.location.LocationActivity;
 import com.betterda.xsnano.message.MessageActivity;
 import com.betterda.xsnano.sale.SaleActivity;
 import com.betterda.xsnano.search.SearchActivity;
@@ -61,7 +67,6 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
     private ListView morelist; //显示popupwindow门店更多订单listview
     private RecyclerView recyclerView, rv_shaixuan;
     private ImageView iv_shouye_search;//搜索
-    private ImageView iv_shouye_more;//更多
     private RelativeLayout relative_tjq, relative_zpjy, relative_qcjy, relative_xiuc, relative_jyz,
             relative_xic, relative_xhfw, relative_dj,relative_shouye2_title;
     private ImageView iv_jbdb, iv_ykggl, iv_gcwy, iv_mrtm, iv_main_first;
@@ -90,7 +95,6 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
         rv_shouye = (MyRecycleView) view.findViewById(R.id.rv_shouye);
         linear_location = (LinearLayout) view.findViewById(R.id.linear_location);
         iv_shouye_search = (ImageView) view.findViewById(R.id.iv_shouye_search);
-        iv_shouye_more = (ImageView) view.findViewById(R.id.iv_shouye_more);
         view_lunbotu = inflater.inflate(R.layout.main_first, null);
         iv_main_first = (ImageView) view_lunbotu.findViewById(R.id.iv_main_first);
         vpager_lunbotu = (ViewPager) view_lunbotu.findViewById(R.id.vpager_lunbotu);
@@ -140,7 +144,6 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
         mfv_shouye.setOnThreeClick(this);
         linear_location.setOnClickListener(this);
         iv_shouye_search.setOnClickListener(this);
-        iv_shouye_more.setOnClickListener(this);
         relative_tjq.setOnClickListener(this);
         relative_zpjy.setOnClickListener(this);
         relative_qcjy.setOnClickListener(this);
@@ -300,7 +303,8 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
                 if (close()) {
 
                 } else {
-
+                    Intent intent = new Intent(getmActivity(), LocationActivity.class);
+                    startActivityForResult(intent,0);
                 }
                 break;
             case R.id.iv_shouye_search://搜索
@@ -594,4 +598,15 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
     }
 
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 0) {
+            if (data != null) {
+
+                tv_shouye_city.setText(data.getStringExtra("city"));
+            }
+
+        }
+    }
 }

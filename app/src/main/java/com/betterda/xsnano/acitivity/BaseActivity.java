@@ -69,7 +69,6 @@ public class BaseActivity extends FragmentActivity {
 
     /**
      * 关闭activity的方法
-     *
      */
     public void backActivity() {
         finish();
@@ -94,18 +93,30 @@ public class BaseActivity extends FragmentActivity {
         } else {
 
             popupWindow = new PopupWindow(view, -1, -1);
+
         }
 
         // 设置点到外面可以取消,下面这2句要一起
-     //   popupWindow.setOutsideTouchable(true);
+        if (null == showView) {
+            popupWindow.setOutsideTouchable(true);
+        } else {
+            if (first == 100) {
+                popupWindow.setOutsideTouchable(true);
+            }
+        }
+
         popupWindow.setBackgroundDrawable(new BitmapDrawable());
 
         //设置为true 会拦截事件,pop外部的控件无法获取到事件
         if (null == showView) {
             popupWindow.setFocusable(true);
         } else {
+            if (first == 100) {
+                popupWindow.setFocusable(true);
+            } else {
+                popupWindow.setFocusable(false);
 
-            popupWindow.setFocusable(false);
+            }
         }
         //设置可以触摸
         popupWindow.setTouchable(true);
@@ -113,16 +124,26 @@ public class BaseActivity extends FragmentActivity {
         if (null == showView) {
             UtilMethod.backgroundAlpha(0.7f, this);
 
+        } else {
+            /*if (first == 100) {
+                UtilMethod.backgroundAlpha(0.7f, this);
+            }*/
         }
         popupWindow.update();
 
         if (popupWindow != null) {
             if (!popupWindow.isShowing()) {
                 if (null == showView) {
-                    popupWindow.setAnimationStyle(R.style.popwin_anim_style);
-                    popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
+                    if (first == 100) {
+                        popupWindow.showAtLocation(view, Gravity.TOP, 0, 0);
+                    } else {
+                        popupWindow.setAnimationStyle(R.style.popwin_anim_style);
+                        popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
+                    }
+
+
                 } else {
-                  //  popupWindow.setAnimationStyle(R.style.popupwindow_anim);
+
 
                     popupWindow.showAsDropDown(showView);
                 }
@@ -179,7 +200,7 @@ public class BaseActivity extends FragmentActivity {
     protected void onDestroy() {
         super.onDestroy();
         //防止内存泄漏
-        ((MyApplication)getApplication()).removeAcitivty(this);
+        ((MyApplication) getApplication()).removeAcitivty(this);
 
     }
 }

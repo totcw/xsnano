@@ -187,6 +187,12 @@
     #百度地图避免混淆
     -keep class com.baidu.mapapi.** {*;}
 
+    -keep class com.baidu.** {*;}
+    -keep class vi.com.** {*;}
+    -dontwarn com.baidu.**
+
+
+
     ################### region for xUtils
     -keepattributes Signature,*Annotation*
     -keep public class org.xutils.** {
