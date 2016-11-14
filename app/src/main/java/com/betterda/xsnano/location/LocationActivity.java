@@ -506,9 +506,10 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
 
             if (null != location) {
 
-                if (tv_address != null) {
+                if (tv_address != null&&location.getCity()!=null) {
                     tv_address.setText(location.getProvince()+location.getCity()+location.getDistrict()+location.getStreet()+location.getStreetNumber());
                     city = location.getCity();
+
                 }
 
             }

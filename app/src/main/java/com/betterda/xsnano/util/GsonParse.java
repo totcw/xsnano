@@ -1,5 +1,7 @@
 package com.betterda.xsnano.util;
 
+import android.text.TextUtils;
+
 import com.betterda.xsnano.interfac.ParserGsonInterface;
 import com.betterda.xsnano.javabean.CommentP;
 import com.betterda.xsnano.javabean.GoldChangeBean;
@@ -53,7 +55,9 @@ public class GsonParse {
      */
     public static <T> T getObject(String jsonString, Class<T> cls) {
         T t = null;
-        t = gson.fromJson(jsonString, cls);
+        if (null != jsonString) {
+            t = gson.fromJson(jsonString, cls);
+        }
 
         return t;
     }
@@ -102,18 +106,21 @@ public class GsonParse {
         }.getType());
         return list;
     }
-        /**
-         * 获取金币夺宝
-         */
+
+    /**
+     * 获取金币夺宝
+     */
     public static List<GoldGet> getListGoldGet(String jsonString) {
         List<GoldGet> list = new ArrayList<GoldGet>();
         list = gson.fromJson(jsonString, new TypeToken<List<GoldGet>>() {
         }.getType());
         return list;
 
-    }       /**
-         * 获取金币兑换
-         */
+    }
+
+    /**
+     * 获取金币兑换
+     */
     public static List<GoldChangeBean> getListGoldChange(String jsonString) {
         List<GoldChangeBean> list = new ArrayList<GoldChangeBean>();
         list = gson.fromJson(jsonString, new TypeToken<List<GoldChangeBean>>() {
@@ -124,6 +131,7 @@ public class GsonParse {
 
     /**
      * 获取店铺列表
+     *
      * @param jsonString
      * @return
      */
@@ -138,6 +146,7 @@ public class GsonParse {
 
     /**
      * 获取每日特卖
+     *
      * @param jsonString
      * @return
      */
@@ -161,6 +170,7 @@ public class GsonParse {
 
     /**
      * 获取订单列表
+     *
      * @param jsonString
      * @return
      */
@@ -171,15 +181,18 @@ public class GsonParse {
         return list;
 
 
-
     }
+
     public static List<ShopChange> getListShopChange(String jsonString) {
         List<ShopChange> list = new ArrayList<ShopChange>();
         list = gson.fromJson(jsonString, new TypeToken<List<ShopChange>>() {
         }.getType());
-        return list;}
+        return list;
+    }
+
     /**
      * 获取卡券
+     *
      * @param jsonString
      * @return
      */
@@ -190,8 +203,11 @@ public class GsonParse {
         return list;
 
 
-    }    /**
+    }
+
+    /**
      * 获取金币明细
+     *
      * @param jsonString
      * @return
      */
@@ -203,7 +219,8 @@ public class GsonParse {
 
 
     }
-   public static List<Zhongj> getListZhongj(String jsonString) {
+
+    public static List<Zhongj> getListZhongj(String jsonString) {
         List<Zhongj> list = new ArrayList<Zhongj>();
         list = gson.fromJson(jsonString, new TypeToken<List<Zhongj>>() {
         }.getType());
@@ -287,7 +304,7 @@ public class GsonParse {
         long start = 1467907200000l;
         long now = System.currentTimeMillis();
 
-        long out = (start - now)/3600/1000;
+        long out = (start - now) / 3600 / 1000;
         System.out.println(out);
     }
 }

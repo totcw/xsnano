@@ -1,18 +1,29 @@
 package com.betterda.xsnano.wxapi;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.betterda.xsnano.R;
+import com.betterda.xsnano.information.InformationActivity;
+import com.betterda.xsnano.information.NameActivity;
+import com.betterda.xsnano.interfac.ParserGsonInterface;
 import com.betterda.xsnano.javabean.Login;
+import com.betterda.xsnano.javabean.WxInfomation;
 import com.betterda.xsnano.javabean.WxLogin;
 import com.betterda.xsnano.util.CacheUtils;
 import com.betterda.xsnano.util.Constants;
 import com.betterda.xsnano.util.GetNetUtil;
 import com.betterda.xsnano.util.GsonParse;
+import com.betterda.xsnano.util.LoginUitls;
 import com.betterda.xsnano.util.UtilMethod;
 import com.betterda.xsnano.view.ShapeLoadingDialog;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.imagepipeline.core.ImagePipeline;
 import com.tencent.mm.sdk.modelbase.BaseReq;
 import com.tencent.mm.sdk.modelbase.BaseResp;
 import com.tencent.mm.sdk.modelmsg.SendAuth;
@@ -24,6 +35,7 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -42,7 +54,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wxentry);
+        // setContentView(R.layout.activity_wxentry);
         api = WXAPIFactory.createWXAPI(getApplicationContext(), Constants.WeiXin.APP_ID, true);
         api.handleIntent(getIntent(), this);//调用这行代码,授权完后才来这个页面
     }
@@ -74,15 +86,18 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                 if (err == 0 && code != null) {
                     //授权成功,获取token
                     getData2();
-                    finish();
+
                 } else {
+                    UtilMethod.Toast(getApplicationContext(), "微信授权失败");
                     finish();
                 }
             } else {
+
                 finish();
             }
 
         } catch (Exception e) {
+
             finish();
         }
 
@@ -90,9 +105,17 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
     }
 
     /**
-     * 通过code获取token
+     * 通过code获取openid和token
      */
     public void getData2() {
+
+        if (dialog == null) {
+            dialog = UtilMethod.createDialog(this, "正在登录...");
+        }
+        if (!this.isFinishing()) {
+            dialog.show();
+        }
+
         RequestParams params = new RequestParams("https://api.weixin.qq.com/sns/oauth2/access_token");
         params.addBodyParameter("appid", Constants.WeiXin.APP_ID);
         params.addBodyParameter("secret", Constants.WeiXin.secret);
@@ -104,21 +127,45 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                 if (!TextUtils.isEmpty(s)) {
                     WxLogin object = GsonParse.getObject(s, WxLogin.class);
                     if (object != null) {
-                        threeLogin(object.getOpenid());
+                       LoginUitls.threeLogin(WXEntryActivity.this, object.getOpenid(), object.getAccess_token(), new LoginUitls.LoginUtilsListener() {
+                           @Override
+                           public void onError() {
+                               dismissAndClose(dialog, WXEntryActivity.this, "登录失败");
+                           }
+
+                           @Override
+                           public void getInformation(String openid,String token,String account) {
+                               getInformation2(openid, token, account);
+                           }
+
+                           @Override
+                           public void setLoginState(String nickname,String url,String account) {
+                                 //设置登录状态
+                                LoginUitls.saveLoginState(WXEntryActivity.this,nickname,url,account,false);
+                                UtilMethod.dissmissDialog(WXEntryActivity.this, dialog);
+                                WXEntryActivity.this.finish();
+                                //发送广播
+                                sendBrodcastToLogin();
+                           }
+                       });
+                    } else {
+                        dismissAndClose(dialog, WXEntryActivity.this, "微信授权失败");
                     }
+                } else {
+                    dismissAndClose(dialog, WXEntryActivity.this, "微信授权失败");
                 }
-                WXEntryActivity.this.finish();
+
             }
 
             @Override
             public void onError(Throwable throwable, boolean b) {
-
+                dismissAndClose(dialog, getApplicationContext(), "微信授权失败");
 
             }
 
             @Override
             public void onCancelled(Callback.CancelledException e) {
-
+                dismissAndClose(dialog, getApplicationContext(), "微信授权取消");
             }
 
             @Override
@@ -129,74 +176,70 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
     }
 
 
+
     /**
-     * 三方登录
+     * 从微信获取头像和昵称
      */
-    public void threeLogin(String opendid) {
-
-        if (dialog == null) {
-            dialog = UtilMethod.createDialog(this, "正在登录...");
-        }
-        if (!this.isFinishing()) {
-            dialog.show();
-        }
-
-        RequestParams params = new RequestParams(Constants.URL_OAUTH_LOGIN);
-        params.addBodyParameter("openId",opendid);
+    private void getInformation2(String opendid, String token, final String number) {
+        RequestParams params = new RequestParams("https://api.weixin.qq.com/sns/userinfo");
+        params.addBodyParameter("openId", opendid);
+        params.addBodyParameter("access_token", token);
         GetNetUtil.getData(GetNetUtil.POST, params, new GetNetUtil.GetDataCallBack() {
             @Override
             public void onSuccess(String s) {
 
-                parser(s);
-                if (dialog != null) {
-                    dialog.dismiss();
+                if (!TextUtils.isEmpty(s)) {
+                    WxInfomation object = GsonParse.getObject(s, WxInfomation.class);
+                    if (object != null) {
+                        String nickname = object.getNickname();
+                        String headimgurl = object.getHeadimgurl();
+                        //设置登录状态
+                        LoginUitls.saveLoginState(WXEntryActivity.this,nickname, headimgurl, number,true);
+                        UtilMethod.dissmissDialog(WXEntryActivity.this, dialog);
+                        WXEntryActivity.this.finish();
+                        sendBrodcastToLogin();
+
+                        return;
+                    }
                 }
+
+                dismissAndClose(dialog, WXEntryActivity.this, "登录失败");
+
             }
+
 
             @Override
             public void onError(Throwable throwable, boolean b) {
-                if (dialog != null) {
-                    dialog.dismiss();
-                }
-                UtilMethod.Toast(WXEntryActivity.this, "登录失败");
+                dismissAndClose(dialog, WXEntryActivity.this, "登录失败");
             }
         });
-
     }
 
     /**
-     * 解析登录成功的数据
-     * @param s
+     * 发送广播到登录界面
      */
-    private void parser(String s) {
-        Login login = GsonParse.getObject(UtilMethod.getString(s), Login.class);
-        if (login != null) {
-            if ("true".equals(login.isResult())) {
-                Login.UserInfoBean userInfo = login.getUserInfo();
-                if (null != userInfo) {
-                    //设置为登录状态
-                    CacheUtils.putBoolean(this, "islogin", true);
-                    //缓存手机号
-                    CacheUtils.putString(this, "number", userInfo.getAccount());
-                    //缓存昵称
-                    CacheUtils.putString(this, userInfo.getAccount() + "name", userInfo.getNickName());
-                    //缓存头像
-                    CacheUtils.putString(this, userInfo.getAccount() + "touxiang", UtilMethod.url(userInfo.getPhoto()));
-                    //缓存金币
-                    CacheUtils.putInt(this, userInfo.getAccount() + "gold", userInfo.getGolden());
-                    //缓存银币
-                    CacheUtils.putInt(this, userInfo.getAccount() + "icon", userInfo.getIcon());
+    private void sendBrodcastToLogin() {
+        Intent intent = new Intent();
+        intent.setAction("com.betterda.xsnano.wxlogin");
+        sendBroadcast(intent);
+    }
 
-                    //跳到主页
-                    // UtilMethod.startIntent(this, HomeActivity.class);
-                    this.finish();
-                } else {
-                    UtilMethod.Toast(this, "登录失败");
-                }
 
-            } else {
-                UtilMethod.Toast(this, "登录失败");
-            }
+
+
+    /**
+     * 关闭对话框和activity
+     *
+     * @param dialog
+     * @param applicationContext
+     * @param message
+     */
+    private void dismissAndClose(ShapeLoadingDialog dialog, Context applicationContext, String message) {
+
+        UtilMethod.dissmissDialog(WXEntryActivity.this, dialog);
+        UtilMethod.Toast(applicationContext, message);
+        if (!WXEntryActivity.this.isFinishing()) {
+            WXEntryActivity.this.finish();
         }
     }
 

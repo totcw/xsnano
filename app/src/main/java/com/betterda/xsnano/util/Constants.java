@@ -76,7 +76,7 @@ public class Constants {
 
 
 	public static final String URL_LOGIN = URL+"appAPI.do?api/account/login";//登录
-	public static final String URL_OAUTH_LOGIN = URL+"appAPI.do?api/oauth/login";//登录
+	public static final String URL_OAUTH_LOGIN = URL+"appAPI.do?api/oauth/login";//三方登录
 	public static final String URL_REGISTER = URL+"appAPI.do?api/account/register";//注册
 	public static final String URL_LUNBO = URL+"appAPI.do?api/indeximages/get";//轮播广告
 	public static final String URL_COMMENT_GET = URL+"appAPI.do?api/comments/get";//评论获取

@@ -309,6 +309,7 @@ public class InformationActivity extends BaseActivity implements View.OnClickLis
                     @Override
                     public void onSuccess(String result, String resultMsg) {
                         if ("true".equals(result)) {
+
                             String number = CacheUtils.getString(InformationActivity.this, "number", "");
                             if (!TextUtils.isEmpty(number)) {
                                 CacheUtils.putString(InformationActivity.this, number + "touxiang", goosimg);

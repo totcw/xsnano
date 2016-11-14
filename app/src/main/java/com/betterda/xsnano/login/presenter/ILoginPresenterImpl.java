@@ -1,18 +1,18 @@
 package com.betterda.xsnano.login.presenter;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import com.betterda.xsnano.R;
 import com.betterda.xsnano.findpwd.FindPwdActivity;
-import com.betterda.xsnano.home.HomeActivity;
-import com.betterda.xsnano.interfac.ParserGsonInterface;
 import com.betterda.xsnano.javabean.Login;
+import com.betterda.xsnano.javabean.QqInformation;
 import com.betterda.xsnano.javabean.QqLogin;
+import com.betterda.xsnano.javabean.WeiBoInformation;
 import com.betterda.xsnano.login.view.ILoginView;
 import com.betterda.xsnano.register.RegisterActivity;
 import com.betterda.xsnano.util.AccessTokenKeeper;
@@ -20,6 +20,7 @@ import com.betterda.xsnano.util.CacheUtils;
 import com.betterda.xsnano.util.Constants;
 import com.betterda.xsnano.util.GetNetUtil;
 import com.betterda.xsnano.util.GsonParse;
+import com.betterda.xsnano.util.LoginUitls;
 import com.betterda.xsnano.util.UtilMethod;
 import com.betterda.xsnano.view.ShapeLoadingDialog;
 import com.sina.weibo.sdk.auth.AuthInfo;
@@ -34,7 +35,6 @@ import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
 
-import org.json.JSONObject;
 import org.xutils.http.RequestParams;
 
 /**
@@ -44,7 +44,7 @@ public class ILoginPresenterImpl implements ILoginPresenter {
     private ILoginView iLoginView;
     private String number, pwd; //手机号,密码
     private ShapeLoadingDialog dialog;
-
+    private myBroadcast receiver;
 
     private IWXAPI api; //与微信通信的接口
 
@@ -106,6 +106,10 @@ public class ILoginPresenterImpl implements ILoginPresenter {
         //将应用的appid注册到微信
         api.registerApp(Constants.WeiXin.APP_ID);
         if (api.isWXAppInstalled()) {
+
+            receiver = new myBroadcast();
+            iLoginView.getmActivity().registerReceiver(receiver,new IntentFilter("com.betterda.xsnano.wxlogin"));
+
             // 启动授权页面,获取code
             SendAuth.Req req = new SendAuth.Req();
             req.scope = "snsapi_userinfo";
@@ -182,7 +186,7 @@ public class ILoginPresenterImpl implements ILoginPresenter {
                     CacheUtils.putInt(iLoginView.getContext(), userInfo.getAccount() + "icon", userInfo.getIcon());
 
                     //跳到主页
-                   // UtilMethod.startIntent(iLoginView.getContext(), HomeActivity.class);
+
                     iLoginView.getmActivity().finish();
                 } else {
                     UtilMethod.Toast(iLoginView.getmActivity(), "登录失败");
@@ -217,16 +221,7 @@ public class ILoginPresenterImpl implements ILoginPresenter {
         isLogin();
     }
 
-    @Override
-    public void onDestroy() {
-        if (null != dialog) {
-            dialog = null;
-        }
-        if (api != null) {
-            api.unregisterApp();
-            api = null;
-        }
-    }
+
 
     /**
      * 微博登录
@@ -259,9 +254,10 @@ public class ILoginPresenterImpl implements ILoginPresenter {
         createQQ();
         //发起授权
         if (mTencent != null && !mTencent.isSessionValid()) {
-            mTencent.login(iLoginView.getmActivity(), "", loginListener);
+            mTencent.login(iLoginView.getmActivity(), "all", loginListener);
         }
     }
+
 
     /**
      * QQ回调
@@ -291,7 +287,7 @@ public class ILoginPresenterImpl implements ILoginPresenter {
 
     /**
      * 微博认证授权回调类。
-     * 1. SSO 授权时，需要在 {@link #onActivityResult} 中调用 {@link SsoHandler#authorizeCallBack} 后，
+     * 1. SSO 授权时，需要在 {@link #} 中调用 {@link SsoHandler#authorizeCallBack} 后，
      * 该回调才会被执行。
      * 2. 非 SSO 授权时，当授权结束后，该回调就会被执行。
      * 当授权成功后，请保存该 access_token、expires_in、uid 等信息到 SharedPreferences 中。
@@ -310,7 +306,28 @@ public class ILoginPresenterImpl implements ILoginPresenter {
                     AccessTokenKeeper.writeAccessToken(iLoginView.getmActivity(), mAccessToken);
                     //从这里获取用户输入的 uid信息
                     String uid = mAccessToken.getUid();
-                    threeLogin(uid);
+                    String token = mAccessToken.getToken();
+
+                    LoginUitls.threeLogin(iLoginView.getmActivity(), uid, token, new LoginUitls.LoginUtilsListener() {
+                        @Override
+                        public void onError() {
+                            UtilMethod.Toast(iLoginView.getmActivity(), "登录失败");
+                        }
+
+                        @Override
+                        public void getInformation(String openid, String token, String account) {
+                            //TODO 从微博获取信息
+                            getInformationForWeiBo( openid, token, account);
+                        }
+
+                        @Override
+                        public void setLoginState(String nickname, String url, String account) {
+                            //设置登录状态
+                            LoginUitls.saveLoginState(iLoginView.getmActivity(),nickname,url,account,false);
+                            UtilMethod.dissmissDialog(iLoginView.getmActivity(), dialog);
+                            iLoginView.getmActivity().finish();
+                        }
+                    });
 
                 } else {
                     // 以下几种情况，您会收到 Code：
@@ -339,6 +356,40 @@ public class ILoginPresenterImpl implements ILoginPresenter {
     }
 
     /**
+     * 从微博获取信息
+     * @param openid
+     * @param token
+     * @param account
+     */
+    private void getInformationForWeiBo(String openid, String token, final String account) {
+        RequestParams params = new RequestParams("https://api.weibo.com/2/users/show.json");
+        params.addBodyParameter("access_token",token);
+        params.addBodyParameter("uid",openid);
+        GetNetUtil.getData(GetNetUtil.GET, params, new GetNetUtil.GetDataCallBack() {
+            @Override
+            public void onSuccess(String s) {
+                WeiBoInformation weiBoInformation = GsonParse.getObject(s, WeiBoInformation.class);
+                if (weiBoInformation != null) {
+                    String nickname = weiBoInformation.getScreen_name();
+                    String headimgurl = weiBoInformation.getProfile_image_url();
+                    //设置登录状态
+                    LoginUitls.saveLoginState(iLoginView.getmActivity(),nickname, headimgurl, account,true);
+                    UtilMethod.dissmissDialog(iLoginView.getmActivity(), dialog);
+                    iLoginView.getmActivity().finish();
+
+                }
+            }
+
+            @Override
+            public void onError(Throwable throwable, boolean b) {
+                System.out.println("微博错误:"+throwable.toString());
+                UtilMethod.dissmissDialog(iLoginView.getmActivity(), dialog);
+                UtilMethod.Toast(iLoginView.getmActivity(), "微博登录失败");
+            }
+        });
+    }
+
+    /**
      * QQ的回调接口
      */
     private class BaseUiListener implements IUiListener {
@@ -347,16 +398,39 @@ public class ILoginPresenterImpl implements ILoginPresenter {
         @Override
         public void onComplete(Object o) {
 
+
             if (o != null) {
                 String str = o.toString();
                 if (!TextUtils.isEmpty(str)) {
-                    QqLogin object = GsonParse.getObject(str, QqLogin.class);
+                    final QqLogin object = GsonParse.getObject(str, QqLogin.class);
                     String openid = object.getOpenid();
-                    threeLogin(openid);
+                    final String access_token = object.getAccess_token();
+
+                    LoginUitls.threeLogin(iLoginView.getmActivity(), openid, access_token, new LoginUitls.LoginUtilsListener() {
+                        @Override
+                        public void onError() {
+                            UtilMethod.Toast(iLoginView.getmActivity(),"登录失败");
+                        }
+
+                        @Override
+                        public void getInformation(String openid, String token, String account) {
+                            getInfomationForQq(openid, token,account);
+                        }
+
+                        @Override
+                        public void setLoginState(String nickname, String url, String account) {
+                            //设置登录状态
+                            LoginUitls.saveLoginState(iLoginView.getmActivity(),nickname,url,account,false);
+                            UtilMethod.dissmissDialog(iLoginView.getmActivity(), dialog);
+                            iLoginView.getmActivity().finish();
+                        }
+                    });
                 }else
                     UtilMethod.Toast(iLoginView.getmActivity(),"QQ授权失败");
+
             } else {
                 UtilMethod.Toast(iLoginView.getmActivity(),"QQ授权失败");
+
             }
 
         }
@@ -376,38 +450,69 @@ public class ILoginPresenterImpl implements ILoginPresenter {
     }
 
     /**
-     * 三方登录
+     * 从qq获取信息
+     * @param openid
+     * @param token
      */
-    public void threeLogin(String opendid) {
-
-        if (dialog == null) {
-            dialog = UtilMethod.createDialog(iLoginView.getContext(), "正在登录...");
-        }
-        if (!iLoginView.getmActivity().isFinishing()) {
-            dialog.show();
-        }
-
-        RequestParams params = new RequestParams(Constants.URL_OAUTH_LOGIN);
-        params.addBodyParameter("openId",opendid);
-        GetNetUtil.getData(GetNetUtil.POST, params, new GetNetUtil.GetDataCallBack() {
+    private void getInfomationForQq(String openid, String token, final String account) {
+        RequestParams params = new RequestParams("https://graph.qq.com/user/get_user_info");
+        params.addBodyParameter("access_token",token);
+        params.addBodyParameter("oauth_consumer_key", Constants.QQ.APP_ID);
+        params.addBodyParameter("openid",openid);
+        GetNetUtil.getData(GetNetUtil.GET, params, new GetNetUtil.GetDataCallBack() {
             @Override
             public void onSuccess(String s) {
+                QqInformation qqInformation = GsonParse.getObject(s, QqInformation.class);
+                if (qqInformation != null) {
+                    String nickname = qqInformation.getNickname();
+                    String headimgurl = qqInformation.getFigureurl_qq_1();
+                    //设置登录状态
+                    LoginUitls.saveLoginState(iLoginView.getmActivity(),nickname, headimgurl, account,true);
+                    UtilMethod.dissmissDialog(iLoginView.getmActivity(), dialog);
+                    iLoginView.getmActivity().finish();
 
-                parser(s);
-                if (dialog != null) {
-                    dialog.dismiss();
                 }
             }
 
             @Override
             public void onError(Throwable throwable, boolean b) {
-                if (dialog != null) {
-                    dialog.dismiss();
-                }
-                UtilMethod.Toast(iLoginView.getmActivity(), "登录失败");
+                UtilMethod.dissmissDialog(iLoginView.getmActivity(), dialog);
+                UtilMethod.Toast(iLoginView.getmActivity(), "qq登录失败");
             }
         });
+    }
 
+
+    /**
+     * 这次广播接收微信登录的信息
+     */
+    class myBroadcast extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+                iLoginView.getmActivity().finish();
+        }
+    };
+
+
+    @Override
+    public void onDestroy() {
+        if (null != dialog) {
+            dialog = null;
+        }
+        if (api != null) {
+            api.unregisterApp();
+            api = null;
+        }
+        if (receiver != null) {
+            try {
+                //防止没注册的异常
+                iLoginView.getmActivity().unregisterReceiver(receiver);
+            } catch (Exception e) {
+
+            }finally {
+                receiver = null;
+            }
+        }
     }
 
 }
