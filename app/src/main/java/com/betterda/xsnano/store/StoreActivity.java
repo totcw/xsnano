@@ -167,7 +167,7 @@ public class StoreActivity extends BaseActivity implements IStoreView, View.OnCl
         }
 
         int expandSpec = getResources().getDisplayMetrics().heightPixels - result - UtilMethod.dip2px(getmActivity(), Constants.SHOUYE_TITLE)
-                - UtilMethod.dip2px(getmActivity(), 45);
+                - UtilMethod.dip2px(getmActivity(), 45)-UtilMethod.getNavigationBarHeight(getmActivity());
 
         ViewGroup.LayoutParams layoutParams = vp_store.getLayoutParams();
         layoutParams.height = expandSpec;

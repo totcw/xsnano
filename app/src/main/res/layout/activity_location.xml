@@ -40,116 +40,170 @@
     </RelativeLayout>
 
     <include layout="@layout/layout_search"></include>
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-
-
-        <TextView
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="当前地址"
-            android:textColor="@color/shouye_lv_tv"
-            android:textSize="14sp" />
-
-        <View
-
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/lv_divider"></View>
-
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/linear_location_current"
-
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="#ffffff"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
 
             <TextView
-                android:id="@+id/tv_loaction_address"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:text=""
+                android:padding="10dp"
+                android:text="当前地址"
                 android:textColor="@color/shouye_lv_tv"
                 android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/tv_loaction_dingwei"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:drawableLeft="@drawable/tv_location_selector"
-                android:drawablePadding="5dp"
-                android:gravity="center_vertical"
-                android:paddingRight="10dp"
-                android:text="重新定位"
-                android:textColor="@color/bg_blue"
-                android:textSize="14sp" />
+            <View
 
-        </LinearLayout>
-
-        <View
-
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/lv_divider"></View>
-
-        <TextView
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="常用地址"
-            android:textColor="@color/shouye_lv_tv"
-            android:textSize="14sp" />
-
-        <View
-
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/lv_divider"></View>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <android.support.v7.widget.RecyclerView
-
-                android:id="@+id/rv_location"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:overScrollMode="never">
+                android:layout_height="0.5dp"
+                android:background="@color/lv_divider"></View>
 
-            </android.support.v7.widget.RecyclerView>
 
-            <com.betterda.xsnano.view.LoadingPager
-                android:id="@+id/loadpager_location"
+            <LinearLayout
+                android:id="@+id/linear_location_current"
+
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#ffffff"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_loaction_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:textColor="@color/shouye_lv_tv"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_loaction_dingwei"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:drawableLeft="@drawable/tv_location_selector"
+                    android:drawablePadding="5dp"
+                    android:gravity="center_vertical"
+                    android:paddingRight="10dp"
+                    android:text="重新定位"
+                    android:textColor="@color/bg_blue"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/lv_divider"></View>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_location_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="常用地址"
+                    android:textColor="@color/shouye_lv_tv"
+                    android:textSize="14sp" />
+
+
+                <FrameLayout
+                    android:layout_marginRight="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/iv_location_trash"
+                        android:layout_gravity="right"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@mipmap/trash"
+                        />
+
+                    <LinearLayout
+                        android:id="@+id/linear_location_trash"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/tv_location_qingkong"
+                            android:layout_marginRight="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="清空"
+                            android:textSize="14sp"
+                            android:textColor="@color/shouye_fenlei_red"
+                            />
+                        <TextView
+                            android:id="@+id/tv_location_complete"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="完成"
+                            android:textSize="14sp"
+                            android:textColor="@color/shouye_fenlei_red"
+                            />
+
+                    </LinearLayout>
+                </FrameLayout>
+
+                
+            </RelativeLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/lv_divider"></View>
+
+            <FrameLayout
+                android:id="@+id/frame_location_rv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            </com.betterda.xsnano.view.LoadingPager>
+                <android.support.v7.widget.RecyclerView
+
+                    android:id="@+id/rv_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never">
+
+                </android.support.v7.widget.RecyclerView>
+
+                <com.betterda.xsnano.view.LoadingPager
+                    android:id="@+id/loadpager_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </com.betterda.xsnano.view.LoadingPager>
 
 
-        </FrameLayout>
-    </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/frame_location_show"
-        android:visibility="invisible"
-        android:background="#7f909090"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></FrameLayout>
+        <FrameLayout
+            android:id="@+id/frame_location_show"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#7f909090"
+            android:visibility="invisible"></FrameLayout>
 
-</FrameLayout>
+
+        <include layout="@layout/pp_choseaddress"></include>
+
+
+    </FrameLayout>
 </LinearLayout>

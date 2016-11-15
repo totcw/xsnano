@@ -204,6 +204,7 @@
             android:name=".livingpay.LivingPayActivity"
             android:screenOrientation="portrait"></activity>
         <activity
+            android:windowSoftInputMode="adjustPan|stateHidden"
             android:name=".location.LocationActivity"
             android:screenOrientation="portrait"></activity>
 

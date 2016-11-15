@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -16,6 +17,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.Settings;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.telephony.TelephonyManager;
@@ -54,6 +56,8 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import com.zhy.base.adapter.ViewHolder;
 import com.zhy.base.adapter.recyclerview.CommonAdapter;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -195,6 +199,101 @@ public class UtilMethod {
     }
 
     /**
+     * 获取状态栏高度
+     *
+     * @param activity
+     * @return
+     */
+    public static int statusHeight(Activity activity) {
+        //获取状态栏高度
+        int result = 0;
+        int resourceId = activity.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = activity.getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
+   // 获取是否存在NavigationBar：
+
+    public static boolean checkDeviceHasNavigationBar(Context context) {
+
+        boolean hasNavigationBar = false;
+        Resources rs = context.getResources();
+        int id = rs.getIdentifier("config_showNavigationBar", "bool", "android");
+        if (id > 0) {
+            hasNavigationBar = rs.getBoolean(id);
+        }
+        try {
+            Class systemPropertiesClass = Class.forName("android.os.SystemProperties");
+            Method m = systemPropertiesClass.getMethod("get", String.class);
+            String navBarOverride = (String) m.invoke(systemPropertiesClass, "qemu.hw.mainkeys");
+            if ("1".equals(navBarOverride)) {
+                hasNavigationBar = false;
+            } else if ("0".equals(navBarOverride)) {
+                hasNavigationBar = true;
+            }
+        } catch (Exception e) {
+
+        }
+
+
+        return hasNavigationBar;
+    }
+
+    /**
+     * 获取底部导航的高度
+     * @param context
+     * @return
+     */
+    public static int getNavigationBarHeight(Context context) {
+
+        if (!checkDeviceHasNavigationBar(context)) { //如果没显示
+            return 0;
+        }
+
+        final boolean isMeiZu = Build.MANUFACTURER.equals("Meizu");
+
+        final boolean autoHideSmartBar = Settings.System.getInt(context.getContentResolver(),
+                "mz_smartbar_auto_hide", 0) == 1;
+
+        if (isMeiZu) {
+            if (autoHideSmartBar) {
+                return 0;
+            } else {
+                try {
+                    Class c = Class.forName("com.android.internal.R$dimen");
+                    Object obj = c.newInstance();
+                    Field field = c.getField("mz_action_button_min_height");
+                    int height = Integer.parseInt(field.get(obj).toString());
+                    return context.getResources().getDimensionPixelSize(height);
+                } catch (Throwable e) { // 不自动隐藏smartbar同时又没有smartbar高度字段供访问，取系统navigationbar的高度
+                    return getNormalNavigationBarHeight(context);
+                }
+            }
+        } else {
+            return getNormalNavigationBarHeight(context);
+        }
+    }
+
+    protected static int getNormalNavigationBarHeight(final Context ctx) {
+        try {
+            final Resources res = ctx.getResources();
+            int rid = res.getIdentifier("config_showNavigationBar", "bool", "android");
+            if (rid > 0) {
+                boolean flag = res.getBoolean(rid);
+                if (flag) {
+                    int resourceId = res.getIdentifier("navigation_bar_height", "dimen", "android");
+                    if (resourceId > 0) {
+                        return res.getDimensionPixelSize(resourceId);
+                    }
+                }
+            }
+        } catch (Throwable e) {
+        }
+        return 0;
+    }
+
+    /**
      * 跳转activity
      *
      * @param context
@@ -204,13 +303,14 @@ public class UtilMethod {
         Intent intent = new Intent(context, cla);
         context.startActivity(intent);
     }
+
     /**
      * 跳转activity带参数
      *
      * @param context
      * @param cla
      */
-    public static <T> void startIntentParams(Context context, Class<T> cla,String key,String value) {
+    public static <T> void startIntentParams(Context context, Class<T> cla, String key, String value) {
         Intent intent = new Intent(context, cla);
         intent.putExtra(key, value);
         context.startActivity(intent);
@@ -590,7 +690,7 @@ public class UtilMethod {
      *
      * @param s
      */
-    public   static String deleteString(String s) {
+    public static String deleteString(String s) {
         if (null != s) {
 
             String replace = s.replace("\\", "");
@@ -601,6 +701,7 @@ public class UtilMethod {
 
     /**
      * 去除服务器返回的json含有的\和开头结尾的""
+     *
      * @param s
      * @return
      */
@@ -622,10 +723,11 @@ public class UtilMethod {
 
     /**
      * 解析json map格式的数据
+     *
      * @param s
      * @param parserJsonInterface
      */
-    public static void parSerJson(String s,ParserJsonInterface parserJsonInterface) {
+    public static void parSerJson(String s, ParserJsonInterface parserJsonInterface) {
         String subString = UtilMethod.getString(s);
         if (!TextUtils.isEmpty(subString)) {
 
@@ -642,6 +744,7 @@ public class UtilMethod {
 
     /**
      * 拼接url
+     *
      * @param url
      * @return
      */
@@ -680,11 +783,11 @@ public class UtilMethod {
      * @param content
      * @return
      */
-    public static Bitmap generateQRCode(String content,Context context) {
+    public static Bitmap generateQRCode(String content, Context context) {
         try {
             QRCodeWriter writer = new QRCodeWriter();
             // MultiFormatWriter writer = new MultiFormatWriter();
-            BitMatrix matrix = writer.encode(content, BarcodeFormat.QR_CODE, UtilMethod.dip2px(context,300), UtilMethod.dip2px(context,300));
+            BitMatrix matrix = writer.encode(content, BarcodeFormat.QR_CODE, UtilMethod.dip2px(context, 300), UtilMethod.dip2px(context, 300));
             return bitMatrix2Bitmap(matrix);
         } catch (WriterException e) {
             e.printStackTrace();
@@ -696,45 +799,50 @@ public class UtilMethod {
 
     /**
      * 从充值跳转到支付界面
-     * @param money2  支付的金额
+     *
+     * @param money2   支付的金额
      * @param activity
      */
-    public static void pay(String money2,Activity activity) {
+    public static void pay(String money2, Activity activity) {
         int max = Integer.parseInt(money2);
         if (max > 50000) {
             UtilMethod.Toast(activity, "最大充值金额不能超过5万");
             return;
         }
         String paymoney = money2 + "00";
-        Intent intent = new Intent(activity,PayActivity.class);
-        intent.putExtra("showmoney",money2);
-        intent.putExtra("paymoney",paymoney);
+        Intent intent = new Intent(activity, PayActivity.class);
+        intent.putExtra("showmoney", money2);
+        intent.putExtra("paymoney", paymoney);
         activity.startActivity(intent);
     }
 
 
     /**
      * float格式化保留2位
+     *
      * @param money
      */
     public static String FloatFormat(float money) {
-        DecimalFormat decimalFormat=new DecimalFormat("0.00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
-        String p=decimalFormat.format(money);//format 返回的是字符串
-        return  p;
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+        String p = decimalFormat.format(money);//format 返回的是字符串
+        return p;
     }
+
     /**
      * float格式化保留1位
+     *
      * @param money
      */
     public static String FloatFormat1(float money) {
-        DecimalFormat decimalFormat=new DecimalFormat("0.0");//构造方法的字符格式这里如果小数不足2位,会以0补足.
-        String p=decimalFormat.format(money);//format 返回的是字符串
-        return  p;
+        DecimalFormat decimalFormat = new DecimalFormat("0.0");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+        String p = decimalFormat.format(money);//format 返回的是字符串
+        return p;
     }
 
 
     /**
      * 去掉付款金额的小数点转化为分
+     *
      * @param money
      * @return
      */
@@ -742,24 +850,24 @@ public class UtilMethod {
 
         //去掉点
         int index = money.indexOf(".");
-        String money1 = money.substring(0,index);
-        String money2 = money.substring(index+1);
+        String money1 = money.substring(0, index);
+        String money2 = money.substring(index + 1);
 
         //先判断整数部分是不是0
-        if ("0".equals(money1)||"".equals(money1)) {
+        if ("0".equals(money1) || "".equals(money1)) {
             //如果整数部分为0,就判断小数部分是不是0开头
             if (!TextUtils.isEmpty(money2)) {
 
 
-                if (money2.startsWith("0")){
+                if (money2.startsWith("0")) {
                     //如果是以0开头就取后一位数
                     int indexF = money2.indexOf("0");
                     int length = money2.length();
-                    money2 = money2.substring(indexF+1,length);
+                    money2 = money2.substring(indexF + 1, length);
                 }
 
                 //如果不为0且长度是1就补0
-                if (!"0".equals(money2)&&money2.length()==1) {
+                if (!"0".equals(money2) && money2.length() == 1) {
                     money2 = money2 + "0";
                 }
             }
@@ -769,30 +877,44 @@ public class UtilMethod {
             //如果整数部分不是0直接拼接即可
             money = money1 + money2;
         }
-        return  money;
+        return money;
     }
 
     /**
      * 显示对话框
      */
-    public static void showDialog(Activity activity ,ShapeLoadingDialog dialog) {
+    public static void showDialog(Activity activity, ShapeLoadingDialog dialog) {
         if (!activity.isFinishing()) {
             if (dialog != null) {
                 dialog.show();
             }
         }
     }
+    public static void showDialog(Activity activity, Dialog dialog) {
+        if (!activity.isFinishing()) {
+            if (dialog != null) {
+                dialog.show();
+            }
+        }
+    }
+
     /**
      * 关闭对话框
      */
-    public static void dissmissDialog(Activity activity ,ShapeLoadingDialog dialog) {
+    public static void dissmissDialog(Activity activity, ShapeLoadingDialog dialog) {
         if (!activity.isFinishing()) {
             if (dialog != null) {
                 dialog.dismiss();
             }
         }
     }
-
+    public static void dissmissDialog(Activity activity, Dialog dialog) {
+        if (!activity.isFinishing()) {
+            if (dialog != null) {
+                dialog.dismiss();
+            }
+        }
+    }
 
 
 }

@@ -67,7 +67,9 @@ public class CallDialog {
     }
 
     public void show() {
-        mDialog.show();
+        if (mDialog != null) {
+            mDialog.show();
+        }
 
     }
 
@@ -78,7 +80,10 @@ public class CallDialog {
     }
 
     public void dismiss() {
-        mDialog.dismiss();
+        if (mDialog != null) {
+
+            mDialog.dismiss();
+        }
     }
 
     public interface onConfirmListener {

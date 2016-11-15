@@ -42,6 +42,7 @@ import com.zhy.base.adapter.recyclerview.CommonAdapter;
 import org.xutils.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -643,7 +644,7 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
 
 
                 //提交地址信息
-                uploadAddress(longitude,dimension,location.getDistrict(),location.getProvince()+location.getCity()+location.getDistrict()+location.getStreet()+location.getStreetNumber());
+                uploadAddress(longitude,dimension,location.getCity(),location.getProvince()+location.getCity()+location.getDistrict()+location.getStreet()+location.getStreetNumber());
 
             }
             //停止定位
@@ -661,6 +662,11 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
     }
 
     private void uploadAddress(double longitude,double latitude,String district ,String address) {
+        boolean islogin = CacheUtils.getBoolean(iShouyeView.getmActivity(), "islogin", false);
+        if (!islogin) {
+            return;
+        }
+
         RequestParams params = new RequestParams(Constants.URL_ADD_CHANGYONG_ADDRESS);
         params.addBodyParameter("account", CacheUtils.getString(iShouyeView.getContext(), "number", ""));
         params.addBodyParameter("longitude", longitude+"");

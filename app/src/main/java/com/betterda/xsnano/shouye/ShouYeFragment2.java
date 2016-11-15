@@ -273,7 +273,7 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
         }
 
         int expandSpec = getResources().getDisplayMetrics().heightPixels - UtilMethod.dip2px(getmActivity(), Constants.IDV_HEIGHT) - result - UtilMethod.dip2px(getmActivity(), Constants.SHOUYE_TITLE)
-                - UtilMethod.dip2px(getmActivity(), Constants.SHOUYE_FN);
+                - UtilMethod.dip2px(getmActivity(), Constants.SHOUYE_FN)-UtilMethod.getNavigationBarHeight(getmActivity());
 
         ViewGroup.LayoutParams layoutParams = loadingPager.getLayoutParams();
         layoutParams.height = expandSpec;

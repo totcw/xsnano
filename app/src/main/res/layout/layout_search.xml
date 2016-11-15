@@ -1,33 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:id="@+id/linear_search"
+    android:orientation="horizontal"
     android:layout_height="wrap_content"
     android:background="@color/title_red2">
 
     <RelativeLayout
         android:id="@+id/relative_search"
+        android:gravity="center"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/shape_corner_white_gray">
 
+         <ImageView
+             android:visibility="gone"
+             android:id="@+id/iv_layout_search_delete"
+             android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@mipmap/delete"
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            />
+
+        <EditText
+            android:layout_marginLeft="10dp"
+            android:layout_toLeftOf="@id/iv_layout_search_delete"
+            android:id="@+id/et_search"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:drawableLeft="@mipmap/serach"
             android:drawablePadding="5dp"
-            android:text="请输入地址"
+            android:hint="请输入地址"
             android:textColor="@color/shouye_lv_tv"
             android:textSize="12sp" />
 
+
+
     </RelativeLayout>
+
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv__search_cancel"
+        android:layout_gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="取消"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:layout_marginRight="10dp"
+        />
 
 
 </LinearLayout>

@@ -16,7 +16,7 @@ import com.betterda.xsnano.R;
  * 加载动画对话框
  * Created by zzz40500 on 15/6/15.
  */
-public class ShapeLoadingDialog {
+public class ShapeLoadingDialog  {
 
     private Context mContext;
     private Dialog mDialog;
@@ -26,6 +26,7 @@ public class ShapeLoadingDialog {
     private ImageView iv;
     AnimationDrawable anim;
     public ShapeLoadingDialog(Context context) {
+
         this.mContext=context;
         init();
     }

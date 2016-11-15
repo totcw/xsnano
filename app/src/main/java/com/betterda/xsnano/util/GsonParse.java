@@ -4,6 +4,7 @@ import android.text.TextUtils;
 
 import com.betterda.xsnano.interfac.ParserGsonInterface;
 import com.betterda.xsnano.javabean.CommentP;
+import com.betterda.xsnano.javabean.CommonAddress;
 import com.betterda.xsnano.javabean.GoldChangeBean;
 import com.betterda.xsnano.javabean.GoldGet;
 import com.betterda.xsnano.javabean.KaQuan;
@@ -223,6 +224,14 @@ public class GsonParse {
     public static List<Zhongj> getListZhongj(String jsonString) {
         List<Zhongj> list = new ArrayList<Zhongj>();
         list = gson.fromJson(jsonString, new TypeToken<List<Zhongj>>() {
+        }.getType());
+        return list;
+
+
+    }
+    public static List<CommonAddress> getListCommonAddress(String jsonString) {
+        List<CommonAddress> list = new ArrayList<CommonAddress>();
+        list = gson.fromJson(jsonString, new TypeToken<List<CommonAddress>>() {
         }.getType());
         return list;
 
