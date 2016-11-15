@@ -605,6 +605,7 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
             if (data != null) {
 
                 tv_shouye_city.setText(data.getStringExtra("city"));
+                shouyeThreePresenter.onActivityResult(data);
             }
 
         }

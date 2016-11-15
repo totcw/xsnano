@@ -12,6 +12,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -27,6 +28,7 @@ import com.baidu.mapapi.search.sug.SuggestionSearchOption;
 import com.betterda.xsnano.R;
 import com.betterda.xsnano.acitivity.BaseActivity;
 import com.betterda.xsnano.location.model.Address;
+import com.betterda.xsnano.util.CacheUtils;
 import com.betterda.xsnano.util.Constants;
 import com.betterda.xsnano.util.GetNetUtil;
 import com.betterda.xsnano.util.UtilMethod;
@@ -36,6 +38,7 @@ import com.zhy.base.adapter.recyclerview.CommonAdapter;
 
 import org.xutils.http.RequestParams;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,6 +68,10 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
      */
     public LocationClient mLocationClient; //定位的类
     public BDLocationListener myListener = new MyLocationListener() ;
+    private int page =1;
+
+
+    private FrameLayout frame_location_show;
 
     @Override
     public void initView() {
@@ -79,6 +86,7 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
         relative_location_delete = (RelativeLayout) findViewById(R.id.relative_location_delete);
         loadingPagerLocation = (LoadingPager) findViewById(R.id.loadpager_location);
         rvLocation = (RecyclerView) findViewById(R.id.rv_location);
+        frame_location_show = (FrameLayout) findViewById(R.id.frame_location_show);
     }
 
 
@@ -141,7 +149,7 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
         rvLocation.setLayoutManager(new LinearLayoutManager(this));
         rvLocation.setAdapter(adapterLocation);
 
-       // getData();
+         getData();
 
     }
 
@@ -150,11 +158,14 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
      */
     private void getData() {
         loadingPagerLocation.setLoadVisable();
-        RequestParams params = new RequestParams("");
+        RequestParams params = new RequestParams(Constants.URL_QUERY_CHANGYONG_ADDRESS);
+        params.addBodyParameter("account", CacheUtils.getString(this,"number",""));
+        params.addBodyParameter("page", page+"");
+        params.addBodyParameter("rows", Constants.PAGE_SIZE+"");
         GetNetUtil.getData(GetNetUtil.POST, params, new GetNetUtil.GetDataCallBack() {
             @Override
             public void onSuccess(String s) {
-
+                System.out.println("常用地址:"+UtilMethod.getString(s));
             }
 
             @Override
@@ -240,7 +251,9 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
         setClick(frame_pp_choseaddress, tv_ppchoseaddress, iv, etPpchoseAddress, frame_pp_choseaddress2);
         addTextChange(etPpchoseAddress, iv, frame_pp_choseaddress2);
         openInput();
-
+//显示popupwindow
+      //  setUpPopupWindow(view, relative_search, 100, 0);
+        frame_location_show.setVisibility(View.VISIBLE);
         startAnim(view);
 
     }
@@ -271,8 +284,7 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                //显示popupwindow
-                setUpPopupWindow(view, relative_location_title, 100, 0);
+
                 //当动画结束时
                 isFinishAnim = false;
                 if (linearLayout != null) { //如果popupwindow关闭了且动画没还原
@@ -280,7 +292,7 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
                         closeAnim();
                     }
                 }
-
+                frame_location_show.requestLayout();
 
             }
 

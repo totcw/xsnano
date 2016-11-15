@@ -122,6 +122,9 @@ public class Constants {
 	public static final String URL_SHOP_CHANGE_JILU = URL + "appAPI.do?api/golden/exchange/products/get";//商品兑换记录
 	public static final String URL_SHOP_zhongj = URL + "appAPI.do?api/golden/indiana/win/record/get";//开奖记录
 	public static final String URL_CACHE = URL + "appAPI.do?global/context/cache";//缓存
+	public static final String URL_ADD_CHANGYONG_ADDRESS = URL + "appAPI.do?api/position/doAdd";//添加常用地址
+	public static final String URL_DEL_CHANGYONG_ADDRESS = URL + "appAPI.do?api/position/doDel";//删除常用地址
+	public static final String URL_QUERY_CHANGYONG_ADDRESS = URL + "appAPI.do?api/position/doQuery";//查询常用地址
 
 
 }

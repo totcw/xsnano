@@ -1,5 +1,6 @@
 package com.betterda.xsnano.shouye.presenter;
 
+import android.content.Intent;
 import android.view.View;
 
 import com.betterda.xsnano.IPresenter;
@@ -69,4 +70,7 @@ public interface IShouyeThreePresenter extends IPresenter{
 
     //设置 Scrollview 是否置顶
     void setTop(boolean istop);
+
+
+    void onActivityResult(Intent data);
 }

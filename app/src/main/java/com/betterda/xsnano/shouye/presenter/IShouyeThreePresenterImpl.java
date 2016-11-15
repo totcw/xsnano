@@ -1,5 +1,6 @@
 package com.betterda.xsnano.shouye.presenter;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
@@ -97,6 +98,91 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
         this.iShouyeView = iShouyeView;
     }
 
+    @Override
+    public void start() {
+
+        /**
+         * 定位相关
+         */
+        mLocationClient = new LocationClient(iShouyeView.getmActivity());//声明LocationClient类
+        mLocationClient.registerLocationListener(myListener);    //注册监听函数
+        UtilMethod.initLocation(mLocationClient);
+        //开启定位
+        mLocationClient.start();
+
+
+        storeList = new ArrayList<>();
+        recyclerView = iShouyeView.getRecyclyViewShouye();
+        //解决scrollview嵌套recycleview 惯性消失的问题
+        recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setLayoutManager(new LinearLayoutManager(iShouyeView.getmActivity()));
+        adapter = new HeaderAndFooterRecyclerViewAdapter(new CommonAdapter<Store>(iShouyeView.getmActivity(), R.layout.item_homelistview, storeList) {
+
+            @Override
+            public void convert(com.zhy.base.adapter.ViewHolder viewHolder, final Store store) {
+
+                if (null != store) {
+
+                    if ("Y".equals(store.getIs_since())) {
+                        viewHolder.setVisible(R.id.iv_xiche_ziti, true);
+                    } else {
+                        viewHolder.setVisible(R.id.iv_xiche_ziti, false);
+                    }
+                    viewHolder.setText(R.id.tv_item_homelistview_name, store.getName());
+                    viewHolder.setText(R.id.tv_item_homelistview_sum, "月销" + store.getAmount() + "单");
+                    viewHolder.setText(R.id.tv_item_homelistview_location, store.getComment() + "条评论");
+                    viewHolder.setText(R.id.tv_item_homelistview_address, store.getAddress());
+                    if (!TextUtils.isEmpty(store.getType())) {
+                        viewHolder.setText(R.id.tv_item_homelistview_type, store.getType());
+                    }
+                    viewHolder.setText(R.id.tv_item_homelistview_distance, store.getDistance() + "km");
+
+                    RatingBar ratingBar = viewHolder.getView(R.id.rb_comment);
+
+
+                    if (null != ratingBar) {
+
+                        ratingBar.setRating(store.getRate());
+                    }
+                    if (null != store.getUrl()) {
+                        SimpleDraweeView simpleDraweeView = viewHolder.getView(R.id.iv_item_homelistview);
+                        if (null != simpleDraweeView) {
+                            simpleDraweeView.setImageURI(Uri.parse(UtilMethod.url(store.getUrl())));
+                        }
+                    }
+
+                    //设置点击事件
+                    viewHolder.setOnClickListener(R.id.linear_homelistvew, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            UtilMethod.startIntentParams(iShouyeView.getmActivity(), StoreActivity.class, "id", store.getId());
+                        }
+                    });
+
+                }
+
+            }
+        });
+
+        recyclerView.setAdapter(adapter);
+        recyclerView.setonListLoadNextPageListener(new OnListLoadNextPageListener() {
+            @Override
+            public void onLoadNextPage(View view) {
+                //设置加载更多
+                if (LoadingFooter.State.Normal == RecyclerViewStateUtils.getFooterViewState(recyclerView)) {
+                    RecyclerViewStateUtils.setFooterViewState(iShouyeView.getmActivity(), recyclerView, Constants.PAGE_SIZE, LoadingFooter.State.Loading, null);
+                    page++;
+                    getData();
+
+                }
+            }
+        });
+
+        if (iShouyeView != null && iShouyeView.getLoadPager() != null) {
+            iShouyeView.getLoadPager().setonEmptyClickListener(this);
+            iShouyeView.getLoadPager().setonErrorClickListener(this);
+        }
+    }
 
     @Override
     public void setTile() {
@@ -325,91 +411,7 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
 
     }
 
-    @Override
-    public void start() {
 
-        /**
-         * 定位相关
-         */
-        mLocationClient = new LocationClient(iShouyeView.getmActivity());//声明LocationClient类
-        mLocationClient.registerLocationListener(myListener);    //注册监听函数
-        UtilMethod.initLocation(mLocationClient);
-        //开启定位
-        mLocationClient.start();
-
-
-        storeList = new ArrayList<>();
-        recyclerView = iShouyeView.getRecyclyViewShouye();
-        //解决scrollview嵌套recycleview 惯性消失的问题
-        recyclerView.setNestedScrollingEnabled(false);
-        recyclerView.setLayoutManager(new LinearLayoutManager(iShouyeView.getmActivity()));
-        adapter = new HeaderAndFooterRecyclerViewAdapter(new CommonAdapter<Store>(iShouyeView.getmActivity(), R.layout.item_homelistview, storeList) {
-
-            @Override
-            public void convert(com.zhy.base.adapter.ViewHolder viewHolder, final Store store) {
-
-                if (null != store) {
-
-                    if ("Y".equals(store.getIs_since())) {
-                        viewHolder.setVisible(R.id.iv_xiche_ziti, true);
-                    } else {
-                        viewHolder.setVisible(R.id.iv_xiche_ziti, false);
-                    }
-                    viewHolder.setText(R.id.tv_item_homelistview_name, store.getName());
-                    viewHolder.setText(R.id.tv_item_homelistview_sum, "月销" + store.getAmount() + "单");
-                    viewHolder.setText(R.id.tv_item_homelistview_location, store.getComment() + "条评论");
-                    viewHolder.setText(R.id.tv_item_homelistview_address, store.getAddress());
-                    if (!TextUtils.isEmpty(store.getType())) {
-                        viewHolder.setText(R.id.tv_item_homelistview_type, store.getType());
-                    }
-                    viewHolder.setText(R.id.tv_item_homelistview_distance, store.getDistance() + "km");
-
-                    RatingBar ratingBar = viewHolder.getView(R.id.rb_comment);
-
-
-                    if (null != ratingBar) {
-
-                        ratingBar.setRating(store.getRate());
-                    }
-                    if (null != store.getUrl()) {
-                        SimpleDraweeView simpleDraweeView = viewHolder.getView(R.id.iv_item_homelistview);
-                        if (null != simpleDraweeView) {
-                            simpleDraweeView.setImageURI(Uri.parse(UtilMethod.url(store.getUrl())));
-                        }
-                    }
-
-                    //设置点击事件
-                    viewHolder.setOnClickListener(R.id.linear_homelistvew, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            UtilMethod.startIntentParams(iShouyeView.getmActivity(), StoreActivity.class, "id", store.getId());
-                        }
-                    });
-
-                }
-
-            }
-        });
-
-        recyclerView.setAdapter(adapter);
-        recyclerView.setonListLoadNextPageListener(new OnListLoadNextPageListener() {
-            @Override
-            public void onLoadNextPage(View view) {
-                //设置加载更多
-                if (LoadingFooter.State.Normal == RecyclerViewStateUtils.getFooterViewState(recyclerView)) {
-                    RecyclerViewStateUtils.setFooterViewState(iShouyeView.getmActivity(), recyclerView, Constants.PAGE_SIZE, LoadingFooter.State.Loading, null);
-                    page++;
-                    getData();
-
-                }
-            }
-        });
-
-        if (iShouyeView != null && iShouyeView.getLoadPager() != null) {
-            iShouyeView.getLoadPager().setonEmptyClickListener(this);
-            iShouyeView.getLoadPager().setonErrorClickListener(this);
-        }
-    }
 
     /**
      * 获取缓存数据
@@ -639,18 +641,43 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
 
                 }
 
-            }
 
-            //请求服务器
-            //从第一页开始加载
-            getDataAndPage(1);
+                //提交地址信息
+                uploadAddress(longitude,dimension,location.getDistrict(),location.getProvince()+location.getCity()+location.getDistrict()+location.getStreet()+location.getStreetNumber());
+
+            }
             //停止定位
             if (mLocationClient != null) {
 
                 mLocationClient.stop();
             }
 
+
+            //从第一页开始加载
+            getDataAndPage(1);
+
+
         }
+    }
+
+    private void uploadAddress(double longitude,double latitude,String district ,String address) {
+        RequestParams params = new RequestParams(Constants.URL_ADD_CHANGYONG_ADDRESS);
+        params.addBodyParameter("account", CacheUtils.getString(iShouyeView.getContext(), "number", ""));
+        params.addBodyParameter("longitude", longitude+"");
+        params.addBodyParameter("latitude", latitude+"");
+        params.addBodyParameter("district", district);
+        params.addBodyParameter("address", address);
+        GetNetUtil.getData(GetNetUtil.POST, params, new GetNetUtil.GetDataCallBack() {
+            @Override
+            public void onSuccess(String s) {
+                System.out.println("s:"+s);
+            }
+
+            @Override
+            public void onError(Throwable throwable, boolean b) {
+
+            }
+        });
     }
 
     public String getSelectSaixuan() {
@@ -690,6 +717,14 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
     @Override
     public void setTop(boolean istop) {
         recyclerView.setTop(istop);
+    }
+
+    @Override
+    public void onActivityResult(Intent data) {
+        //重新请求店铺列表
+        //TODO 重新设置区域id,经纬度
+
+        getDataAndPage(1);
     }
 
     public void getDataCache() {
