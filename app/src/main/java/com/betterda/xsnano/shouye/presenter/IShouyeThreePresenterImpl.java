@@ -31,6 +31,7 @@ import com.betterda.xsnano.util.GetNetUtil;
 import com.betterda.xsnano.util.GsonParse;
 import com.betterda.xsnano.util.RecyclerViewStateUtils;
 import com.betterda.xsnano.util.UtilMethod;
+import com.betterda.xsnano.util.XmlParser;
 import com.betterda.xsnano.view.HeaderAndFooterRecyclerViewAdapter;
 import com.betterda.xsnano.view.LoadingFooter;
 import com.betterda.xsnano.view.LoadingPager;
@@ -645,7 +646,11 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
 
                 //提交地址信息
                 uploadAddress(longitude,dimension,location.getCity(),location.getProvince()+location.getCity()+location.getDistrict()+location.getStreet()+location.getStreetNumber());
-
+                //修改区域id
+                String cityId = XmlParser.getCityId(iShouyeView.getmActivity(), location.getCity());
+                if (!TextUtils.isEmpty(cityId)) {
+                    Constants.regiondId = cityId;
+                }
             }
             //停止定位
             if (mLocationClient != null) {
@@ -728,8 +733,13 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
     @Override
     public void onActivityResult(Intent data) {
         //重新请求店铺列表
-        //TODO 重新设置区域id,经纬度
-
+        //修改区域id
+        String cityId = XmlParser.getCityId(iShouyeView.getmActivity(), data.getStringExtra("city"));
+        if (!TextUtils.isEmpty(cityId)) {
+            Constants.regiondId = cityId;
+        }
+        longitude = data.getDoubleExtra("longitude", 0);
+        dimension = data.getDoubleExtra("dimension", 0);
         getDataAndPage(1);
     }
 

@@ -27,7 +27,7 @@ public class Constants {
 
 
 
-	public static final String regiondId = "4028810356c5e0550156c5e1505900f3"; //区域id
+	public static  String regiondId = "4028810356c5e0550156c5e1505900f3"; //区域id
 
 
 	public class Cache{

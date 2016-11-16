@@ -1,0 +1,1342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type='text/xsl href='students.xsl'?>
+
+<citys>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e10c2a0001</id>
+        <name>安庆市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e111d7000e</id>
+        <name>蚌埠市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e113970017</id>
+        <name>亳州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1188e001d</id>
+        <name>巢湖市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e11b6a0024</id>
+        <name>池州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e11d31002a</id>
+        <name>滁州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e11f330034</id>
+        <name>阜阳市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1212f003e</id>
+        <name>合肥市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e122c50047</id>
+        <name>淮北市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1248f004d</id>
+        <name>淮南市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e126340055</id>
+        <name>黄山市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e12816005e</id>
+        <name>六安市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e129ed0067</id>
+        <name>马鞍山市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e12b34006d</id>
+        <name>宿州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e12cfd0074</id>
+        <name>铜陵市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e12e35007a</id>
+        <name>芜湖市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e130d60083</id>
+        <name>宣城市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e132e9008d</id>
+        <name>北京市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e13c5d00a2</id>
+        <name>福州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e13f4400b1</id>
+        <name>龙岩市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1410a00ba</id>
+        <name>南平市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1461300c6</id>
+        <name>宁德市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1495100d1</id>
+        <name>莆田市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e14a9200d8</id>
+        <name>泉州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e14d4000e5</id>
+        <name>三明市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1505900f3</id>
+        <name>厦门市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e151e700fb</id>
+        <name>漳州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1549e0109</id>
+        <name>白银市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e155f30110</id>
+        <name>定西市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e157e40119</id>
+        <name>甘南藏族自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e15a290123</id>
+        <name>金昌市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e15b070127</id>
+        <name>酒泉市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e15ce80130</id>
+        <name>兰州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e15efe013a</id>
+        <name>临夏回族自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1657e0144</id>
+        <name>陇南市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e168e7014f</id>
+        <name>平凉市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e16c640158</id>
+        <name>庆阳市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e16e780162</id>
+        <name>天水市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e17047016b</id>
+        <name>武威市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e171730171</id>
+        <name>张掖市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e173a4017a</id>
+        <name>潮州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e174c10180</id>
+        <name>佛山市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1768c0187</id>
+        <name>广州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e17cf30196</id>
+        <name>河源市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e17e77019e</id>
+        <name>惠州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e17fea01a5</id>
+        <name>江门市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1827701ae</id>
+        <name>揭阳市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1844801b7</id>
+        <name>茂名市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e185ec01bf</id>
+        <name>梅州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1887b01c9</id>
+        <name>清远市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e18b4a01d3</id>
+        <name>汕头市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e190b101dc</id>
+        <name>汕尾市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e193f001e3</id>
+        <name>韶关市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1961901ef</id>
+        <name>深圳市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1979101f7</id>
+        <name>阳江市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1989a01fd</id>
+        <name>云浮市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e199f30204</id>
+        <name>湛江市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e19c800211</id>
+        <name>肇庆市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1a179021b</id>
+        <name>珠海市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1a3020221</id>
+        <name>百色市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1a5ab022f</id>
+        <name>北海市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1a6ce0235</id>
+        <name>崇左市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1a868023e</id>
+        <name>防城港市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1a9f30244</id>
+        <name>贵港市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1ab5a024b</id>
+        <name>桂林市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1b2f6025e</id>
+        <name>河池市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1b593026b</id>
+        <name>贺州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1b6980271</id>
+        <name>来宾市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1bbce0279</id>
+        <name>柳州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1be4b0285</id>
+        <name>南宁市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1c0d20293</id>
+        <name>钦州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1c1fe0299</id>
+        <name>梧州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1c38d02a2</id>
+        <name>玉林市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1c5bb02ab</id>
+        <name>安顺市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1c73f02b3</id>
+        <name>毕节地区</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1c9ff02bd</id>
+        <name>贵阳市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1cc4e02c9</id>
+        <name>六盘水市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1cd8f02cf</id>
+        <name>黔东南苗族侗族自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1d3a902e1</id>
+        <name>黔南布依族苗族自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1d7e402ef</id>
+        <name>黔西南布依族苗族自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1da1b02f9</id>
+        <name>铜仁地区</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1dcb10305</id>
+        <name>遵义市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1e06b0316</id>
+        <name>三亚市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1ebc30329</id>
+        <name>海口市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1ed580330</id>
+        <name>保定市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1f359034b</id>
+        <name>沧州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1f833035d</id>
+        <name>承德市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e1fb69036a</id>
+        <name>邯郸市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e20224037f</id>
+        <name>衡水市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e204ee038c</id>
+        <name>廊坊市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e208060398</id>
+        <name>秦皇岛市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e20c5e03a2</id>
+        <name>石家庄市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2194c03bb</id>
+        <name>唐山市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e21ebb03cb</id>
+        <name>邢台市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e223ac03e0</id>
+        <name>张家口市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e22b8703f4</id>
+        <name>安阳市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e22e9303ff</id>
+        <name>鹤壁市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e230100406</id>
+        <name>焦作市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e232660411</id>
+        <name>开封市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e23520041d</id>
+        <name>洛阳市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e238e3042e</id>
+        <name>漯河市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e23a600435</id>
+        <name>南阳市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e23dc60444</id>
+        <name>平顶山市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e246d60450</id>
+        <name>濮阳市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e24a520458</id>
+        <name>三门峡市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e24c720460</id>
+        <name>商丘市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e24ebf046b</id>
+        <name>新乡市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e251ed0479</id>
+        <name>信阳市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e254870485</id>
+        <name>许昌市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2564c048d</id>
+        <name>郑州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e25961049b</id>
+        <name>周口市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e25d4d04a7</id>
+        <name>驻马店市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2603f04b4</id>
+        <name>大庆市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2667104bf</id>
+        <name>大兴安岭地区</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2686904c8</id>
+        <name>哈尔滨市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e26d0004dc</id>
+        <name>鹤岗市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e273dd04e6</id>
+        <name>黑河市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e275bf04ee</id>
+        <name>鸡西市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e278b804f9</id>
+        <name>佳木斯市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e27bf50505</id>
+        <name>牡丹江市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e27ee80511</id>
+        <name>七台河市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2803d0517</id>
+        <name>齐齐哈尔市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e286410529</id>
+        <name>双鸭山市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e288ad0533</id>
+        <name>绥化市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e28be1053f</id>
+        <name>伊春市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2912e0553</id>
+        <name>鄂州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e292990558</id>
+        <name>恩施土家族苗族自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e298430562</id>
+        <name>黄冈市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2a017056e</id>
+        <name>黄石市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2a33a0577</id>
+        <name>荆门市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2a4d5057e</id>
+        <name>荆州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2aac00588</id>
+        <name>十堰市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2ad740592</id>
+        <name>随州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2ae610596</id>
+        <name>武汉市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2b41e05a5</id>
+        <name>咸宁市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2b80a05ad</id>
+        <name>襄樊市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2be8705b8</id>
+        <name>孝感市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2c3fb05c1</id>
+        <name>宜昌市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2ce1705d1</id>
+        <name>长沙市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2d0ef05dc</id>
+        <name>常德市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2d46705e7</id>
+        <name>郴州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2d77d05f4</id>
+        <name>衡阳市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2db320602</id>
+        <name>怀化市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2def10610</id>
+        <name>娄底市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2e0bb0617</id>
+        <name>邵阳市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2e49c0625</id>
+        <name>湘潭市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2e650062c</id>
+        <name>湘西土家族苗族自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2e8da0636</id>
+        <name>益阳市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2ebb7063e</id>
+        <name>永州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2f354064b</id>
+        <name>岳阳市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2fd580656</id>
+        <name>张家界市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e2ff01065c</id>
+        <name>株洲市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e301f10668</id>
+        <name>白城市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e304d4066f</id>
+        <name>白山市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e306f60677</id>
+        <name>长春市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e30a0e0683</id>
+        <name>吉林市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e30e36068e</id>
+        <name>辽源市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e310940694</id>
+        <name>四平市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e314bd069c</id>
+        <name>松原市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3166406a3</id>
+        <name>通化市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3195806ac</id>
+        <name>延边朝鲜族自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e31c3306b7</id>
+        <name>常州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e31e9006c0</id>
+        <name>淮安市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3214b06ca</id>
+        <name>连云港市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3259c06d3</id>
+        <name>南京市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e32af006e2</id>
+        <name>南通市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e32e7606ec</id>
+        <name>苏州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3324b06f9</id>
+        <name>宿迁市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e334120700</id>
+        <name>泰州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e335ec0708</id>
+        <name>无锡市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e33ac00712</id>
+        <name>徐州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3418d071f</id>
+        <name>盐城市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e34546072a</id>
+        <name>扬州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e347630733</id>
+        <name>镇江市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e349ae073c</id>
+        <name>抚州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e34d1a0749</id>
+        <name>赣州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e35a62075d</id>
+        <name>吉安市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e35e99076c</id>
+        <name>景德镇市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e360090772</id>
+        <name>九江市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3643d0781</id>
+        <name>南昌市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e367af078c</id>
+        <name>萍乡市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e369610793</id>
+        <name>上饶市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e36cd607a1</id>
+        <name>新余市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e36e0607a5</id>
+        <name>宜春市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3733307b1</id>
+        <name>鹰潭市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e374aa07b7</id>
+        <name>鞍山市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3782d07c0</id>
+        <name>本溪市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e37aa407c8</id>
+        <name>朝阳市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e37d4507d1</id>
+        <name>大连市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3868607dd</id>
+        <name>丹东市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e38b2307e5</id>
+        <name>抚顺市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e38f7407ee</id>
+        <name>阜新市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3932b07f7</id>
+        <name>葫芦岛市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e395c907ff</id>
+        <name>锦州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e397dd0808</id>
+        <name>辽阳市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e39d7d0811</id>
+        <name>盘锦市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e39eea0817</id>
+        <name>沈阳市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3a2810826</id>
+        <name>铁岭市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3a55b082f</id>
+        <name>营口市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3a79c0838</id>
+        <name>阿拉善盟</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3a914083d</id>
+        <name>巴彦淖尔市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3ab710846</id>
+        <name>包头市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3b1e50851</id>
+        <name>赤峰市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3b53a085f</id>
+        <name>鄂尔多斯市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3b7a60869</id>
+        <name>呼和浩特市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3ba540874</id>
+        <name>呼伦贝尔市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3be230883</id>
+        <name>通辽市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3c0bb088d</id>
+        <name>乌海市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3c2060892</id>
+        <name>乌兰察布市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3c7dd089f</id>
+        <name>锡林郭勒盟</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3cd7208ad</id>
+        <name>兴安盟</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3d10708b6</id>
+        <name>固原市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3d2db08bd</id>
+        <name>石嘴山市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3d41708c2</id>
+        <name>吴忠市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3d59208c8</id>
+        <name>银川市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3dc6708d0</id>
+        <name>中卫市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3e07a08d6</id>
+        <name>果洛藏族自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3e27e08de</id>
+        <name>海北藏族自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3e45308e4</id>
+        <name>海东地区</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3e64108ec</id>
+        <name>海南藏族自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3e7de08f3</id>
+        <name>海西蒙古族藏族自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3ea6b08fd</id>
+        <name>黄南藏族自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3ec5d0903</id>
+        <name>西宁市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3eeb0090c</id>
+        <name>玉树藏族自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3f13f0915</id>
+        <name>滨州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3f40b091e</id>
+        <name>德州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3f74b092b</id>
+        <name>东营市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3f9110932</id>
+        <name>菏泽市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3fbbf093d</id>
+        <name>济南市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e3feb00949</id>
+        <name>济宁市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e402050957</id>
+        <name>莱芜市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e402f8095b</id>
+        <name>聊城市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4102d0965</id>
+        <name>临沂市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e415cb0973</id>
+        <name>青岛市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e41bba0981</id>
+        <name>日照市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e41d650987</id>
+        <name>泰安市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e41f98098f</id>
+        <name>威海市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4213d0995</id>
+        <name>潍坊市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4283809a3</id>
+        <name>烟台市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e42bc009b2</id>
+        <name>枣庄市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e42db309ba</id>
+        <name>淄博市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4305509c5</id>
+        <name>长治市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4347009d4</id>
+        <name>大同市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e43bf109e1</id>
+        <name>晋城市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e43e2109e9</id>
+        <name>晋中市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4413309f6</id>
+        <name>临汾市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4459c0a09</id>
+        <name>吕梁市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e449a30a18</id>
+        <name>朔州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e44b9f0a20</id>
+        <name>太原市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e44ec70a2c</id>
+        <name>忻州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e455630a3c</id>
+        <name>阳泉市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4574b0a43</id>
+        <name>运城市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e45d2d0a53</id>
+        <name>安康市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e45ff10a5f</id>
+        <name>宝鸡市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e463720a6d</id>
+        <name>汉中市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e46a340a7a</id>
+        <name>商洛市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e46c710a83</id>
+        <name>铜川市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e46e6e0a89</id>
+        <name>渭南市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e471970a96</id>
+        <name>西安市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e476910aa5</id>
+        <name>咸阳市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e47bcc0ab5</id>
+        <name>延安市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e47f7c0ac3</id>
+        <name>榆林市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4834c0ad2</id>
+        <name>上海市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e48a7f0ae8</id>
+        <name>阿坝藏族羌族自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e48e380af7</id>
+        <name>巴中市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e493a00afd</id>
+        <name>成都市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e49c0e0b12</id>
+        <name>达州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e49e210b1b</id>
+        <name>德阳市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4a01e0b23</id>
+        <name>甘孜藏族自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4a50b0b37</id>
+        <name>广安市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4a6a50b3e</id>
+        <name>广元市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4a8b90b47</id>
+        <name>乐山市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4abb50b54</id>
+        <name>凉山彝族自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4b0560b67</id>
+        <name>泸州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4b2b80b70</id>
+        <name>眉山市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4b4d50b78</id>
+        <name>绵阳市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4ba0e0b83</id>
+        <name>内江市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4c0380b8a</id>
+        <name>南充市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4c4d50b95</id>
+        <name>攀枝花市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4c76f0b9c</id>
+        <name>遂宁市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4c9120ba3</id>
+        <name>雅安市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4cb930bad</id>
+        <name>宜宾市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4cefe0bb9</id>
+        <name>资阳市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4d2070bbf</id>
+        <name>自贡市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4d4880bc8</id>
+        <name>天津市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4db5d0bdd</id>
+        <name>阿里地区</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4ddbd0be6</id>
+        <name>昌都地区</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4e0fb0bf3</id>
+        <name>拉萨市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4e37d0bfc</id>
+        <name>林芝地区</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4e6150c05</id>
+        <name>那曲地区</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4ecca0c11</id>
+        <name>日喀则地区</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4f2070c25</id>
+        <name>山南地区</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4f5a80c34</id>
+        <name>阿克苏地区</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4f9ad0c3f</id>
+        <name>阿勒泰地区</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4fc450c49</id>
+        <name>巴音郭楞蒙古自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e4ff200c54</id>
+        <name>博尔塔拉蒙古自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e5006f0c59</id>
+        <name>昌吉回族自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e502ee0c63</id>
+        <name>哈密地区</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e504e20c68</id>
+        <name>和田地区</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e50a900c72</id>
+        <name>喀什地区</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e50f650c80</id>
+        <name>克拉玛依市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e512ae0c86</id>
+        <name>克孜勒苏柯尔克孜自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e516f70c8c</id>
+        <name>塔城地区</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e51a740c95</id>
+        <name>吐鲁番地区</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e51c2f0c9a</id>
+        <name>乌鲁木齐市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e51eea0ca4</id>
+        <name>伊犁哈萨克自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e522130cb1</id>
+        <name>保山市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e5242e0cb8</id>
+        <name>楚雄彝族自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e527400cc4</id>
+        <name>大理白族自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e52ab70cd2</id>
+        <name>德宏傣族景颇族自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e52c9d0cd9</id>
+        <name>迪庆藏族自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e52dc90cde</id>
+        <name>红河哈尼族彝族自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e531a10ced</id>
+        <name>昆明市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e538560cfd</id>
+        <name>丽江市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e53c7c0d04</id>
+        <name>临沧市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e5438b0d0e</id>
+        <name>怒江傈僳族自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e545710d14</id>
+        <name>普洱市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e548440d20</id>
+        <name>曲靖市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e54e010d2b</id>
+        <name>文山壮族苗族自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e5508d0d35</id>
+        <name>西双版纳傣族自治州</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e551ce0d3a</id>
+        <name>玉溪市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e5547c0d45</id>
+        <name>昭通市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e557a90d53</id>
+        <name>杭州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e55c9e0d62</id>
+        <name>湖州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e55e850d69</id>
+        <name>嘉兴市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e560cf0d72</id>
+        <name>金华市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e5639f0d7d</id>
+        <name>丽水市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e566630d88</id>
+        <name>宁波市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e569b30d95</id>
+        <name>衢州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e56e180d9d</id>
+        <name>绍兴市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e571980da5</id>
+        <name>台州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e5749e0db0</id>
+        <name>温州市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e5793e0dbd</id>
+        <name>舟山市</name>
+    </city>
+    <city sn="01">
+        <id>4028810356c5e0550156c5e57b1b0dc4</id>
+        <name>重庆市</name>
+    </city>
+ 
+</citys>

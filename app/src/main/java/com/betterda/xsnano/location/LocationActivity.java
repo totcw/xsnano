@@ -56,9 +56,9 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
     // SuggestionSearch建议查询类
     private SuggestionSearch mSuggestionSearch;
 
-    private RelativeLayout relative_location_title, relative_location_delete, relative_search;
+    private RelativeLayout relative_location_title, relative_location_delete, relative_commonaddress;
     private LinearLayout linearLayout, linearCurrent, linear_search, linearTrash;
-    private TextView tv_address, tv_dingwei, tv_search_cancel, tv_location_address, tvTrash, tvComplete;
+    private TextView tv_address, tv_dingwei, tv_search_cancel, tvTrash, tvComplete;
     private EditText et_search;
     private int currententValue;//记录当前的值
     private boolean isFinishAnim;//是否完成过动画
@@ -78,6 +78,8 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
     public LocationClient mLocationClient; //定位的类
     public BDLocationListener myListener = new MyLocationListener();
     private int page = 1;
+    private double longitude;//经度
+    private double dimension;//纬度
 
 
     @Override
@@ -92,7 +94,7 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
         linear_search = (LinearLayout) findViewById(R.id.linear_search);
         relative_location_title = (RelativeLayout) findViewById(R.id.relative_location_title);
         relative_location_delete = (RelativeLayout) findViewById(R.id.relative_location_delete);
-        relative_search = (RelativeLayout) findViewById(R.id.relative_search);
+        relative_commonaddress = (RelativeLayout) findViewById(R.id.relative_commonaddress);
         loadingPagerLocation = (LoadingPager) findViewById(R.id.loadpager_location);
         rvLocation = (RecyclerView) findViewById(R.id.rv_location);
         frame_location_show = (FrameLayout) findViewById(R.id.frame_location_show);
@@ -102,7 +104,7 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
         rvPpchose = (RecyclerView) findViewById(R.id.rv_pp_choseaddress);
         loadingPager = (LoadingPager) findViewById(R.id.loadpager_pp_choseaddress);
         iv_delete = (ImageView) findViewById(R.id.iv_layout_search_delete);
-        tv_location_address = (TextView) findViewById(R.id.tv_location_address);
+
         linearTrash = (LinearLayout) findViewById(R.id.linear_location_trash);
         tvTrash = (TextView) findViewById(R.id.tv_location_qingkong);
         tvComplete = (TextView) findViewById(R.id.tv_location_complete);
@@ -169,6 +171,13 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
                     holder.setOnClickListener(R.id.sort2_layout, new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            try {
+                                longitude = Double.parseDouble(address.getLongitude());
+                                dimension = Double.parseDouble(address.getLatitude());
+                            } catch (Exception e) {
+
+                            }
+
                             close(address.getKey());
                         }
                     });
@@ -204,6 +213,12 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
                     holder.setOnClickListener(R.id.linear_pp_choseaddress_title, new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            try {
+                                longitude = Double.parseDouble(address.getLongitude());
+                                dimension = Double.parseDouble(address.getLatitude());
+                            } catch (Exception e) {
+
+                            }
                             close(address.getKey());
                             uploadAddress(address.getLongitude(), address.getLatitude(), address.getKey(), address.getAddress());
                         }
@@ -223,7 +238,7 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
     private void getData() {
         boolean islogin = CacheUtils.getBoolean(this, "islogin", false);
         if (!islogin) {
-            tv_location_address.setVisibility(View.GONE);
+            relative_commonaddress.setVisibility(View.GONE);
             frame_location_rv.setVisibility(View.GONE);
             return;
         }
@@ -337,6 +352,8 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
         }
         Intent intent = new Intent();
         intent.putExtra("city", city);
+        intent.putExtra("longitude",longitude);
+        intent.putExtra("dimension",dimension);
         setResult(0, intent);
         finish();
     }

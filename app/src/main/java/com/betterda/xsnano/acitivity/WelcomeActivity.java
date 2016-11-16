@@ -1,12 +1,17 @@
 package com.betterda.xsnano.acitivity;
 
+import com.betterda.xsnano.dao.CityDao;
+import com.betterda.xsnano.dao.CityDomain;
 import com.betterda.xsnano.home.HomeActivity;
 import com.betterda.xsnano.util.CacheUtils;
 import com.betterda.xsnano.util.Constants;
 import com.betterda.xsnano.util.GetNetUtil;
 import com.betterda.xsnano.util.UtilMethod;
+import com.betterda.xsnano.util.XmlParser;
 
 import org.xutils.http.RequestParams;
+
+import java.util.List;
 
 /**
  * 欢迎界面
@@ -17,7 +22,16 @@ public class WelcomeActivity extends BaseActivity {
 
     @Override
     public void init() {
-        getData();
+        new Thread(){
+            @Override
+            public void run() {
+                XmlParser.parserCity(WelcomeActivity.this);
+                getData();
+            }
+        }.start();
+
+
+
     }
 
 
@@ -27,7 +41,7 @@ public class WelcomeActivity extends BaseActivity {
             @Override
             public void onSuccess(String s) {
 
-                    CacheUtils.putString(getmActivity(),"cache",UtilMethod.getString(s));
+                CacheUtils.putString(getmActivity(),"cache",UtilMethod.getString(s));
                 UtilMethod.startIntent(WelcomeActivity.this, HomeActivity.class);
                 finish();
 
