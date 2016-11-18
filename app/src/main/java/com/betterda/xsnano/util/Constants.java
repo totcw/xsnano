@@ -125,6 +125,7 @@ public class Constants {
 	public static final String URL_ADD_CHANGYONG_ADDRESS = URL + "appAPI.do?api/position/doAdd";//添加常用地址
 	public static final String URL_DEL_CHANGYONG_ADDRESS = URL + "appAPI.do?api/position/doDel";//删除常用地址
 	public static final String URL_QUERY_CHANGYONG_ADDRESS = URL + "appAPI.do?api/position/doQuery";//查询常用地址
+	public static final String URL_QINGKONG_CHANGYONG_ADDRESS = URL + "appAPI.do?api/position/doDelByAccount";//常用地址清空
 
 
 }

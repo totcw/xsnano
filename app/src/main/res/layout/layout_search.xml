@@ -32,6 +32,7 @@
             />
 
         <EditText
+
             android:layout_marginLeft="10dp"
             android:layout_toLeftOf="@id/iv_layout_search_delete"
             android:id="@+id/et_search"

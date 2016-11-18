@@ -15,13 +15,21 @@ public class CommonAddress {
      * district : 湖里区
      * address : 福建省厦门市湖里区双浦路
      */
-
+    private String id;
     private String create_date;
     private String account;
     private String longitude; //经度
     private String latitude;// 纬度
     private String district;
     private String address;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getCreate_date() {
         return create_date;

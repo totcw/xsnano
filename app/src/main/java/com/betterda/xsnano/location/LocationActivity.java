@@ -29,6 +29,7 @@ import com.baidu.mapapi.search.sug.SuggestionSearchOption;
 import com.betterda.xsnano.R;
 import com.betterda.xsnano.acitivity.BaseActivity;
 import com.betterda.xsnano.dialog.CallDialog;
+import com.betterda.xsnano.interfac.ParserGsonInterface;
 import com.betterda.xsnano.javabean.CommonAddress;
 import com.betterda.xsnano.location.model.Address;
 import com.betterda.xsnano.util.CacheUtils;
@@ -191,8 +192,8 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
                     holder.setOnClickListener(R.id.sort2_img_delete, new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            // TODO 删除
-                          //   delete();
+
+                            delete(address.getId());
                         }
                     });
                 }
@@ -202,6 +203,112 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
         rvLocation.setLayoutManager(new LinearLayoutManager(this));
         rvLocation.setAdapter(adapterLocation);
     }
+
+    /**
+     * 单个删除
+     * @param id
+     */
+    private void delete(final String id) {
+
+        RequestParams params = new RequestParams(Constants.URL_DEL_CHANGYONG_ADDRESS);
+        params.addBodyParameter("id", id);
+        GetNetUtil.getData(GetNetUtil.POST, params, new GetNetUtil.GetDataCallBack() {
+            @Override
+            public void onSuccess(String s) {
+                GsonParse.parser(UtilMethod.getString(s), new ParserGsonInterface() {
+                    @Override
+                    public void onSuccess(String result, String resultMsg) {
+                        if ("true".equals(result)) {
+                            //删除成功
+                            if (listLocation != null) {
+                                for (Address address : listLocation) {
+                                    if (address != null) {
+                                        if (address.getId().equals(id)) {
+                                            listLocation.remove(address);
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (listLocation.size() == 0) {
+                                    if (loadingPagerLocation != null) {
+                                        loadingPagerLocation.setEmptyVisable();
+                                    }
+                                    setTrashVisable(false);
+                                }
+                            }
+                            if (adapterLocation != null) {
+                                adapterLocation.notifyDataSetChanged();
+                            }
+
+                        }
+
+                    }
+                });
+            }
+
+            @Override
+            public void onError(Throwable throwable, boolean b) {
+
+            }
+        });
+
+    }
+
+    /**
+     * 清空
+     */
+    public void deleteAll() {
+        RequestParams params = new RequestParams(Constants.URL_QINGKONG_CHANGYONG_ADDRESS);
+        params.addBodyParameter("account", CacheUtils.getString(LocationActivity.this,"number",""));
+        GetNetUtil.getData(GetNetUtil.POST, params, new GetNetUtil.GetDataCallBack() {
+            @Override
+            public void onSuccess(String s) {
+                GsonParse.parser(UtilMethod.getString(s), new ParserGsonInterface() {
+                    @Override
+                    public void onSuccess(String result, String resultMsg) {
+                        if ("true".equals(result)) {
+                            //删除成功
+                            if (listLocation != null) {
+                                listLocation.clear();
+                                if (listLocation.size() == 0) {
+                                    if (loadingPagerLocation != null) {
+                                        loadingPagerLocation.setEmptyVisable();
+                                    }
+                                }
+                            }
+                            if (adapterLocation != null) {
+                                adapterLocation.notifyDataSetChanged();
+                            }
+
+                            setTrashVisable(false);
+                        }
+
+                    }
+                });
+            }
+
+            @Override
+            public void onError(Throwable throwable, boolean b) {
+
+            }
+        });
+    }
+
+    /**
+     * 设置清空是否显示
+     * @param isVisable
+     */
+    private void setTrashVisable(boolean isVisable) {
+
+        if (linearTrash != null) {
+            linearTrash.setVisibility(isVisable?View.VISIBLE:View.INVISIBLE);
+        }
+
+        if (ivTrash != null) {
+            ivTrash.setVisibility(isVisable?View.INVISIBLE:View.VISIBLE);
+        }
+    }
+
 
     private void setPpRecycleview() {
         adapter = new CommonAdapter<Address>(this, R.layout.item_pp_choseaddress, list) {
@@ -264,6 +371,7 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
                             address.setKey(commonAddress.getDistrict());
                             address.setLongitude(commonAddress.getLongitude());
                             address.setLatitude(commonAddress.getLatitude());
+                            address.setId(commonAddress.getId());
                             listLocation.add(address);
                         }
                     }
@@ -619,7 +727,13 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
                 ivTrash.setVisibility(View.INVISIBLE);
                 showDelete(true);
                 break;
-            case R.id.linear_location_current:
+            case R.id.linear_location_current://定位地址
+                if (tv_address != null) {
+                    String address = (String) tv_address.getText();
+                    if (TextUtils.isEmpty(address )|| "定位失败".equals(address)) {
+                        return;
+                    }
+                }
                 close(city);
                 break;
             case R.id.tv__search_cancel://取消
@@ -661,7 +775,7 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
         CallDialog callDialog = new CallDialog(this, new CallDialog.onConfirmListener() {
             @Override
             public void comfirm() {
-                    //  TODO 清空
+                    deleteAll();
             }
 
             @Override
@@ -702,7 +816,10 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
                 if (tv_address != null && location.getCity() != null) {
                     tv_address.setText(location.getProvince() + location.getCity() + location.getDistrict() + location.getStreet() + location.getStreetNumber());
                     city = location.getCity();
-
+                    longitude = location.getLongitude();
+                    dimension = location.getLatitude();
+                } else {
+                    tv_address.setText("定位失败");
                 }
 
             }
