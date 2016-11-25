@@ -47,6 +47,7 @@ import com.betterda.xsnano.login.LoginActivity;
 import com.betterda.xsnano.orderall.OrderDetailActivity;
 import com.betterda.xsnano.orderall.model.OrderAll;
 import com.betterda.xsnano.pay.PayActivity;
+import com.betterda.xsnano.view.LoadingPager;
 import com.betterda.xsnano.view.ShapeLoadingDialog;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.zxing.BarcodeFormat;
@@ -916,5 +917,22 @@ public class UtilMethod {
         }
     }
 
+
+    /**
+     * 判断数据是否为空
+     * @param listLocation
+     * @param loadingPagerLocation
+     */
+    public static void hideOrEmpty(List listLocation,LoadingPager loadingPagerLocation) {
+        if (listLocation != null&&loadingPagerLocation!=null) {
+            if (listLocation.size() > 0) {
+                loadingPagerLocation.hide();
+            } else {
+                loadingPagerLocation.setEmptyVisable();
+            }
+        } else {
+            loadingPagerLocation.setEmptyVisable();
+        }
+    }
 
 }

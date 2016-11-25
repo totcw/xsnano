@@ -58,7 +58,9 @@ public class XmlParser {
                         break;
                     case XmlPullParser.END_TAG://结束一个标签
                         if (cityDao != null && cityDomain != null) {
-                            cityDao.add(cityDomain.getId(), cityDomain.getName());
+                            if ("city".equals(parser.getName())) {
+                                cityDao.add(cityDomain.getId(), cityDomain.getName());
+                            }
                         }
                         break;
                     case XmlPullParser.END_DOCUMENT:
@@ -81,11 +83,12 @@ public class XmlParser {
 
     /**
      * 获取区域ID
+     *
      * @param context
      * @param name
      * @return
      */
-    public static String getCityId(Context context,String name) {
+    public static String getCityId(Context context, String name) {
         String id = null;
         try {
             CityDao cityDao = new CityDao(context);

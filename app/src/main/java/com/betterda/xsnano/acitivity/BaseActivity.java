@@ -138,6 +138,7 @@ public class BaseActivity extends FragmentActivity {
                         popupWindow.showAtLocation(view, Gravity.TOP, 0, 0);
                     } else {
                         popupWindow.setAnimationStyle(R.style.popwin_anim_style);
+
                         popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
                     }
 

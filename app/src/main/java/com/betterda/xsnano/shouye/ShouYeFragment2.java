@@ -74,13 +74,16 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
     private FrameLayout frame_shouye;
     private RelativeLayout relative_three_xiche, relative_three_meirong, relative_three_yanghu, relative_three_luntai;
     private MainFourView mfv_shouye, mfv_top;
-    private int screenHidth; //屏幕的高度
+
+
     private IShouyePresenter iShouyePresenter;//首页数据的presenter
     private IShouyeFirstPresenter iShouyeFirstPresenter;//轮播图的presenter
     private IShouyeSecondPresenter shouyeSecondPresenter;//第二块区域的presenter
     private IShouyeThreePresenter shouyeThreePresenter;//分类的presenter
     private IShouyeFourPresenter iShouyeFourPresenter;
+
     private LunBoTuAdapter lunBoTuAdapter; //轮播图适配器
+    private int screenHidth; //屏幕的高度
     private int pressNum =-1;//用来区分 按下的是分类还是筛选
     private int scrollY; //scrollview滑动的距离
     private boolean isFirstShow;//是否是首次显示
@@ -174,27 +177,13 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
 
         loadingPager.setLoadVisable();
 
-        iShouyePresenter = new IShouyePresenterImpl(this);
-        iShouyeFirstPresenter = new IShouyeFirstPresenterImpl(this, this);
-        shouyeSecondPresenter = new IShouyeSecondPresenterImpl(this);
-        shouyeThreePresenter = new IShouyeThreePresenterImpl(this);
-        iShouyeFourPresenter = new IShouyeFourPresenterImpl(this);
-
-        //开始加载数据
-
-        shouyeThreePresenter.start();
-        //设置分类的标题
-        shouyeThreePresenter.setTile();
+        initPresenter();
 
         //将2个分类 重叠
         //当布局的状态或者控件的可见性发生改变回调的接口
         setVisable();
 
-
-        //互相关联
-        myscrollview.setRecyclerView(rv_shouye);
-        myscrollview.setLoadingPager(loadingPager);
-        rv_shouye.setScrollYScrollView(myscrollview);
+        setRelate();
 
     }
 
@@ -210,6 +199,7 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
         }
         isFirstShow = true;
     }
+
 
     /**
      * fragment隐藏或者显示回调的方法
@@ -240,7 +230,27 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
         }
     }
 
+    /**
+     *  设置scrollview和rv的关联
+     */
+    private void setRelate() {
+        myscrollview.setRecyclerView(rv_shouye);
+        myscrollview.setLoadingPager(loadingPager);
+        rv_shouye.setScrollYScrollView(myscrollview);
+    }
 
+    private void initPresenter() {
+        iShouyePresenter = new IShouyePresenterImpl(this);
+        iShouyeFirstPresenter = new IShouyeFirstPresenterImpl(this, this);
+        shouyeSecondPresenter = new IShouyeSecondPresenterImpl(this);
+        shouyeThreePresenter = new IShouyeThreePresenterImpl(this);
+        iShouyeFourPresenter = new IShouyeFourPresenterImpl(this);
+
+        //开始加载数据
+        shouyeThreePresenter.start();
+        //设置分类的标题
+        shouyeThreePresenter.setTile();
+    }
 
     private void setVisable() {
         linear_shouye.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -285,15 +295,12 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.mfiv_fist:
-
                 select(0);
                 break;
             case R.id.mfiv_second:
-
                 select(1);
                 break;
             case R.id.mfiv_three:
-
                 select(2);
                 break;
             case R.id.relative_shouye2_title:
@@ -316,7 +323,6 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
                 break;
             case R.id.iv_shouye_more: //消息
                 UtilMethod.isLogin(getmActivity(), MessageActivity.class);
-
                 break;
             case R.id.relative_dj: //生活缴费
                 shouyeSecondPresenter.luntai();
@@ -346,7 +352,6 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
                 ((HomeActivity) getmActivity()).changeShangcheng();
                 break;
             case R.id.iv_ykggl://金币兑换
-
                 ((HomeActivity) getmActivity()).changeJinbi();
                 break;
             case R.id.iv_gcwy: //无忧
@@ -372,7 +377,6 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
                 break;
             case R.id.relative_three_xiche: //洗车
                 shouyeSecondPresenter.xicheservice();
-
                 break;
 
         }
@@ -386,7 +390,6 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
      */
     public void select(int first) {
         //将布局滑动到指定位置
-
         if (myscrollview != null) {
             myscrollview.smoothto();
         }
@@ -397,7 +400,6 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
         } else {
             closePopupWindow();
         }
-
 
         if (0 == first) {
             pressNum = 0;
@@ -452,6 +454,75 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
 
 
     @Override
+    public void dismiss() {
+        super.dismiss();
+        view_three.setFirstSelect(false);
+        view_three.setSecondSelect(false);
+        view_three.setThreeSelect(false);
+        mfv_shouye.setFirstSelect(false);
+        mfv_shouye.setSecondSelect(false);
+        mfv_shouye.setThreeSelect(false);
+
+    }
+
+    @Override
+    public void setLunBoAdapter() {
+        if (null != iShouyeFirstPresenter) {
+
+            lunBoTuAdapter = new LunBoTuAdapter(iShouyeFirstPresenter);
+            //设置轮播图的适配器
+            if (vpager_lunbotu != null) {
+                vpager_lunbotu.setAdapter(lunBoTuAdapter);
+            }
+        }
+
+    }
+
+    @Override
+    public void onScroll(int scrollY) {
+        int mBuyLayout2ParentTop = Math.max(scrollY, myscrollview.getMHeight());
+        //判断Scroll是否置顶
+        if (scrollY >= myscrollview.getMHeight()) {
+            shouyeThreePresenter.setTop(true);
+            mfv_shouye.setTop(true);
+        } else {
+            mfv_shouye.setTop(false);
+            shouyeThreePresenter.setTop(false);
+
+        }
+        //只要滑动的时候就不断的重新画顶部的布局的位置,当scrollY小于gettop时,就2个一直重合,当scrollY大于top就一直让它卡在顶部
+        mfv_shouye.layout(0, mBuyLayout2ParentTop, view_three.getWidth(),
+                mBuyLayout2ParentTop + view_three.getHeight());
+
+
+    }
+
+    /**
+     * 用来判断popupwindow是否关闭
+     * @return
+     */
+    public boolean close() {
+        if (getPopupWindow() != null && getPopupWindow().isShowing()) {
+            closePopupWindow();
+            return true;
+        }
+        return false;
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 0) {
+            if (data != null) {
+                tv_shouye_city.setText(data.getStringExtra("city"));
+                shouyeThreePresenter.onActivityResult(data);
+            }
+
+        }
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         closePopupWindow();
@@ -465,21 +536,6 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
             shouyeThreePresenter.onDestroy();
         }
     }
-
-
-
-    @Override
-    public void dismiss() {
-        super.dismiss();
-        view_three.setFirstSelect(false);
-        view_three.setSecondSelect(false);
-        view_three.setThreeSelect(false);
-        mfv_shouye.setFirstSelect(false);
-        mfv_shouye.setSecondSelect(false);
-        mfv_shouye.setThreeSelect(false);
-
-    }
-
 
     @Override
     public LinearLayout getLpoint() {
@@ -532,20 +588,6 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
         return rv_shouye;
     }
 
-    @Override
-    public void setLunBoAdapter() {
-        if (null != iShouyeFirstPresenter) {
-
-            lunBoTuAdapter = new LunBoTuAdapter(iShouyeFirstPresenter);
-            //设置轮播图的适配器
-            if (vpager_lunbotu != null) {
-
-                vpager_lunbotu.setAdapter(lunBoTuAdapter);
-            }
-        }
-
-    }
-
 
     @Override
     public ImageView getImageviewMianFirst() {
@@ -562,52 +604,4 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
         return rv_shaixuan;
     }
 
-
-    @Override
-    public void onScroll(int scrollY) {
-        int mBuyLayout2ParentTop = Math.max(scrollY, myscrollview.getMHeight());
-        //判断Scroll是否置顶
-        if (scrollY >= myscrollview.getMHeight()) {
-            shouyeThreePresenter.setTop(true);
-            mfv_shouye.setTop(true);
-        } else {
-            mfv_shouye.setTop(false);
-            shouyeThreePresenter.setTop(false);
-
-        }
-
-        //只要滑动的时候就不断的重新画顶部的布局的位置,当scrollY小于gettop时,就2个一直重合,当scrollY大于top就一直让它卡在顶部
-        mfv_shouye.layout(0, mBuyLayout2ParentTop, view_three.getWidth(),
-                mBuyLayout2ParentTop + view_three.getHeight());
-
-
-    }
-
-
-
-    /**
-     * 用来判断popupwindow是否关闭
-     * @return
-     */
-    public boolean close() {
-        if (getPopupWindow() != null && getPopupWindow().isShowing()) {
-            closePopupWindow();
-            return true;
-        }
-        return false;
-    }
-
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == 0) {
-            if (data != null) {
-
-                tv_shouye_city.setText(data.getStringExtra("city"));
-                shouyeThreePresenter.onActivityResult(data);
-            }
-
-        }
-    }
 }

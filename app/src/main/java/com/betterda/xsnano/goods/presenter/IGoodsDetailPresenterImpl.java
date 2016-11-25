@@ -53,8 +53,8 @@ public class IGoodsDetailPresenterImpl implements IGoodsDetailPresenter, View.On
     private List<Comment> list;
 
     private RecyclerView recyclerView;
-    private int REQUEST_COUNT = 10;//一也加载的数量
-    private String price ="0";//选择商品的价格
+
+    private String price = "0";//选择商品的价格
     private String url, smallurl; //图片
     private String shopName;//商品名
     private int count;//销售量
@@ -76,16 +76,8 @@ public class IGoodsDetailPresenterImpl implements IGoodsDetailPresenter, View.On
         list = new ArrayList<>();
         arrayList = new ArrayList<>();
 
-        Intent intent = iGoodsDetailView.getmActivity().getIntent();
-   /*     if (null != intent) {
-            String id = intent.getStringExtra("id");
-            System.out.println("id:"+id);
-            productId = id;
-            shopId = intent.getStringExtra("shopid");
-
-        }*/
-       productId= ((MyApplication) (iGoodsDetailView.getmActivity().getApplication())).getProductid();
-       shopId= ((MyApplication) (iGoodsDetailView.getmActivity().getApplication())).getShopid();
+        productId = ((MyApplication) (iGoodsDetailView.getmActivity().getApplication())).getProductid();
+        shopId = ((MyApplication) (iGoodsDetailView.getmActivity().getApplication())).getShopid();
 
 
         recyclerView = iGoodsDetailView.getRecyclyView();
@@ -209,10 +201,10 @@ public class IGoodsDetailPresenterImpl implements IGoodsDetailPresenter, View.On
                     }
 
                     if (iGoodsDetailView.getTextViewCount() != null) {
-                        iGoodsDetailView.getTextViewCount().setText("月销:" + count );
+                        iGoodsDetailView.getTextViewCount().setText("月销:" + count);
                     }
                     if (iGoodsDetailView.getTextViewSum() != null) {
-                        iGoodsDetailView.getTextViewSum().setText("库存:" + sum );
+                        iGoodsDetailView.getTextViewSum().setText("库存:" + sum);
                     }
 
                     if (iGoodsDetailView.getTextViewPrice() != null) {
@@ -422,7 +414,7 @@ public class IGoodsDetailPresenterImpl implements IGoodsDetailPresenter, View.On
     @Override
     public void canshu() {
 
-        UtilMethod.startIntentParams(iGoodsDetailView.getmActivity(), GoodsDetail2.class,"images",productHtml);
+        UtilMethod.startIntentParams(iGoodsDetailView.getmActivity(), GoodsDetail2.class, "images", productHtml);
     }
 
     @Override

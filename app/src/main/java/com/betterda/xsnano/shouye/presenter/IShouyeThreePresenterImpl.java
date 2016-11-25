@@ -55,6 +55,7 @@ import java.util.Map;
 public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.OnClickListener {
     private IShouyeView iShouyeView;
     private MainAdapter mainAdapter;//分类主listview的适配器
+    private MyRecycleView recyclerView;
 
     private List<String> mainList; //分类的容器
     private List<String> sortList; //排序的容器
@@ -68,7 +69,6 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
 
 
     private List<Store> storeList;//存放店铺的容器
-
     //分类对应的id
     private Map<String, String> fenleiMap;
     //排序对应的id
@@ -87,14 +87,14 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
 
     private HeaderAndFooterRecyclerViewAdapter adapter;
 
+    private Cache cache;//缓存数据
+
     /**
      * 定位功能
      */
     public LocationClient mLocationClient; //定位的类
     public BDLocationListener myListener = new MyLocationListener();
-    private MyRecycleView recyclerView;
 
-    private Cache cache;//缓存数据
 
     public IShouyeThreePresenterImpl(IShouyeView iShouyeView) {
         this.iShouyeView = iShouyeView;
@@ -102,17 +102,20 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
 
     @Override
     public void start() {
+        initLocation();
 
-        /**
-         * 定位相关
-         */
-        mLocationClient = new LocationClient(iShouyeView.getmActivity());//声明LocationClient类
-        mLocationClient.registerLocationListener(myListener);    //注册监听函数
-        UtilMethod.initLocation(mLocationClient);
-        //开启定位
-        mLocationClient.start();
+        initRecycleview();
 
+        if (iShouyeView != null && iShouyeView.getLoadPager() != null) {
+            iShouyeView.getLoadPager().setonEmptyClickListener(this);
+            iShouyeView.getLoadPager().setonErrorClickListener(this);
+        }
+    }
 
+    /**
+     * 初始化Recycleview
+     */
+    private void initRecycleview() {
         storeList = new ArrayList<>();
         recyclerView = iShouyeView.getRecyclyViewShouye();
         //解决scrollview嵌套recycleview 惯性消失的问题
@@ -165,7 +168,6 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
 
             }
         });
-
         recyclerView.setAdapter(adapter);
         recyclerView.setonListLoadNextPageListener(new OnListLoadNextPageListener() {
             @Override
@@ -179,17 +181,25 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
                 }
             }
         });
+    }
 
-        if (iShouyeView != null && iShouyeView.getLoadPager() != null) {
-            iShouyeView.getLoadPager().setonEmptyClickListener(this);
-            iShouyeView.getLoadPager().setonErrorClickListener(this);
-        }
+    /**
+     * 初始化定位相关
+     */
+    private void initLocation() {
+        /**
+         * 定位相关
+         */
+        mLocationClient = new LocationClient(iShouyeView.getmActivity());//声明LocationClient类
+        mLocationClient.registerLocationListener(myListener);    //注册监听函数
+        UtilMethod.initLocation(mLocationClient);
+        //开启定位
+        mLocationClient.start();
     }
 
     @Override
     public void setTile() {
         //设置统一标题
-
         iShouyeView.getViewThree().setTitle("分类", "排序", "筛选");
         iShouyeView.getMfvShouye().setTitle("分类", "排序", "筛选");
     }
@@ -207,14 +217,11 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
 
     @Override
     public void clickSecond() {
-
         if (sortList == null) {
             return;
         }
-
         //使用鸿洋的万能适配器
         iShouyeView.getRecyclyView().setAdapter(new CommonAdapter<String>(iShouyeView.getmActivity(), R.layout.item_pp_main_sort2, sortList) {
-
 
             @Override
             public void convert(final com.zhy.base.adapter.ViewHolder viewHolder, String s) {
@@ -414,7 +421,6 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
     }
 
 
-
     /**
      * 获取缓存数据
      */
@@ -437,7 +443,6 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
      */
     private void getData() {
 
-
         //获取店铺列表
         final RequestParams params = new RequestParams(Constants.URL_STORE_LIST);
         params.addBodyParameter("serviceId", serviceId);
@@ -459,7 +464,6 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
                     }
 
                 }
-
                 List<StoreList> listStoreList = GsonParse.getListStoreList(UtilMethod.getString(s));
                 if (null != listStoreList) {
                     for (StoreList storeL : listStoreList) {
@@ -522,8 +526,6 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
                     adapter.notifyDataSetChanged();
                 }
 
-
-
                 if (iShouyeView != null) {
                     if (iShouyeView.getLoadPager() != null) {
                         if (storeList != null) {
@@ -556,7 +558,6 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
                         if (null != loadPager) {
                             loadPager.setErrorVisable();
                         }
-
                         //将popupwindow关闭
                         iShouyeView.closePopupWindow();
                     }
@@ -654,10 +655,8 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
             }
             //停止定位
             if (mLocationClient != null) {
-
                 mLocationClient.stop();
             }
-
 
             //从第一页开始加载
             getDataAndPage(1);
@@ -695,35 +694,6 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
         return "筛选";
     }
 
-    @Override
-    public void onDestroy() {
-
-        if (mainList != null) {
-            mainList.clear();
-            mainList = null;
-        }
-        if (sortList != null) {
-            sortList.clear();
-            sortList = null;
-        }
-        if (shaixuanList != null) {
-            shaixuanList.clear();
-            shaixuanList = null;
-        }
-        if (fenleiMap != null) {
-            fenleiMap.clear();
-            fenleiMap = null;
-        }
-        if (sortMap != null) {
-            sortMap.clear();
-            sortMap = null;
-        }
-        if (shaixuanMap != null) {
-            shaixuanMap.clear();
-            shaixuanMap = null;
-        }
-
-    }
 
     @Override
     public void setTop(boolean istop) {
@@ -801,5 +771,37 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
 
             fenleiMap.put(tShopServiceItemsBean.getShopServiceName(), tShopServiceItemsBean.getId());
         }
+    }
+
+
+
+    @Override
+    public void onDestroy() {
+
+        if (mainList != null) {
+            mainList.clear();
+            mainList = null;
+        }
+        if (sortList != null) {
+            sortList.clear();
+            sortList = null;
+        }
+        if (shaixuanList != null) {
+            shaixuanList.clear();
+            shaixuanList = null;
+        }
+        if (fenleiMap != null) {
+            fenleiMap.clear();
+            fenleiMap = null;
+        }
+        if (sortMap != null) {
+            sortMap.clear();
+            sortMap = null;
+        }
+        if (shaixuanMap != null) {
+            shaixuanMap.clear();
+            shaixuanMap = null;
+        }
+
     }
 }

@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -38,13 +39,11 @@ import com.betterda.xsnano.util.GetNetUtil;
 import com.betterda.xsnano.util.GsonParse;
 import com.betterda.xsnano.util.UtilMethod;
 import com.betterda.xsnano.view.LoadingPager;
-import com.squareup.haha.trove.TIntHash;
 import com.zhy.base.adapter.ViewHolder;
 import com.zhy.base.adapter.recyclerview.CommonAdapter;
 
 import org.xutils.http.RequestParams;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,28 +55,29 @@ import java.util.List;
 public class LocationActivity extends BaseActivity implements OnGetSuggestionResultListener, View.OnClickListener {
     // SuggestionSearch建议查询类
     private SuggestionSearch mSuggestionSearch;
-
-    private RelativeLayout relative_location_title, relative_location_delete, relative_commonaddress;
+    private RelativeLayout mRelativeLocationTitle, mRelativeLocationDelete, mRelativeCommonaddress;
     private LinearLayout linearLayout, linearCurrent, linear_search, linearTrash;
     private TextView tv_address, tv_dingwei, tv_search_cancel, tvTrash, tvComplete;
     private EditText et_search;
+    private LoadingPager loadingPager, loadingPagerLocation;
+    private RecyclerView rvPpchose, rvLocation;
+    private ImageView iv_delete, ivTrash;//删除图标
+    private FrameLayout frame_location_rv;//常用地址层
+    private FrameLayout frame_location_show, frame_pp_choseaddress; //搜索的阴影层和搜藏层
+
     private int currententValue;//记录当前的值
     private boolean isFinishAnim;//是否完成过动画
     private String city;//记录当前定位城市
-    private LoadingPager loadingPager, loadingPagerLocation;
-    private RecyclerView rvPpchose, rvLocation;
     private List<Address> list;
     private List<Address> listLocation;//常用地址的容器
     private CommonAdapter<Address> adapter;
     private CommonAdapter<Address> adapterLocation;
-    private ImageView iv_delete, ivTrash;//删除图标
-    private FrameLayout frame_location_rv;//常用地址层
-    private FrameLayout frame_location_show, frame_pp_choseaddress; //搜索的阴影层和搜藏层
     /**
      * 定位功能
      */
     public LocationClient mLocationClient; //定位的类
     public BDLocationListener myListener = new MyLocationListener();
+
     private int page = 1;
     private double longitude;//经度
     private double dimension;//纬度
@@ -93,9 +93,9 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
         linearLayout = (LinearLayout) findViewById(R.id.linear_111);
         linearCurrent = (LinearLayout) findViewById(R.id.linear_location_current);
         linear_search = (LinearLayout) findViewById(R.id.linear_search);
-        relative_location_title = (RelativeLayout) findViewById(R.id.relative_location_title);
-        relative_location_delete = (RelativeLayout) findViewById(R.id.relative_location_delete);
-        relative_commonaddress = (RelativeLayout) findViewById(R.id.relative_commonaddress);
+        mRelativeLocationTitle = (RelativeLayout) findViewById(R.id.relative_location_title);
+        mRelativeLocationDelete = (RelativeLayout) findViewById(R.id.relative_location_delete);
+        mRelativeCommonaddress = (RelativeLayout) findViewById(R.id.relative_commonaddress);
         loadingPagerLocation = (LoadingPager) findViewById(R.id.loadpager_location);
         rvLocation = (RecyclerView) findViewById(R.id.rv_location);
         frame_location_show = (FrameLayout) findViewById(R.id.frame_location_show);
@@ -105,7 +105,6 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
         rvPpchose = (RecyclerView) findViewById(R.id.rv_pp_choseaddress);
         loadingPager = (LoadingPager) findViewById(R.id.loadpager_pp_choseaddress);
         iv_delete = (ImageView) findViewById(R.id.iv_layout_search_delete);
-
         linearTrash = (LinearLayout) findViewById(R.id.linear_location_trash);
         tvTrash = (TextView) findViewById(R.id.tv_location_qingkong);
         tvComplete = (TextView) findViewById(R.id.tv_location_complete);
@@ -116,6 +115,99 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
     @Override
     public void init() {
         super.init();
+        initSuggestionAndLocation();
+
+        list = new ArrayList<>();
+        listLocation = new ArrayList<>();
+
+        setPpRecycleview();
+        setLocationRecycleview();
+
+        addTextChange(et_search, iv_delete, frame_pp_choseaddress);
+
+        getData();
+
+    }
+
+
+
+    @Override
+    public void initListener() {
+        super.initListener();
+        et_search.setOnClickListener(this);
+        mRelativeLocationDelete.setOnClickListener(this);
+        tv_dingwei.setOnClickListener(this);
+        linearCurrent.setOnClickListener(this);
+        tv_search_cancel.setOnClickListener(this);
+        frame_location_show.setOnClickListener(this);
+        iv_delete.setOnClickListener(this);
+        tvTrash.setOnClickListener(this);
+        tvComplete.setOnClickListener(this);
+        ivTrash.setOnClickListener(this);
+
+
+    }
+
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_location_qingkong://清空
+                showComfirmDialog();
+                break;
+            case R.id.tv_location_complete://完成
+                setTrashVisable(false);
+                showDelete(false);
+                break;
+            case R.id.iv_location_trash://垃圾桶
+                setTrashVisable(true);
+                showDelete(true);
+                break;
+            case R.id.linear_location_current://定位地址
+                if (tv_address != null) {
+                    String address = (String) tv_address.getText();
+                    if (TextUtils.isEmpty(address )|| "定位失败".equals(address)) {
+                        return;
+                    }
+                }
+                close(city);
+                break;
+            case R.id.tv__search_cancel://取消
+                closeAnim();
+                break;
+            case R.id.frame_location_show://阴影层的点击事件
+                tv_search_cancel.setVisibility(View.GONE);
+                closeAnim();
+                break;
+            case R.id.iv_layout_search_delete://删除图标
+                if (et_search != null) {
+                    et_search.setText("");
+                }
+                break;
+            case R.id.et_search: //输入框
+                click();
+                break;
+            case R.id.relative_location_delete:
+                LocationActivity.this.finish();
+                break;
+            case R.id.tv_loaction_dingwei://重新定位
+                if (tv_dingwei != null) {
+                    tv_dingwei.setSelected(true);
+                }
+                if (mLocationClient != null) {
+                    mLocationClient.start();
+                }
+                break;
+        }
+
+    }
+
+
+    /**
+     * 初始化建议查询和定位
+     */
+    private void initSuggestionAndLocation() {
         // 实例化建议查询类
         mSuggestionSearch = SuggestionSearch.newInstance();
         // 注册建议查询事件监听
@@ -129,35 +221,35 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
         UtilMethod.initLocation(mLocationClient);
         //开启定位
         mLocationClient.start();
-
-        list = new ArrayList<>();
-        listLocation = new ArrayList<>();
-
-        setPpRecycleview();
-        setLocationRecycleview();
-
-
-        addTextChange(et_search, iv_delete, frame_pp_choseaddress);
-
-        getData();
-
     }
 
-    @Override
-    public void initListener() {
-        super.initListener();
-        et_search.setOnClickListener(this);
-        relative_location_delete.setOnClickListener(this);
-        tv_dingwei.setOnClickListener(this);
-        linearCurrent.setOnClickListener(this);
-        tv_search_cancel.setOnClickListener(this);
-        frame_location_show.setOnClickListener(this);
-        iv_delete.setOnClickListener(this);
-        tvTrash.setOnClickListener(this);
-        tvComplete.setOnClickListener(this);
-        ivTrash.setOnClickListener(this);
+    private void setPpRecycleview() {
+        adapter = new CommonAdapter<Address>(this, R.layout.item_pp_choseaddress, list) {
+            @Override
+            public void convert(ViewHolder holder, final Address address) {
+                if (address != null) {
+                    holder.setText(R.id.tv_item_pp_choseaddress2, address.getAddress());
+                    holder.setText(R.id.tv_item_pp_choseaddress, address.getKey());
+                    holder.setOnClickListener(R.id.linear_pp_choseaddress_title, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            try {
+                                longitude = Double.parseDouble(address.getLongitude());
+                                dimension = Double.parseDouble(address.getLatitude());
+                            } catch (Exception e) {
 
+                            }
+                            close(address.getKey());
+                            uploadAddress(address.getLongitude(), address.getLatitude(), address.getKey(), address.getAddress());
+                        }
+                    });
+                }
 
+            }
+        };
+
+        rvPpchose.setLayoutManager(new LinearLayoutManager(LocationActivity.this));
+        rvPpchose.setAdapter(adapter);
     }
 
     private void setLocationRecycleview() {
@@ -215,35 +307,7 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
         GetNetUtil.getData(GetNetUtil.POST, params, new GetNetUtil.GetDataCallBack() {
             @Override
             public void onSuccess(String s) {
-                GsonParse.parser(UtilMethod.getString(s), new ParserGsonInterface() {
-                    @Override
-                    public void onSuccess(String result, String resultMsg) {
-                        if ("true".equals(result)) {
-                            //删除成功
-                            if (listLocation != null) {
-                                for (Address address : listLocation) {
-                                    if (address != null) {
-                                        if (address.getId().equals(id)) {
-                                            listLocation.remove(address);
-                                            break;
-                                        }
-                                    }
-                                }
-                                if (listLocation.size() == 0) {
-                                    if (loadingPagerLocation != null) {
-                                        loadingPagerLocation.setEmptyVisable();
-                                    }
-                                    setTrashVisable(false);
-                                }
-                            }
-                            if (adapterLocation != null) {
-                                adapterLocation.notifyDataSetChanged();
-                            }
-
-                        }
-
-                    }
-                });
+                successForDelete(s, id);
             }
 
             @Override
@@ -253,6 +317,7 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
         });
 
     }
+
 
     /**
      * 清空
@@ -263,28 +328,7 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
         GetNetUtil.getData(GetNetUtil.POST, params, new GetNetUtil.GetDataCallBack() {
             @Override
             public void onSuccess(String s) {
-                GsonParse.parser(UtilMethod.getString(s), new ParserGsonInterface() {
-                    @Override
-                    public void onSuccess(String result, String resultMsg) {
-                        if ("true".equals(result)) {
-                            //删除成功
-                            if (listLocation != null) {
-                                listLocation.clear();
-                                if (listLocation.size() == 0) {
-                                    if (loadingPagerLocation != null) {
-                                        loadingPagerLocation.setEmptyVisable();
-                                    }
-                                }
-                            }
-                            if (adapterLocation != null) {
-                                adapterLocation.notifyDataSetChanged();
-                            }
-
-                            setTrashVisable(false);
-                        }
-
-                    }
-                });
+                successForDeleteAll(s);
             }
 
             @Override
@@ -295,7 +339,73 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
     }
 
     /**
-     * 设置清空是否显示
+     * 解析删除成功
+     * @param s
+     * @param id
+     */
+    private void successForDelete(String s, final String id) {
+        GsonParse.parser(UtilMethod.getString(s), new ParserGsonInterface() {
+            @Override
+            public void onSuccess(String result, String resultMsg) {
+                if ("true".equals(result)) {
+                    //删除成功
+                    if (listLocation != null) {
+                        for (Address address : listLocation) {
+                            if (address != null) {
+                                if (address.getId().equals(id)) {
+                                    listLocation.remove(address);
+                                    break;
+                                }
+                            }
+                        }
+                        if (listLocation.size() == 0) {
+                            if (loadingPagerLocation != null) {
+                                loadingPagerLocation.setEmptyVisable();
+                            }
+                            setTrashVisable(false);
+                        }
+                    }
+                    if (adapterLocation != null) {
+                        adapterLocation.notifyDataSetChanged();
+                    }
+
+                }
+
+            }
+        });
+    }
+
+    /**
+     * 解析清空成功
+     * @param s
+     */
+    private void successForDeleteAll(String s) {
+        GsonParse.parser(UtilMethod.getString(s), new ParserGsonInterface() {
+            @Override
+            public void onSuccess(String result, String resultMsg) {
+                if ("true".equals(result)) {
+                    //删除成功
+                    if (listLocation != null) {
+                        listLocation.clear();
+                        if (listLocation.size() == 0) {
+                            if (loadingPagerLocation != null) {
+                                loadingPagerLocation.setEmptyVisable();
+                            }
+                        }
+                    }
+                    if (adapterLocation != null) {
+                        adapterLocation.notifyDataSetChanged();
+                    }
+
+                    setTrashVisable(false);
+                }
+
+            }
+        });
+    }
+
+    /**
+     * 设置清空view是否显示
      * @param isVisable
      */
     private void setTrashVisable(boolean isVisable) {
@@ -310,46 +420,19 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
     }
 
 
-    private void setPpRecycleview() {
-        adapter = new CommonAdapter<Address>(this, R.layout.item_pp_choseaddress, list) {
-            @Override
-            public void convert(ViewHolder holder, final Address address) {
-                if (address != null) {
-                    holder.setText(R.id.tv_item_pp_choseaddress2, address.getAddress());
-                    holder.setText(R.id.tv_item_pp_choseaddress, address.getKey());
-                    holder.setOnClickListener(R.id.linear_pp_choseaddress_title, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            try {
-                                longitude = Double.parseDouble(address.getLongitude());
-                                dimension = Double.parseDouble(address.getLatitude());
-                            } catch (Exception e) {
-
-                            }
-                            close(address.getKey());
-                            uploadAddress(address.getLongitude(), address.getLatitude(), address.getKey(), address.getAddress());
-                        }
-                    });
-                }
-
-            }
-        };
-
-        rvPpchose.setLayoutManager(new LinearLayoutManager(LocationActivity.this));
-        rvPpchose.setAdapter(adapter);
-    }
-
     /**
      * 获取常用地址
      */
     private void getData() {
         boolean islogin = CacheUtils.getBoolean(this, "islogin", false);
         if (!islogin) {
-            relative_commonaddress.setVisibility(View.GONE);
+            mRelativeCommonaddress.setVisibility(View.GONE);
             frame_location_rv.setVisibility(View.GONE);
             return;
         }
+
         loadingPagerLocation.setLoadVisable();
+
         RequestParams params = new RequestParams(Constants.URL_QUERY_CHANGYONG_ADDRESS);
         params.addBodyParameter("account", CacheUtils.getString(this, "number", ""));
         params.addBodyParameter("page", page + "");
@@ -357,41 +440,7 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
         GetNetUtil.getData(GetNetUtil.POST, params, new GetNetUtil.GetDataCallBack() {
             @Override
             public void onSuccess(String s) {
-                System.out.println("s:"+s);
-                List<CommonAddress> listCommonAddress = GsonParse.getListCommonAddress(UtilMethod.getString(s));
-                if (listCommonAddress != null) {
-                    if (listLocation != null && page == 1) {
-                        listLocation.clear();
-                    }
-                    for (int i = 0; i < listCommonAddress.size(); i++) {
-                        CommonAddress commonAddress = listCommonAddress.get(i);
-                        if (commonAddress != null) {
-                            Address address = new Address();
-                            address.setAddress(commonAddress.getAddress());
-                            address.setKey(commonAddress.getDistrict());
-                            address.setLongitude(commonAddress.getLongitude());
-                            address.setLatitude(commonAddress.getLatitude());
-                            address.setId(commonAddress.getId());
-                            listLocation.add(address);
-                        }
-                    }
-                }
-
-                if (adapterLocation != null) {
-                    adapterLocation.notifyDataSetChanged();
-                }
-
-                if (listLocation != null) {
-                    if (listLocation.size() > 0) {
-                        loadingPagerLocation.hide();
-                    } else {
-                        loadingPagerLocation.setEmptyVisable();
-                    }
-                } else {
-                    loadingPagerLocation.setEmptyVisable();
-                }
-
-
+                successForGet(s);
             }
 
             @Override
@@ -402,6 +451,39 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
             }
         });
     }
+
+    /**
+     * 解析获取常用地址
+     * @param s
+     */
+    private void successForGet(String s) {
+        List<CommonAddress> listCommonAddress = GsonParse.getListCommonAddress(UtilMethod.getString(s));
+        if (listCommonAddress != null) {
+            if (listLocation != null && page == 1) {
+                listLocation.clear();
+            }
+
+            for (int i = 0; i < listCommonAddress.size(); i++) {
+                CommonAddress commonAddress = listCommonAddress.get(i);
+                if (commonAddress != null) {
+                    Address address = new Address();
+                    address.setAddress(commonAddress.getAddress());
+                    address.setKey(commonAddress.getDistrict());
+                    address.setLongitude(commonAddress.getLongitude());
+                    address.setLatitude(commonAddress.getLatitude());
+                    address.setId(commonAddress.getId());
+                    listLocation.add(address);
+                }
+            }
+        }
+
+        if (adapterLocation != null) {
+            adapterLocation.notifyDataSetChanged();
+        }
+
+       UtilMethod.hideOrEmpty(listLocation,loadingPagerLocation);
+    }
+
 
     /**
      * 添加地址
@@ -426,7 +508,7 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
         GetNetUtil.getData(GetNetUtil.POST, params, new GetNetUtil.GetDataCallBack() {
             @Override
             public void onSuccess(String s) {
-                System.out.println("s:" + s);
+
             }
 
             @Override
@@ -483,7 +565,7 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
      */
 
     private void startAnim() {
-        currententValue = relative_location_title.getHeight();
+        currententValue = mRelativeLocationTitle.getHeight();
         ValueAnimator valueAnimator = ValueAnimator.ofInt(currententValue, 0);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -508,7 +590,7 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
                 linear_search.setClickable(true);
                 //获取屏幕的高度
                 int height = UtilMethod.getHeight(LocationActivity.this);
-                setHeight(height + relative_location_title.getHeight());
+                setHeight(height + mRelativeLocationTitle.getHeight());
 
                 //重新设置搜索时的高度
                 FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -627,10 +709,10 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
         tv_search_cancel.setVisibility(View.GONE);
         setHeight(0);
         closeInput();
-        if (relative_location_title == null) {
+        if (mRelativeLocationTitle == null) {
             return;
         }
-        currententValue = -relative_location_title.getHeight();
+        currententValue = -mRelativeLocationTitle.getHeight();
         ValueAnimator valueAnimator = ValueAnimator.ofInt(currententValue, 0);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -711,61 +793,6 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
 
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.tv_location_qingkong://清空
-                showComfirmDialog();
-                break;
-            case R.id.tv_location_complete://完成
-                linearTrash.setVisibility(View.GONE);
-                ivTrash.setVisibility(View.VISIBLE);
-                showDelete(false);
-                break;
-            case R.id.iv_location_trash://垃圾桶
-                linearTrash.setVisibility(View.VISIBLE);
-                ivTrash.setVisibility(View.INVISIBLE);
-                showDelete(true);
-                break;
-            case R.id.linear_location_current://定位地址
-                if (tv_address != null) {
-                    String address = (String) tv_address.getText();
-                    if (TextUtils.isEmpty(address )|| "定位失败".equals(address)) {
-                        return;
-                    }
-                }
-                close(city);
-                break;
-            case R.id.tv__search_cancel://取消
-                closeAnim();
-                break;
-            case R.id.frame_location_show://阴影层的点击事件
-                tv_search_cancel.setVisibility(View.GONE);
-
-                closeAnim();
-                break;
-            case R.id.iv_layout_search_delete://删除图标
-                if (et_search != null) {
-                    et_search.setText("");
-                }
-                break;
-            case R.id.et_search: //输入框
-                click();
-                break;
-            case R.id.relative_location_delete://定位框
-                LocationActivity.this.finish();
-                break;
-            case R.id.tv_loaction_dingwei://重新定位
-                if (tv_dingwei != null) {
-                    tv_dingwei.setSelected(true);
-                }
-                if (mLocationClient != null) {
-                    mLocationClient.start();
-                }
-                break;
-        }
-
-    }
 
     /**
      * 显示确认对话框
