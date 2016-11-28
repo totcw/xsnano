@@ -1,5 +1,6 @@
 package com.betterda.xsnano.store.view;
 
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.betterda.xsnano.BaseView;
@@ -24,7 +25,7 @@ public interface IStoreView extends BaseView{
     //地址
     TextView getTextViewAddress();
 
-    SimpleDraweeView getSimpleDrawView();
+    ImageView getSimpleDrawView();
 
     void setViewpager(double score, double servicescore);
 

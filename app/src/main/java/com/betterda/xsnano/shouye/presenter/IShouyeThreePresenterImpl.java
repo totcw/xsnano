@@ -162,19 +162,7 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
                     viewHolder.setOnClickListener(R.id.linear_homelistvew, new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                          //  UtilMethod.startIntentParams(iShouyeView.getmActivity(), StoreActivity.class, "id", store.getId());
-                            Intent intent = new Intent(iShouyeView.getmActivity(), StoreActivity.class);
-                            intent.putExtra("id", store.getId());
-
-                            //  ActivityCompat.startActivity(WindowActivity.this, intent, ActivityOptionsCompat.makeSceneTransitionAnimation(WindowActivity.this).toBundle());
-
-
-                            ActivityOptionsCompat transitionActivityOptions =
-                                    ActivityOptionsCompat.makeSceneTransitionAnimation(iShouyeView.getmActivity(),viewHolder.getView(R.id.iv_item_homelistview),"secondSharedView"
-                                    );
-
-                            ActivityCompat.startActivity(iShouyeView.getmActivity(),
-                                    intent, transitionActivityOptions.toBundle());
+                            UtilMethod.startIntentparams(iShouyeView.getmActivity(), StoreActivity.class,viewHolder.getView(R.id.iv_item_homelistview), "id", store.getId(),"secondSharedView");
 
                         }
                     });

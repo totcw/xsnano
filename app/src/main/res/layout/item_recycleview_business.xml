@@ -23,6 +23,7 @@
             fresco:roundTopRight="true"
             fresco:roundBottomLeft="true"
             fresco:roundBottomRight="true"
+
             fresco:placeholderImage="@mipmap/ttycimage"
             fresco:placeholderImageScaleType="focusCrop"
             fresco:actualImageScaleType="focusCrop" />

@@ -309,12 +309,21 @@ public class UtilMethod {
     }
 
 
-    public static <T> void startIntent(Context context, Class<T> cla,View view) {
+    /**
+     * 带伸缩动画的跳转
+     * @param context
+     * @param cla
+     * @param view
+     * @param key
+     * @param value
+     * @param <T>
+     */
+    public static <T> void startIntentparams(Context context, Class<T> cla,View view,String key, String value,String message) {
         Intent intent = new Intent(context, cla);
-
+        intent.putExtra(key, value);
 
         ActivityOptionsCompat transitionActivityOptions =
-                ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context,view,"secondSharedView"
+                ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context,view,message
                 );
 
         ActivityCompat.startActivity((Activity) context,
@@ -948,6 +957,17 @@ public class UtilMethod {
             }
         } else {
             loadingPagerLocation.setEmptyVisable();
+        }
+    }
+
+    /**
+     * 用于退出 伸缩动画的界面
+     */
+    public static void back(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            activity. finishAfterTransition();
+        } else {
+            activity.finish();
         }
     }
 

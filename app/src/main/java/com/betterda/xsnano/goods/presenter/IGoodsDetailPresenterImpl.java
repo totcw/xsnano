@@ -33,6 +33,7 @@ import com.betterda.xsnano.view.EndlessRecyclerOnScrollListener;
 import com.betterda.xsnano.view.HeaderAndFooterRecyclerViewAdapter;
 import com.betterda.xsnano.view.LoadingFooter;
 import com.betterda.xsnano.view.LoadingPager;
+import com.bumptech.glide.Glide;
 import com.tencent.mm.sdk.modelmsg.GetMessageFromWX;
 
 import org.xutils.http.RequestParams;
@@ -179,7 +180,8 @@ public class IGoodsDetailPresenterImpl implements IGoodsDetailPresenter, View.On
                 }
                 if (iGoodsDetailView != null) {
                     if (iGoodsDetailView.getSimpleDraw() != null) {
-                        iGoodsDetailView.getSimpleDraw().setImageURI(Uri.parse(url));
+                      //  iGoodsDetailView.getSimpleDraw().setImageURI(Uri.parse(url));
+                        Glide.with(iGoodsDetailView.getmActivity()).load(url).placeholder(R.mipmap.viewpager_zwt).error(R.mipmap.viewpager_zwt).into(iGoodsDetailView.getSimpleDraw());
                     }
 
                     if (iGoodsDetailView.getTextViewName() != null) {

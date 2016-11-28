@@ -20,6 +20,7 @@ import com.betterda.xsnano.util.GetNetUtil;
 import com.betterda.xsnano.util.GsonParse;
 import com.betterda.xsnano.util.PermissionUtil;
 import com.betterda.xsnano.util.UtilMethod;
+import com.bumptech.glide.Glide;
 
 import org.xutils.http.RequestParams;
 
@@ -119,9 +120,11 @@ public class IStorePresenterImpl implements IStorePresenter, CallDialog.onConfir
                                 }
 
                             }
-
+                            //设置商品图片
                             if (iStoreView.getSimpleDrawView() != null) {
-                                iStoreView.getSimpleDrawView().setImageURI(Uri.parse(UtilMethod.url(bigPicture)));
+                              //  iStoreView.getSimpleDrawView().setImageURI(Uri.parse(UtilMethod.url(bigPicture)));
+                                Glide.with(iStoreView.getmActivity()).load(UtilMethod.url(bigPicture)).placeholder(R.mipmap.viewpager_zwt).error(R.mipmap.viewpager_zwt).into(iStoreView.getSimpleDrawView());
+
                             }
 
                             if (iStoreView.getTextViewAddress() != null) {

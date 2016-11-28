@@ -34,7 +34,7 @@ public class GoodsDetail extends BaseActivity implements IGoodsDetailView, View.
     private TextView  tv_goodsdetail_amount, tv_goodsdetail_bus,
              tv_goodsdetail_morecomment,tv_goodsdetail_amount2,tv_name,tv_price,tv_count,tv_shangpingdetail_comment2,
             tv_shangpingdetail_comment3,tv_goodsdetail_sum;
-    private SimpleDraweeView simpleDraweeView;
+    private ImageView simpleDraweeView;
     private RecyclerView rv_goodsdetail;
     private LoadingPager loadpager_goodsdetail;
     private IGoodsDetailPresenter iGoodsDetailPresenter;
@@ -68,7 +68,7 @@ public class GoodsDetail extends BaseActivity implements IGoodsDetailView, View.
         tv_goodsdetail_amount2 = (TextView) findViewById(R.id.tv_goodsdetail_amount2);
         tv_shangpingdetail_comment2 = (TextView) findViewById(R.id.tv_shangpingdetail_comment2);
         tv_shangpingdetail_comment3 = (TextView) findViewById(R.id.tv_shangpingdetail_comment3);
-        simpleDraweeView = (SimpleDraweeView) findViewById(R.id.sv_goodsdetail);
+        simpleDraweeView = (ImageView) findViewById(R.id.sv_goodsdetail);
         rb_detail_comment = (RatingBar) findViewById(R.id.rb_detail_comment);
     }
 
@@ -195,7 +195,7 @@ public class GoodsDetail extends BaseActivity implements IGoodsDetailView, View.
     }
 
     @Override
-    public SimpleDraweeView getSimpleDraw() {
+    public ImageView getSimpleDraw() {
         return simpleDraweeView;
     }
 

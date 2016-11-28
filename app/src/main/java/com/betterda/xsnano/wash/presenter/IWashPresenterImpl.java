@@ -131,7 +131,8 @@ public class IWashPresenterImpl implements IWashPresenter, View.OnClickListener 
                     viewHolder.setOnClickListener(R.id.linear_item_xiche, new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            UtilMethod.startIntentParams(iWashView.getmActivity(), StoreActivity.class, "id", store.getId());
+
+                            UtilMethod.startIntentparams(iWashView.getmActivity(), StoreActivity.class,viewHolder.getView(R.id.sv_item_xiche), "id", store.getId(),"secondSharedView");
                         }
                     });
 

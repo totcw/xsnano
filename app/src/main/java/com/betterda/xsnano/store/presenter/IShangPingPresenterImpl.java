@@ -128,10 +128,8 @@ public class IShangPingPresenterImpl implements IShangPingPresenter, View.OnClic
                     viewHolder.setOnClickListener(R.id.linear_business, new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(iShangPingView.getmActivity(), GoodsDetail.class);
-                         /*   intent.putExtra("id", business.getProductId());
-                            intent.putExtra("shopid", id);*/
 
+                            Intent intent = new Intent(iShangPingView.getmActivity(), GoodsDetail.class);
                             ((MyApplication) (iShangPingView.getmActivity().getApplication())).setProductid(business.getProductId());
                             ((MyApplication) (iShangPingView.getmActivity().getApplication())).setShopid(id);
                             iShangPingView.getmActivity().startActivity(intent);

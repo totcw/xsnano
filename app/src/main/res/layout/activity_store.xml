@@ -61,14 +61,12 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent">
 
-                                    <com.facebook.drawee.view.SimpleDraweeView
+                                    <ImageView
+                                        android:transitionName="secondSharedView"
                                         android:id="@+id/sv_store"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        fresco:actualImageScaleType="fitXY"
-                                        fresco:placeholderImage="@mipmap/viewpager_zwt"
-                                        fresco:placeholderImageScaleType="fitXY"
-
+                                        android:scaleType="fitXY"
                                         />
 
 
@@ -200,7 +198,7 @@
                                     android:layout_height="match_parent">
 
                                     <ImageView
-                                        android:transitionName="secondSharedView"
+
                                         android:layout_width="22dp"
                                         android:layout_height="21dp"
                                         android:layout_centerInParent="true"

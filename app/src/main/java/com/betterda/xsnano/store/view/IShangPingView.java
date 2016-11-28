@@ -1,6 +1,7 @@
 package com.betterda.xsnano.store.view;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import com.betterda.xsnano.BaseView;
@@ -14,4 +15,6 @@ public interface IShangPingView extends BaseView {
     StoreRecycleView getRecycleView2();
 
     LinearLayout getLinearLayout();
+
+
 }

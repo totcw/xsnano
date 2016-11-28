@@ -2,6 +2,7 @@ package com.betterda.xsnano.goods.view;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -37,7 +38,7 @@ public interface IGoodsDetailView extends BaseView {
 
     TextView getTextViewAmount2();
 
-    SimpleDraweeView getSimpleDraw();
+    ImageView getSimpleDraw();
     //商品名
     TextView getTextViewName();
     //销售量

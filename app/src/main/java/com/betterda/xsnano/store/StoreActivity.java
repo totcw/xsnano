@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -61,7 +63,7 @@ public class StoreActivity extends BaseActivity implements IStoreView, View.OnCl
     private CommentFragment commentFragment;
     private IStorePresenter iStorePresenter;
     private LoadingPager loadpager_store;
-    private SimpleDraweeView sv_store;
+    private ImageView sv_store;
     private NormalTopBar topBar;
     private RelativeLayout relative_store_call;
     private TextView tv_name, tv_address, tv_type, tv_statue, tv_time;
@@ -79,7 +81,7 @@ public class StoreActivity extends BaseActivity implements IStoreView, View.OnCl
         vp_store = (ViewPager) findViewById(R.id.vp_store);
         indicator = (ViewPagerIndicator) findViewById(R.id.id_indicator);
         loadpager_store = (LoadingPager) findViewById(R.id.loadpager_store);
-        sv_store = (SimpleDraweeView) findViewById(R.id.sv_store);
+        sv_store = (ImageView) findViewById(R.id.sv_store);
         topBar = (NormalTopBar) findViewById(R.id.topbar_store);
         relative_store_call = (RelativeLayout) findViewById(R.id.relative_store_call);
         tv_name = (TextView) findViewById(R.id.tv_store_name);
@@ -264,7 +266,7 @@ public class StoreActivity extends BaseActivity implements IStoreView, View.OnCl
     }
 
     @Override
-    public SimpleDraweeView getSimpleDrawView() {
+    public ImageView getSimpleDrawView() {
         return sv_store;
     }
 
@@ -272,7 +274,7 @@ public class StoreActivity extends BaseActivity implements IStoreView, View.OnCl
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bar_back:
-                finish();
+                UtilMethod.back(this);
                 break;
             case R.id.relative_share: //开启分享的选择
                 View view = View.inflate(getmActivity(), R.layout.pp_share, null);
@@ -299,6 +301,8 @@ public class StoreActivity extends BaseActivity implements IStoreView, View.OnCl
                 break;
         }
     }
+
+
 
     private void share(boolean isFriend) {
 

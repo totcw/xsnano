@@ -88,6 +88,7 @@
                     fresco:roundTopRight="true"
                     fresco:roundBottomLeft="true"
                     fresco:roundBottomRight="true"
+                    android:transitionName="secondSharedView"
                     android:scaleType="fitXY" />
 
                 <ImageView
