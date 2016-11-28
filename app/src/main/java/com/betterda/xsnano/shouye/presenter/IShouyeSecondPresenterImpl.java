@@ -1,16 +1,10 @@
 package com.betterda.xsnano.shouye.presenter;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.view.View;
-import android.widget.GridView;
-import android.widget.ImageView;
 
-import com.betterda.xsnano.R;
 import com.betterda.xsnano.livingpay.BaseLivingActiivty;
 import com.betterda.xsnano.shouye.view.IShouyeView;
 import com.betterda.xsnano.store.StoreActivity;
-import com.betterda.xsnano.tianjiaji.TianJiaJiActivity;
 import com.betterda.xsnano.util.UtilMethod;
 import com.betterda.xsnano.wash.WashActivity;
 
@@ -57,6 +51,7 @@ public class IShouyeSecondPresenterImpl implements IShouyeSecondPresenter {
 
         //跳转到总公司
         UtilMethod.startIntent(shouyeView.getmActivity(), StoreActivity.class);
+
     }
 
     @Override

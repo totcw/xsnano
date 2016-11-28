@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
-import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
@@ -13,16 +12,13 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.betterda.xsnano.R;
-import com.betterda.xsnano.animation.CubeTransformer;
 import com.betterda.xsnano.interfac.ParserJsonInterface;
 import com.betterda.xsnano.shouye.model.LunBoTu;
 import com.betterda.xsnano.shouye.view.IShouyeView;
-import com.betterda.xsnano.store.model.Service;
 import com.betterda.xsnano.util.Constants;
 import com.betterda.xsnano.util.GetNetUtil;
 import com.betterda.xsnano.util.UtilMethod;
 import com.facebook.drawee.view.SimpleDraweeView;
-
 
 import org.xutils.http.RequestParams;
 

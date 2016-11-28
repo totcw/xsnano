@@ -36,6 +36,7 @@ public class HomeActivity extends BaseActivity implements IHomeView, View.OnClic
 
     @Override
     public void initView() {
+
         setContentView(R.layout.activity_main);
         shouye = (IndicatorView) findViewById(R.id.idv_shouye);
         shangcheng = (IndicatorView) findViewById(R.id.idv_shangcheng);

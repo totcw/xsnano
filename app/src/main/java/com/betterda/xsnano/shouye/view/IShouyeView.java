@@ -83,5 +83,7 @@ public interface IShouyeView extends BaseView{
     MainFourView getMfvShouye();
 
     RecyclerView getRecyclyView2();
+
+    View getScaleView();
 }
 

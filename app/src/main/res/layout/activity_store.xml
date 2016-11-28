@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:id="@+id/linear_store"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_gray"
@@ -50,6 +51,7 @@
 
 
                             <com.betterda.xsnano.view.RatioLayout
+
                                 android:id="@+id/ratio_store"
                                 android:layout_width="match_parent"
                                 android:layout_height="200dp"
@@ -163,6 +165,8 @@
                                 android:background="@color/lv_divider"></View>
 
                             <LinearLayout
+
+
                                 android:id="@+id/linear_store_address"
                                 android:layout_width="match_parent"
                                 android:layout_height="48dp"
@@ -196,6 +200,7 @@
                                     android:layout_height="match_parent">
 
                                     <ImageView
+                                        android:transitionName="secondSharedView"
                                         android:layout_width="22dp"
                                         android:layout_height="21dp"
                                         android:layout_centerInParent="true"

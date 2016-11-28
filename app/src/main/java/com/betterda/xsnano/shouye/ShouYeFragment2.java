@@ -90,6 +90,7 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
 
     @Override
     public View initView(LayoutInflater inflater) {
+
         View view = inflater.inflate(R.layout.fragment_shouye2, null);
         linear_shouye = (LinearLayout) view.findViewById(R.id.linear_shouye);
         myscrollview = (ScrollYScrollView) view.findViewById(R.id.myscrollview);
@@ -333,7 +334,7 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
             case R.id.relative_qcjy:
                 shouyeSecondPresenter.qcmr();
                 break;
-            case R.id.relative_tjq:
+            case R.id.relative_tjq://跳转到总公司
                 shouyeSecondPresenter.tjq();
                 break;
             case R.id.relative_xhfw:
@@ -602,6 +603,11 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
     @Override
     public RecyclerView getRecyclyView2() {
         return rv_shaixuan;
+    }
+
+    @Override
+    public View getScaleView() {
+        return relative_tjq;
     }
 
 }

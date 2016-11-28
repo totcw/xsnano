@@ -18,6 +18,8 @@ import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.telephony.TelephonyManager;
@@ -47,6 +49,7 @@ import com.betterda.xsnano.login.LoginActivity;
 import com.betterda.xsnano.orderall.OrderDetailActivity;
 import com.betterda.xsnano.orderall.model.OrderAll;
 import com.betterda.xsnano.pay.PayActivity;
+import com.betterda.xsnano.store.StoreActivity;
 import com.betterda.xsnano.view.LoadingPager;
 import com.betterda.xsnano.view.ShapeLoadingDialog;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -303,6 +306,19 @@ public class UtilMethod {
     public static <T> void startIntent(Context context, Class<T> cla) {
         Intent intent = new Intent(context, cla);
         context.startActivity(intent);
+    }
+
+
+    public static <T> void startIntent(Context context, Class<T> cla,View view) {
+        Intent intent = new Intent(context, cla);
+
+
+        ActivityOptionsCompat transitionActivityOptions =
+                ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context,view,"secondSharedView"
+                );
+
+        ActivityCompat.startActivity((Activity) context,
+                intent, transitionActivityOptions.toBundle());
     }
 
     /**

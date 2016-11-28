@@ -44,6 +44,7 @@
             />
 
         <TextView
+
             android:gravity="center"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
@@ -92,6 +93,7 @@
                 fresco:roundTopRight="true"
                 fresco:roundBottomLeft="true"
                 fresco:roundBottomRight="true"
+                android:transitionName="secondSharedView"
                 android:background="@mipmap/ttycimage"
                 android:scaleType="fitXY" />
 
