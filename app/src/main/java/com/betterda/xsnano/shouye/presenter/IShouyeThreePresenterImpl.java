@@ -1,5 +1,6 @@
 package com.betterda.xsnano.shouye.presenter;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
@@ -18,6 +19,7 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.betterda.xsnano.R;
+import com.betterda.xsnano.anim.ScaleInAnimation;
 import com.betterda.xsnano.interfac.OnListLoadNextPageListener;
 import com.betterda.xsnano.javabean.Cache;
 import com.betterda.xsnano.javabean.StoreList;
@@ -26,6 +28,7 @@ import com.betterda.xsnano.shouye.adapter.MoreAdapter;
 import com.betterda.xsnano.shouye.model.Store;
 import com.betterda.xsnano.shouye.view.IShouyeView;
 import com.betterda.xsnano.store.StoreActivity;
+import com.betterda.xsnano.util.AnimationUtil;
 import com.betterda.xsnano.util.CacheUtils;
 import com.betterda.xsnano.util.Constants;
 import com.betterda.xsnano.util.ConstantsData;
@@ -40,6 +43,7 @@ import com.betterda.xsnano.view.LoadingPager;
 import com.betterda.xsnano.view.MyLinearLayoutManager;
 import com.betterda.xsnano.view.MyRecycleView;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.zhy.base.adapter.ViewHolder;
 import com.zhy.base.adapter.recyclerview.CommonAdapter;
 
 import org.xutils.http.RequestParams;
@@ -90,6 +94,7 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
     private HeaderAndFooterRecyclerViewAdapter adapter;
 
     private Cache cache;//缓存数据
+    private int mLastPosition = -1;//记录播放过动画的位置
 
     /**
      * 定位功能
@@ -127,9 +132,10 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
 
             @Override
             public void convert(final com.zhy.base.adapter.ViewHolder viewHolder, final Store store) {
+                //开启动画
+                startAnim(viewHolder);
 
                 if (null != store) {
-
                     if ("Y".equals(store.getIs_since())) {
                         viewHolder.setVisible(R.id.iv_xiche_ziti, true);
                     } else {
@@ -184,6 +190,18 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
                 }
             }
         });
+    }
+
+    /**
+     * 开启recycleview的动画
+     * @param viewHolder
+     */
+    private void startAnim(com.zhy.base.adapter.ViewHolder viewHolder) {
+        View view = viewHolder.getView(R.id.linear_homelistvew);
+        if (viewHolder.getLayoutPosition() > mLastPosition) {
+            AnimationUtil.startScaleAnim(view);
+            mLastPosition = viewHolder.getLayoutPosition();
+        }
     }
 
     /**
@@ -460,9 +478,11 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
         GetNetUtil.getData(GetNetUtil.POST, params, new GetNetUtil.GetDataCallBack() {
             @Override
             public void onSuccess(String s) {
+
                 if (storeList != null) {
                     //如果page不==1,就是不上拉加载就清空
                     if (page == 1) {
+                        mLastPosition = -1;//重置动画的位置
                         storeList.clear();
                     }
 

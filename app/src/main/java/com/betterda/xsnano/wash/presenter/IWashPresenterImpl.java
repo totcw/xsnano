@@ -16,6 +16,7 @@ import com.betterda.xsnano.pay.PayActivity;
 import com.betterda.xsnano.sale.view.ISaleView;
 import com.betterda.xsnano.shouye.model.Store;
 import com.betterda.xsnano.store.StoreActivity;
+import com.betterda.xsnano.util.AnimationUtil;
 import com.betterda.xsnano.util.CacheUtils;
 import com.betterda.xsnano.util.Constants;
 import com.betterda.xsnano.util.ConstantsData;
@@ -77,6 +78,7 @@ public class IWashPresenterImpl implements IWashPresenter, View.OnClickListener 
     private RecyclerView recyclyView2;
     private Cache cache;
     private String title = "";
+    private int mLastPosition = -1;
 
 
     public IWashPresenterImpl(IWashView iWashView) {
@@ -101,6 +103,8 @@ public class IWashPresenterImpl implements IWashPresenter, View.OnClickListener 
         adapter = new HeaderAndFooterRecyclerViewAdapter(new CommonAdapter<Store>(iWashView.getContext(), R.layout.item_xiche, list) {
             @Override
             public void convert(final ViewHolder viewHolder, final Store store) {
+                startAnim(viewHolder);
+
                 if (null != store) {
                     viewHolder.setText(R.id.tv_item_xiche_address, store.getAddress());
                     viewHolder.setText(R.id.tv_item_xiche_name, store.getName());
@@ -132,7 +136,7 @@ public class IWashPresenterImpl implements IWashPresenter, View.OnClickListener 
                         @Override
                         public void onClick(View v) {
 
-                            UtilMethod.startIntentparams(iWashView.getmActivity(), StoreActivity.class,viewHolder.getView(R.id.sv_item_xiche), "id", store.getId(),"secondSharedView");
+                            UtilMethod.startIntentparams(iWashView.getmActivity(), StoreActivity.class, viewHolder.getView(R.id.sv_item_xiche), "id", store.getId(), "secondSharedView");
                         }
                     });
 
@@ -164,7 +168,6 @@ public class IWashPresenterImpl implements IWashPresenter, View.OnClickListener 
                 }
             }
         });
-
 
 
         if (iWashView != null && iWashView.getLoadPager() != null) {
@@ -203,6 +206,20 @@ public class IWashPresenterImpl implements IWashPresenter, View.OnClickListener 
         }
     }
 
+
+    /**
+     * 开启recycleview的动画
+     *
+     * @param viewHolder
+     */
+    private void startAnim(com.zhy.base.adapter.ViewHolder viewHolder) {
+        View view = viewHolder.getView(R.id.linear_homelistvew);
+        if (viewHolder.getLayoutPosition() > mLastPosition) {
+            AnimationUtil.startScaleAnim(view);
+            mLastPosition = viewHolder.getLayoutPosition();
+        }
+    }
+
     /**
      * 从第几页开始加载数据
      *
@@ -235,16 +252,15 @@ public class IWashPresenterImpl implements IWashPresenter, View.OnClickListener 
         params.addBodyParameter("dimension", dimension + "");
 
 
-
         GetNetUtil.getData(GetNetUtil.POST, params, new GetNetUtil.GetDataCallBack() {
             @Override
             public void onSuccess(String s) {
-
 
                 if (list != null) {
                     if (page == 1) {
                         list.clear();
                     }
+                    mLastPosition = -1;
                 }
 
                 List<StoreList> listStoreList = GsonParse.getListStoreList(UtilMethod.getString(s));

@@ -1,5 +1,7 @@
 package com.betterda.xsnano.util;
 
+import android.animation.Animator;
+import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -7,6 +9,8 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
+
+import com.betterda.xsnano.anim.ScaleInAnimation;
 
 public class AnimationUtil {
 
@@ -144,6 +148,18 @@ public class AnimationUtil {
 		anim.setDuration(MEDIUM);
 
 		return anim;
+	}
+
+	/**
+	 * 开始伸缩动画
+	 * @param view
+     */
+	public static void startScaleAnim(View view) {
+		ScaleInAnimation scaleInAnimation = new ScaleInAnimation();
+		Animator[] animators = scaleInAnimation.getAnimators(view);
+		for (Animator animator : animators) {
+			animator.setDuration(200).start();
+		}
 	}
 
 }
