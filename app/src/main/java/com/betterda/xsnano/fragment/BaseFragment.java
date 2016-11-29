@@ -128,7 +128,7 @@ public abstract class BaseFragment extends Fragment {
                     popupWindow.setAnimationStyle(R.style.popwin_anim_style);
                     popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
                 } else {
-                   // popupWindow.setAnimationStyle(R.style.popupwindow_anim);
+                    popupWindow.setAnimationStyle(R.style.popupwindow_anim);
                     popupWindow.showAsDropDown(showView);
                 }
 

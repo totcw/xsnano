@@ -145,7 +145,7 @@ public class BaseActivity extends FragmentActivity {
 
                 } else {
 
-
+                    popupWindow.setAnimationStyle(R.style.popupwindow_anim);
                     popupWindow.showAsDropDown(showView);
                 }
 
