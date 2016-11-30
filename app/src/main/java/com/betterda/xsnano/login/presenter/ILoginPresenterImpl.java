@@ -180,6 +180,7 @@ public class ILoginPresenterImpl implements ILoginPresenter {
                     CacheUtils.putString(iLoginView.getContext(), userInfo.getAccount() + "name", userInfo.getNickName());
                     //缓存头像
                     CacheUtils.putString(iLoginView.getContext(), userInfo.getAccount() + "touxiang", UtilMethod.url(userInfo.getPhoto()));
+                    System.out.println("qq:"+UtilMethod.url(userInfo.getPhoto()));
                     //缓存金币
                     CacheUtils.putInt(iLoginView.getContext(), userInfo.getAccount() + "gold", userInfo.getGolden());
                     //缓存银币
