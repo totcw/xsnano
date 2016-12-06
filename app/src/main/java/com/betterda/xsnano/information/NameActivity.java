@@ -75,7 +75,7 @@ public class NameActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bar_back:
-                finish();
+                backActivity();
                 break;
             case R.id.btn_editname_name:
                 String name = et_name.getText().toString().trim();

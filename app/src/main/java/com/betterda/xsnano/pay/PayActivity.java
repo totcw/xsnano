@@ -63,7 +63,7 @@ public class PayActivity extends BaseActivity implements IPayView, View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bar_back:
-                finish();
+                backActivity();
                 break;
             case R.id.relative_pay_wxpay:
                 iPayPresenter.wxpay();

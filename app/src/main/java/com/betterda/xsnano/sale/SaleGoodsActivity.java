@@ -49,7 +49,7 @@ public class SaleGoodsActivity extends BaseActivity implements ISaleGoodsView, V
 
     @Override
     public void onClick(View v) {
-        finish();
+        backActivity();
     }
 
     @Override

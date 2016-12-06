@@ -189,7 +189,8 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
                 click();
                 break;
             case R.id.relative_location_delete:
-                LocationActivity.this.finish();
+                backActivity();
+
                 break;
             case R.id.tv_loaction_dingwei://重新定位
                 if (tv_dingwei != null) {
@@ -545,7 +546,7 @@ public class LocationActivity extends BaseActivity implements OnGetSuggestionRes
         intent.putExtra("longitude",longitude);
         intent.putExtra("dimension",dimension);
         setResult(0, intent);
-        finish();
+        backActivity();
     }
 
     /**

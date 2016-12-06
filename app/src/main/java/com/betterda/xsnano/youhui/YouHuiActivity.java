@@ -87,6 +87,6 @@ public class YouHuiActivity extends BaseActivity implements View.OnClickListener
      */
     @Override
     public void onClick(View v) {
-        finish();
+        backActivity();
     }
 }

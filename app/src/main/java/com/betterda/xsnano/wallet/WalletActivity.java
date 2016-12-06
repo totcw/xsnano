@@ -141,7 +141,7 @@ public class WalletActivity extends BaseActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bar_back:
-                finish();
+                backActivity();
                 break;
             case R.id.relative_wallet_jinbi://我的金币
                 UtilMethod.startIntentParams(getmActivity(), JinBiChangeAcitivty.class, "icon",icon+"");

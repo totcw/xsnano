@@ -78,6 +78,7 @@ public class IAddressPresenterImpl implements IAddressPresenter, View.OnClickLis
                             intent.putExtra("address2", address.getAddress3());
                             intent.putExtra("id", address.getId());
                             addressView.getContext().startActivity(intent);
+                            UtilMethod.setOverdepengingIn(addressView.getmActivity());
                         }
                     });
                     //选中
@@ -93,6 +94,7 @@ public class IAddressPresenterImpl implements IAddressPresenter, View.OnClickLis
                                 intent.putExtra("address", address.getAddress2() + address.getAddress3());
                                 addressView.getmActivity().setResult(0, intent);
                                 addressView.getmActivity().finish();
+                                UtilMethod.setOverdepengingOut(addressView.getmActivity());
                             }
 
 

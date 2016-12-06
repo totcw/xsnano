@@ -313,6 +313,8 @@ public class ShouYeFragment2 extends BaseFragment implements IShouyeView, View.O
                 } else {
                     Intent intent = new Intent(getmActivity(), LocationActivity.class);
                     startActivityForResult(intent,0);
+                    UtilMethod.setOverdepengingIn(getmActivity());
+
                 }
                 break;
             case R.id.iv_shouye_search://搜索

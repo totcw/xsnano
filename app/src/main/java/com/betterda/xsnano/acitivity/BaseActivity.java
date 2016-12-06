@@ -127,7 +127,10 @@ public class BaseActivity extends FragmentActivity {
      */
     public void backActivity() {
         finish();
+        UtilMethod.setOverdepengingOut(this);
     }
+
+
 
     /**
      * 初始化并显示PopupWindow
@@ -258,5 +261,11 @@ public class BaseActivity extends FragmentActivity {
         //防止内存泄漏
         ((MyApplication) getApplication()).removeAcitivty(this);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        UtilMethod.setOverdepengingOut(this);
     }
 }

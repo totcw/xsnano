@@ -137,7 +137,7 @@ public class InformationActivity extends BaseActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bar_back:
-                finish();
+                backActivity();
                 break;
             case R.id.relative_information_touxiang:
                 showPopupWindowPhoto();

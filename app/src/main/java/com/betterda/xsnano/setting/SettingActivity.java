@@ -66,7 +66,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bar_back:
-                finish();
+                backActivity();
                 break;
             case R.id.btn_setting_exit: //退出登录
                 exitLogin();

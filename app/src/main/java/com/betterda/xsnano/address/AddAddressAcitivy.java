@@ -63,7 +63,7 @@ public class AddAddressAcitivy extends BaseActivity implements IAddAddView, View
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bar_back:
-                finish();
+                backActivity();
                 break;
             case R.id.bar_action:
                addAddPresenter.save();

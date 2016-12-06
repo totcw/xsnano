@@ -51,7 +51,7 @@ public class JinBiChangeAcitivty extends BaseActivity {
     private ShapeLoadingDialog dialog;
     @Event(R.id.bar_back)
     private void onBackClick(View view) {
-        finish();
+        backActivity();
     }
     @Event(R.id.btn_myjinbichange_change)
     private void onCommitClick(View view) {

@@ -118,7 +118,7 @@ public class FindPwdActivity extends BaseActivity implements IFindPwdView, View.
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bar_back:
-                finish();
+                backActivity();
                 break;
             case R.id.btn_findpwd:
                 iFindPwdPresenter.findpwd();

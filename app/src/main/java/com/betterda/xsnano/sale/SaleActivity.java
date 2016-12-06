@@ -47,7 +47,7 @@ public class SaleActivity extends BaseActivity implements ISaleView, View.OnClic
 
     @Override
     public void onClick(View v) {
-        finish();
+        backActivity();
     }
 
     @Override

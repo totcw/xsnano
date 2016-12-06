@@ -109,7 +109,7 @@ public class IShangPingPresenterImpl implements IShangPingPresenter, View.OnClic
         adapterBussiness = new CommonAdapter<Business>(iShangPingView.getmActivity(), R.layout.item_recycleview_business, businessList) {
 
             @Override
-            public void convert(ViewHolder viewHolder, final Business business) {
+            public void convert(final ViewHolder viewHolder, final Business business) {
                 if (business != null) {
                     viewHolder.setText(R.id.tv_business_name, business.getName());
                     viewHolder.setText(R.id.tv_business_jianjie, business.getIntroduction());
@@ -133,6 +133,8 @@ public class IShangPingPresenterImpl implements IShangPingPresenter, View.OnClic
                             ((MyApplication) (iShangPingView.getmActivity().getApplication())).setProductid(business.getProductId());
                             ((MyApplication) (iShangPingView.getmActivity().getApplication())).setShopid(id);
                             iShangPingView.getmActivity().startActivity(intent);
+                            UtilMethod.setOverdepengingIn(iShangPingView.getmActivity());
+                            //UtilMethod.startIntentparams(iShangPingView.getmActivity(), GoodsDetail.class,viewHolder.getView(R.id.linear_business), "id", "","lyf");
                         }
                     });
 

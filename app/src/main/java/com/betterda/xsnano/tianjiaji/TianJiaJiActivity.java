@@ -66,7 +66,7 @@ public class TianJiaJiActivity extends BaseActivity implements ITianJiaJiView, V
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bar_back:
-                finish();
+                backActivity();
                 break;
             case R.id.mfiv_twotool_fist:
                 twotool.setFirstSelect(!twotool.isFirstSelected());

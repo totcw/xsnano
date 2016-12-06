@@ -131,7 +131,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterView, Vie
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bar_back:
-                finish();
+                backActivity();
                 break;
             case R.id.btn_register:
                 iRegisterPresenter.register();

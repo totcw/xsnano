@@ -62,7 +62,7 @@ public class SearchActivity extends BaseActivity implements ISearchView, View.On
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_search_back:
-                finish();
+                backActivity();
                 break;
             case R.id.iv_search_delete:
                 iSearchPresenter.delete();

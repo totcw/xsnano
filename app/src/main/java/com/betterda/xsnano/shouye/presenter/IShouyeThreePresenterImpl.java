@@ -169,7 +169,7 @@ public class IShouyeThreePresenterImpl implements IShouyeThreePresenter, View.On
                         @Override
                         public void onClick(View v) {
                             UtilMethod.startIntentparams(iShouyeView.getmActivity(), StoreActivity.class,viewHolder.getView(R.id.iv_item_homelistview), "id", store.getId(),"secondSharedView");
-                          //  UtilMethod.startIntentParams(iShouyeView.getmActivity(),StoreActivity.class,"id",store.getId());
+                           // UtilMethod.startIntentParams(iShouyeView.getmActivity(),StoreActivity.class,"id",store.getId());
                         }
                     });
 

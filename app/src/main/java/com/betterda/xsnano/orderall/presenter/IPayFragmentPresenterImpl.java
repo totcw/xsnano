@@ -463,6 +463,7 @@ public class IPayFragmentPresenterImpl implements IPayFragmentPresenter, View.On
         intent.putExtra("money", money);
         intent.putExtra("money3", freight);
         iPayFragmentView.getmActivity().startActivity(intent);
+        UtilMethod.setOverdepengingIn(iPayFragmentView.getmActivity());
     }
 
     /**
@@ -495,6 +496,7 @@ public class IPayFragmentPresenterImpl implements IPayFragmentPresenter, View.On
         intent.putExtra("orderid", orderid);
         //  }
         iPayFragmentView.getmActivity().startActivity(intent);
+        UtilMethod.setOverdepengingIn(iPayFragmentView.getmActivity());
     }
 
     /**

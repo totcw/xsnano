@@ -305,6 +305,7 @@ public class IComfirmOrderPresenterImpl implements IComfirmOrderPresenter {
     public void address() {
         Intent intent = new Intent(comfirmOrderView.getContext(), AddressActivity.class);
         comfirmOrderView.getmActivity().startActivityForResult(intent, 0);
+        UtilMethod.setOverdepengingIn(comfirmOrderView.getmActivity());
     }
 
     @Override
@@ -367,7 +368,7 @@ public class IComfirmOrderPresenterImpl implements IComfirmOrderPresenter {
         GetNetUtil.getData(GetNetUtil.POST, requestParams, new GetNetUtil.GetDataCallBack() {
             @Override
             public void onSuccess(String s) {
-                System.out.println("dingdan:" + s);
+
 
                 GsonParse.parser(UtilMethod.getString(s), new ParserGsonInterface() {
                     @Override
@@ -393,6 +394,7 @@ public class IComfirmOrderPresenterImpl implements IComfirmOrderPresenter {
                                         }
                                         comfirmOrderView.getmActivity().startActivity(intent);
                                          comfirmOrderView.getmActivity().finish();
+                                        UtilMethod.setOverdepengingIn(comfirmOrderView.getmActivity());
                                     }
 
                                 } else {
@@ -401,11 +403,8 @@ public class IComfirmOrderPresenterImpl implements IComfirmOrderPresenter {
                                     intent.putExtra("item", 2);
                                     comfirmOrderView.getmActivity().startActivity(intent);
                                     comfirmOrderView.getmActivity().finish();
-                       /* for (OrderComfirm orderComfirm : orderComfirmList) {
-                            if (orderComfirm != null) {
+                                    UtilMethod.setOverdepengingIn(comfirmOrderView.getmActivity());
 
-                            }
-                        }*/
                                 }
 
 

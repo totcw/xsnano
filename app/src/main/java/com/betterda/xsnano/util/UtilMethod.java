@@ -306,6 +306,8 @@ public class UtilMethod {
     public static <T> void startIntent(Context context, Class<T> cla) {
         Intent intent = new Intent(context, cla);
         context.startActivity(intent);
+       // ((Activity)context).overridePendingTransition(R.anim.activity_slide_in,R.anim.activity_slide_out);
+        setOverdepengingIn((Activity) context);
     }
 
 
@@ -340,7 +342,9 @@ public class UtilMethod {
         Intent intent = new Intent(context, cla);
         intent.putExtra(key, value);
         context.startActivity(intent);
+        setOverdepengingIn((Activity) context);
     }
+
 
 
     /**
@@ -968,9 +972,21 @@ public class UtilMethod {
             activity. finishAfterTransition();
         } else {
             activity.finish();
+            activity. overridePendingTransition(R.anim.activity_slide_finish_in,R.anim.activity_slide_finish_out);
         }
     }
 
-
+    /**
+     * 设置转场进入动画
+     */
+    public static void setOverdepengingIn(Activity activity) {
+        activity. overridePendingTransition(R.anim.activity_slide_in,R.anim.activity_slide_out);
+    }
+    /**
+     * 设置转场退出动画
+     */
+    public static void setOverdepengingOut(Activity activity) {
+        activity. overridePendingTransition(R.anim.activity_slide_finish_in,R.anim.activity_slide_finish_out);
+    }
 
 }

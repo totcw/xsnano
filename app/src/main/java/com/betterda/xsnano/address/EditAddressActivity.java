@@ -66,7 +66,7 @@ public class EditAddressActivity extends BaseActivity implements IEditAddressVie
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bar_back:
-                finish();
+                backActivity();
                 break;
             case R.id.bar_action://保存
                 iEditAddressPresenter.save();

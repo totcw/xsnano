@@ -38,6 +38,7 @@
                     <!--需要隐藏的部分-->
 
                     <LinearLayout
+
                         android:id="@+id/linear_hide"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

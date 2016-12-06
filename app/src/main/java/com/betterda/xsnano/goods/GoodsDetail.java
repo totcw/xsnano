@@ -136,7 +136,7 @@ public class GoodsDetail extends BaseActivity implements IGoodsDetailView, View.
 
                 break;
             case R.id.iv_goodsdetail_back://关闭选择商品详情
-                finish();
+                backActivity();
                 break;
 
         }

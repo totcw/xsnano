@@ -71,7 +71,7 @@ public class BusActivity extends BaseActivity implements IBusView, View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bar_back:
-                finish();
+                backActivity();
                 break;
             case R.id.bar_action://编辑
                 busPresenter.edit();

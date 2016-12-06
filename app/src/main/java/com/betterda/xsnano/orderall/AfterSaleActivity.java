@@ -114,12 +114,7 @@ public class AfterSaleActivity extends BaseActivity implements View.OnClickListe
                                     }
 
                                 }
-                             /*   viewHolder.setOnClickListener(R.id.linear_comfirmorder2, new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        UtilMethod.Toast(AfterSaleActivity.this, "订单详情");
-                                    }
-                                });*/
+
 
                             }
                         });
@@ -273,7 +268,7 @@ public class AfterSaleActivity extends BaseActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bar_back:
-                finish();
+                backActivity();
                 break;
             case R.id.frame_error:  //加载错误时的点击事件
                 //从第一页开始加载

@@ -355,7 +355,7 @@ public class OrderDetailActivity extends BaseActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bar_back:
-                finish();
+                backActivity();
                 break;
             case R.id.relative_orderdetail_pay://立即付款
 
@@ -380,23 +380,7 @@ public class OrderDetailActivity extends BaseActivity implements View.OnClickLis
                 }
                 break;
             case R.id.relative_orderdetail_tuikuan: //申请售后
-              /*  if (tuikuanDialog == null) {
-                    tuikuanDialog = new CallDialog(OrderDetailActivity.this, new CallDialog.onConfirmListener() {
-                        @Override
-                        public void comfirm() {
 
-                            getData3();
-                        }
-
-                        @Override
-                        public void cancel() {
-
-                        }
-                    }, "确定要申请售后吗", "确定");
-                }
-                if (!this.isFinishing()) {
-                    tuikuanDialog.show();
-                }*/
 
                 UtilMethod.startIntentParams(getmActivity(),AddResponseActivity.class,"orderid",orderid);
                 break;
@@ -418,6 +402,7 @@ public class OrderDetailActivity extends BaseActivity implements View.OnClickLis
                     public void onSuccess(String result, String resultMsg) {
                         UtilMethod.Toast(getmActivity(), resultMsg);
                         OrderDetailActivity.this.finish();
+                        UtilMethod.setOverdepengingOut(getmActivity());
 
                     }
                 });
@@ -446,6 +431,7 @@ public class OrderDetailActivity extends BaseActivity implements View.OnClickLis
                     public void onSuccess(String result, String resultMsg) {
                         UtilMethod.Toast(getmActivity(), resultMsg);
                         finish();
+                        UtilMethod.setOverdepengingOut(getmActivity());
                     }
                 });
 
@@ -485,5 +471,6 @@ public class OrderDetailActivity extends BaseActivity implements View.OnClickLis
         intent.putExtra("money", money);
         intent.putExtra("money3", freight);
         getmActivity().startActivity(intent);
+        UtilMethod.setOverdepengingIn(getmActivity());
     }
 }

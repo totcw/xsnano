@@ -68,7 +68,7 @@ public class AddressActivity extends BaseActivity implements IAddressView, View.
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bar_back:
-                finish();
+                backActivity();
                 break;
             case R.id.bar_action:
                 UtilMethod.startIntent(this, AddAddressAcitivy.class);

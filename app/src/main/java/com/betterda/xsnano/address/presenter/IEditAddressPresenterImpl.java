@@ -141,6 +141,7 @@ public class IEditAddressPresenterImpl implements  IEditAddressPresenter {
                     public void onSuccess(String result, String resultMsg) {
                         if ("true".equals(result)) {
                             iEditAddressView.getmActivity().finish();
+                            UtilMethod.setOverdepengingOut(iEditAddressView.getmActivity());
                         } else {
                             UtilMethod.Toast(iEditAddressView.getmActivity(),"删除失败");
                         }

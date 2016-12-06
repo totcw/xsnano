@@ -112,6 +112,7 @@ public class IMyPresenterImpl implements IMyPresenter {
             Intent intent = new Intent(iMyView.getmActivity(), OrderActivity.class);
             intent.putExtra("item", 0);
             iMyView.getmActivity().startActivity(intent);
+            UtilMethod.setOverdepengingIn(iMyView.getmActivity());
         }else {
             UtilMethod.startIntent(iMyView.getmActivity(), LoginActivity.class);
         }
@@ -145,6 +146,7 @@ public class IMyPresenterImpl implements IMyPresenter {
             Intent intent = new Intent(iMyView.getmActivity(), OrderActivity.class);
             intent.putExtra("item", 1);
             iMyView.getmActivity().startActivity(intent);
+            UtilMethod.setOverdepengingIn(iMyView.getmActivity());
         }else {
             UtilMethod.startIntent(iMyView.getmActivity(), LoginActivity.class);
         }
@@ -157,6 +159,7 @@ public class IMyPresenterImpl implements IMyPresenter {
             Intent intent = new Intent(iMyView.getmActivity(), OrderActivity.class);
             intent.putExtra("item", 2);
             iMyView.getmActivity().startActivity(intent);
+            UtilMethod.setOverdepengingIn(iMyView.getmActivity());
         }else {
             UtilMethod.startIntent(iMyView.getmActivity(), LoginActivity.class);
         }
@@ -168,6 +171,7 @@ public class IMyPresenterImpl implements IMyPresenter {
             Intent intent = new Intent(iMyView.getmActivity(), OrderActivity.class);
             intent.putExtra("item", 3);
             iMyView.getmActivity().startActivity(intent);
+            UtilMethod.setOverdepengingIn(iMyView.getmActivity());
         }else {
             UtilMethod.startIntent(iMyView.getmActivity(), LoginActivity.class);
         }
@@ -179,6 +183,7 @@ public class IMyPresenterImpl implements IMyPresenter {
             Intent intent = new Intent(iMyView.getmActivity(), OrderActivity.class);
             intent.putExtra("item", 4);
             iMyView.getmActivity().startActivity(intent);
+            UtilMethod.setOverdepengingIn(iMyView.getmActivity());
         }else {
             UtilMethod.startIntent(iMyView.getmActivity(), LoginActivity.class);
         }
@@ -190,6 +195,7 @@ public class IMyPresenterImpl implements IMyPresenter {
             Intent intent = new Intent(iMyView.getmActivity(), OrderActivity.class);
             intent.putExtra("item", 5);
             iMyView.getmActivity().startActivity(intent);
+            UtilMethod.setOverdepengingIn(iMyView.getmActivity());
         }else {
             UtilMethod.startIntent(iMyView.getmActivity(), LoginActivity.class);
         }

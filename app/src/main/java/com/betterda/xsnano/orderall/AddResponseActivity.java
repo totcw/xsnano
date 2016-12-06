@@ -64,7 +64,7 @@ public class AddResponseActivity extends BaseActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bar_back:
-                finish();
+                backActivity();
                 break;
             case R.id.btn_addresponse_commit:
 
@@ -103,6 +103,7 @@ public class AddResponseActivity extends BaseActivity implements View.OnClickLis
                     public void onSuccess(String result, String resultMsg) {
                         UtilMethod.Toast(getmActivity(), resultMsg);
                         AddResponseActivity.this.finish();
+                        UtilMethod.setOverdepengingOut(getmActivity());
 
                     }
                 });

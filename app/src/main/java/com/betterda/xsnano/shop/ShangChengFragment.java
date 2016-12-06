@@ -129,6 +129,7 @@ public class ShangChengFragment extends BaseFragment implements View.OnClickList
     public void onClick(View v) {
         Intent intent = new Intent(getmActivity(), ZhongJRecordActivity.class);
         startActivityForResult(intent,1);
+        UtilMethod.setOverdepengingIn(getmActivity());
     }
 
     @Override

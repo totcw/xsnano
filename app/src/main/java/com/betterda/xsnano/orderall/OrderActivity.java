@@ -138,7 +138,7 @@ public class OrderActivity extends BaseActivity implements IOrderView, View.OnCl
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bar_back:
-                finish();
+                backActivity();
                 break;
         }
     }

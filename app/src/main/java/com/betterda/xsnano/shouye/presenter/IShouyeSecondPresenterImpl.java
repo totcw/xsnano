@@ -34,6 +34,7 @@ public class IShouyeSecondPresenterImpl implements IShouyeSecondPresenter {
         intentyg.putExtra("title", title);
         intentyg.putExtra("isshop", false);
         shouyeView.getmActivity().startActivity(intentyg);
+        UtilMethod.setOverdepengingIn(shouyeView.getmActivity());
     }
 
     @Override
@@ -99,6 +100,7 @@ public class IShouyeSecondPresenterImpl implements IShouyeSecondPresenter {
         intent.putExtra("title", title);
         intent.putExtra("isshop", true);
         shouyeView.getmActivity().startActivity(intent);
+        UtilMethod.setOverdepengingIn(shouyeView.getmActivity());
     }
 
     @Override

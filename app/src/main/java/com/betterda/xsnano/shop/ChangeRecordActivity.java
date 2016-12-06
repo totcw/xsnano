@@ -152,6 +152,6 @@ public class ChangeRecordActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        finish();
+        backActivity();
     }
 }

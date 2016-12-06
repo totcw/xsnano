@@ -144,6 +144,6 @@ public class ZhongJRecordActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        finish();
+        backActivity();
     }
 }

@@ -79,7 +79,7 @@ public class WashActivity extends BaseActivity implements IWashView, View.OnClic
                 if (close()) {
 
                 } else {
-                    finish();
+                    backActivity();
 
                 }
                 break;

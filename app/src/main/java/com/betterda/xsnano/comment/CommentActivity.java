@@ -56,7 +56,7 @@ public class CommentActivity extends BaseActivity implements ICommentView, View.
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bar_back:
-                finish();
+                backActivity();
                 break;
         }
     }

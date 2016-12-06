@@ -99,6 +99,7 @@ public class ISalePresentereImpl implements ISalePresenter, View.OnClickListener
                                 ((MyApplication) (iSaleView.getmActivity().getApplication())).setShopid(sale.getShopId());
                                 Intent intent = new Intent(iSaleView.getmActivity(), GoodsDetail.class);
                                 iSaleView.getmActivity().startActivity(intent);
+                                UtilMethod.setOverdepengingIn(iSaleView.getmActivity());
                             }
                         }
                     });

@@ -110,7 +110,7 @@ public class ComfirmOrderActivity extends BaseActivity implements IComfirmOrderV
               //  closePopupWindow();
                 break;
             case R.id.bar_back:
-                finish();
+                backActivity();
                 break;
 
         }

@@ -111,7 +111,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
 
         switch (v.getId()) {
             case R.id.bar_back:
-                finish();
+                backActivity();
                 break;
             case R.id.btn_login:
                 iLoginPresenter.login();
