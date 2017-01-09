@@ -310,7 +310,7 @@ public class GsonParse {
 //
 //        SimpleDateFormat format = new SimpleDateFormat("dd天HH时mm分ss秒");
 //        System.out.println(format.format(date));
-        long start = 1467907200000l;
+        @SuppressWarnings("LongLiteralEndingWithLowercaseL") long start = 1467907200000L;
         long now = System.currentTimeMillis();
 
         long out = (start - now) / 3600 / 1000;

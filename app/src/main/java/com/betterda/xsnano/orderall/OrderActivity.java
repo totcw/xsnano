@@ -46,7 +46,7 @@ public class OrderActivity extends BaseActivity implements IOrderView, View.OnCl
         topBar = (NormalTopBar) findViewById(R.id.topbar_order);
         order_indicator = (ViewPagerIndicator) findViewById(R.id.order_indicator);
         vp_order = (ViewPager) findViewById(R.id.vp_order);
-        vp_order.setOffscreenPageLimit(1);
+
 
     }
 
@@ -106,7 +106,7 @@ public class OrderActivity extends BaseActivity implements IOrderView, View.OnCl
         int item = getIntent().getIntExtra("item", 0);
         //设置关联的ViewPager
         order_indicator.setViewPager(vp_order, item);
-        order_indicator.setOnPageChangeListener(new ViewPagerIndicator.PageChangeListener() {
+      /*  order_indicator.setOnPageChangeListener(new ViewPagerIndicator.PageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -124,7 +124,7 @@ public class OrderActivity extends BaseActivity implements IOrderView, View.OnCl
             public void onPageScrollStateChanged(int state) {
 
             }
-        });
+        });*/
 
 
     }

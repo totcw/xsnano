@@ -58,6 +58,7 @@
 
 
     <LinearLayout
+        android:visibility="gone"
         android:background="#ffffff"
         android:padding="15dp"
         android:layout_width="match_parent"
@@ -87,10 +88,11 @@
         android:layout_height="1dp"
         android:background="@color/lv_divider"></View>
     <LinearLayout
+        android:paddingLeft="15dp"
         android:background="#ffffff"
-        android:padding="15dp"
+        android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="48dp">
 
         <TextView
             android:minWidth="60dp"
@@ -100,12 +102,13 @@
             />
 
         <EditText
+            android:inputType="number"
             android:background="@null"
             android:id="@+id/tv_livingpay2_number"
             android:layout_marginLeft="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="查看纸质账单"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="请输入帐号"
             android:textSize="13sp"
             android:textColor="@color/shouye_lv_tv"
             />

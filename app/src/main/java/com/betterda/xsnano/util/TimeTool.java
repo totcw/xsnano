@@ -10,12 +10,12 @@ import java.util.Date;
  */
 public class TimeTool {
 
-    private final static long yearLevelValue = 365*24*60*60*1000l ;
-    private final static long monthLevelValue = 30*24*60*60*1000l ;
-    private final static long dayLevelValue = 24*60*60*1000l ;
-    private final static long hourLevelValue = 60*60*1000l ;
-    private final static long minuteLevelValue = 60*1000l ;
-    private final static long secondLevelValue = 1000l ;
+    private final static long yearLevelValue = 365*24*60*60*1000L ;
+    private final static long monthLevelValue = 30*24*60*60*1000L ;
+    private final static long dayLevelValue = 24*60*60*1000L ;
+    private final static long hourLevelValue = 60*60*1000L ;
+    private final static long minuteLevelValue = 60*1000L ;
+    private final static long secondLevelValue = 1000L ;
     /**
      * 获取现在到结束日期的时间差
      *

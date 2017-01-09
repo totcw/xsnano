@@ -559,7 +559,7 @@ public class RefreshListView extends ListView implements OnScrollListener {
             p = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT);
         }
-        int childWidthSpec = ViewGroup.getChildMeasureSpec(0, 0 + 0, p.width);
+        int childWidthSpec = ViewGroup.getChildMeasureSpec(0, 0, p.width);
         int lpHeight = p.height;
         int childHeightSpec;
         if (lpHeight > 0) {

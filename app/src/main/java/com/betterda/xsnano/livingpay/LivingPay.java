@@ -99,12 +99,16 @@ public class LivingPay extends BaseActivity implements View.OnClickListener {
     }
 
     private void next() {
-        Intent intent = new Intent(getmActivity(), LivingPayActivity.class);
+
+        UtilMethod.Toast(getmActivity(),"没有找到相应的帐号,请确认帐号是否正确或联系在线客服");
+
+
+        /*Intent intent = new Intent(getmActivity(), LivingPayActivity.class);
         intent.putExtra("type",type);
         intent.putExtra("name",name);
         intent.putExtra("company",company);
         intent.putExtra("arrearage",arrearage);
         intent.putExtra("balance",balance);
-        startActivity(intent);
+        startActivity(intent);*/
     }
 }

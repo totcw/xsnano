@@ -269,7 +269,7 @@ public class IShouyeFirstPresenterImpl implements IShouyeFirstPresenter, ViewPag
 
     @Override
     public void onDestroy() {
-        System.out.println("stop");
+
 
 
         //将handler关闭防止 内存泄漏

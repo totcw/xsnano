@@ -28,16 +28,18 @@
 
 
         <TextView
+            android:layout_centerVertical="true"
             android:id="@+id/tv_baseliving_city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="13dp"
             android:layout_toRightOf="@id/iv_baseliving_icon"
-            android:text="青岛市"
+            android:text="福建省"
             android:textColor="@color/shouye_renmen_tv"
             android:textSize="21sp" />
 
         <TextView
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_baseliving_city"

@@ -6,6 +6,7 @@ import android.text.TextUtils;
 
 import com.betterda.xsnano.R;
 import com.betterda.xsnano.address.AddressActivity;
+import com.betterda.xsnano.baidu.MyMapActivity;
 import com.betterda.xsnano.bus.BusActivity;
 import com.betterda.xsnano.information.InformationActivity;
 import com.betterda.xsnano.login.LoginActivity;
@@ -126,7 +127,7 @@ public class IMyPresenterImpl implements IMyPresenter {
 
     @Override
     public void fankui() {
-
+        UtilMethod.startIntent(iMyView.getmActivity(), MyMapActivity.class);
     }
 
     @Override

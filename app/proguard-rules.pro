@@ -192,7 +192,6 @@
     -dontwarn com.baidu.**
 
 
-
     ################### region for xUtils
     -keepattributes Signature,*Annotation*
     -keep public class org.xutils.** {
@@ -293,6 +292,6 @@
   **[] $VALUES;
   public *;
 }
--keepresourcexmlelements manifest/application/meta-data@value=GlideModule
+#-keep resource xmlelements manifest/application/meta-data@value=GlideModule
 
 #glide end
