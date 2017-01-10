@@ -51,7 +51,7 @@ public class Constants {
 	public class WeiBo{
 
 		/** 当前 DEMO 应用的 APP_KEY，第三方应用应该使用自己的 APP_KEY 替换该 APP_KEY */
-		public static final String APP_KEY      = "337463077";
+		public static final String APP_KEY = "337463077";
 		/**
 		 * 当前 DEMO 应用的回调页，第三方应用可以使用自己的回调页。
 		 * 建议使用默认回调页：https://api.weibo.com/oauth2/default.html

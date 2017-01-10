@@ -1,13 +1,18 @@
 package com.betterda.xsnano.livingpay;
 
 import android.content.Intent;
+import android.provider.Contacts;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.betterda.xsnano.R;
 import com.betterda.xsnano.acitivity.BaseActivity;
+import com.betterda.xsnano.dialog.CallDialog;
+import com.betterda.xsnano.findpwd.presenter.IFindPwdPrensenterImpl;
 import com.betterda.xsnano.util.UtilMethod;
 import com.betterda.xsnano.view.NormalTopBar;
 
@@ -20,6 +25,7 @@ public class LivingPay extends BaseActivity implements View.OnClickListener {
     private Button btnNext;
     private TextView tvLivingpayType;
     private ImageView ivLivingpayIcon;
+    private EditText tv_livingpay2_number;
     private String type;
     private String name;
     private String company;//单位
@@ -34,6 +40,7 @@ public class LivingPay extends BaseActivity implements View.OnClickListener {
         topBar = (NormalTopBar) findViewById(R.id.topbar_livingpay2);
         tvLivingpayType = (TextView) findViewById(R.id.tv_livingpay2_type);
         ivLivingpayIcon = (ImageView) findViewById(R.id.iv_livingpay2_icon);
+        tv_livingpay2_number = (EditText) findViewById(R.id.tv_livingpay2_number);
     }
 
     @Override
@@ -99,16 +106,46 @@ public class LivingPay extends BaseActivity implements View.OnClickListener {
     }
 
     private void next() {
+       String s = tv_livingpay2_number.getText().toString().trim();
+        if (TextUtils.isEmpty(s)) {
+            UtilMethod.Toast(getmActivity(), "请输入帐号");
+            return;
+        }
+        if ("80019259".equals(s)) {
+            Intent intent = new Intent(getmActivity(), LivingPayActivity.class);
+            intent.putExtra("type", type);
+            intent.putExtra("name", name);
+            intent.putExtra("company", company);
+            intent.putExtra("arrearage", arrearage);
+            intent.putExtra("balance", balance);
+            startActivity(intent);
 
-        UtilMethod.Toast(getmActivity(),"没有找到相应的帐号,请确认帐号是否正确或联系在线客服");
+            CallDialog callDialog = new CallDialog(getmActivity(), new CallDialog.onConfirmListener() {
+                @Override
+                public void comfirm() {
+
+                }
+
+                @Override
+                public void cancel() {
+
+                }
+            },"暂未查到欠费","确定");
+            callDialog.show();
+
+        } else {
+            boolean is = s.matches("^[0-9]{8}$");
+            if (!is) {
+                UtilMethod.Toast(getmActivity(),"请输入正确的位数");
+            } else {
+                UtilMethod.Toast(getmActivity(),"没有找到相应的帐号,请确认帐号是否正确或联系在线客服");
+            }
 
 
-        /*Intent intent = new Intent(getmActivity(), LivingPayActivity.class);
-        intent.putExtra("type",type);
-        intent.putExtra("name",name);
-        intent.putExtra("company",company);
-        intent.putExtra("arrearage",arrearage);
-        intent.putExtra("balance",balance);
-        startActivity(intent);*/
+        }
+
+
+
+
     }
 }
