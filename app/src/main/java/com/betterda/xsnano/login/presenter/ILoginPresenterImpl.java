@@ -298,7 +298,7 @@ public class ILoginPresenterImpl implements ILoginPresenter {
 
         @Override
         public void onComplete(Bundle values) {
-            UtilMethod.Toast(iLoginView.getmActivity(), "授权成功");
+
             // 从 Bundle 中解析 Token
             mAccessToken = Oauth2AccessToken.parseAccessToken(values);
 
